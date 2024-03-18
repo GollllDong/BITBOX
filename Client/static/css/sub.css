@@ -76,4 +76,4 @@ div.mt10 button {margin-left: 10px;}
 .chat_content .msg_box .msg_send_btn {background: #0a9102; width: 30px; height: 30px; border-radius: 100%; text-align: center; vertical-align: middle; cursor: pointer;}
 
 .chat_content .chat_id {font-size: 15px;font-weight: 600;color: #0a9102;margin-left: 12px;margin-bottom: 10px;}
-.chat_content .chat_msg {font-size: 16px;font-weight: 500;color: #222;border-radius: 8px;border: 1px solid #e8e8e8;padding: 10px;margin-left: 20px;}
+.chat_content .chat_msg {font-size: 16px;font-weight: 500;color: #222;border-radius: 8px;border: 1px solid #e8e8e8;padding: 10px;margin-left: 20px; margin-bottom: 13px; display: inline-block;}

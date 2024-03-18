@@ -1,6 +1,6 @@
 // const SERVER_IP = "192.168.0.20";
-const SERVER_IP = "192.168.0.5";
-const SERVER_PORT = 9000;
+const SERVER_IP = "127.0.0.1";
+const SERVER_PORT = 1111;
 const server_address = `ws://${SERVER_IP}:${SERVER_PORT}`; // ws://127.0.0.1:9000
 
 const socket = new WebSocket(server_address);
@@ -64,21 +64,41 @@ const displayPacketMessage = function ($parentSelector, message) {
   const msgObj = JSON.parse(message);
 
   let msg = "";
+  let idMsg = "";
+  let infoMsg = "";
   switch (msgObj.cmd) {
     case "connect":
-      msg = msgObj.result;
+      infoMsg = msgObj.result;
       break;
     case "login":
-      msg = msgObj.result === "ok" ? "로그인 성공" : "로그인 실패";
+      infoMsg = msgObj.result === "ok" ? "로그인 성공" : "로그인 실패";
       break;
     case "allchat":
-      if ("result" in msgObj)
-        msg = msgObj.result === "ok" ? "채팅 전송 성공" : "채팅 전송 실패";
-      else if ("id" in msgObj) msg = `${msgObj.id} => ${msgObj.msg}`;
+      // if ("result" in msgObj)
+      //   msg = msgObj.result === "ok" ? "채팅 전송 성공" : "채팅 전송 실패";
+      // else 
+      if ("id" in msgObj) 
+        idMsg = `${msgObj.id}`;
+        msg = `${msgObj.msg}`;
+        
       break;
   }
 
-  const childElem = document.createElement("div");
+  // 문구 설정
+  const infoMsgElm = document.createElement("div");
+  infoMsgElm.textContent = infoMsg;
+  parentElem.appendChild(infoMsgElm);
+
+  // 채팅부분
+  const childIdElem = document.createElement("p");
+  const childElem = document.createElement("span");
+  childIdElem.textContent = idMsg;
   childElem.textContent = msg;
-  parentElem.appendChild(childElem);
+  
+  if (childElem.textContent != "" && childIdElem.textContent != "") {
+    childIdElem.classList.add("chat_id");
+    childElem.classList.add("chat_msg");
+    parentElem.appendChild(childIdElem);
+    parentElem.appendChild(childElem);
+  }
 };
