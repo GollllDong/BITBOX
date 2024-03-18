@@ -77,6 +77,8 @@
                                     </p>
                                 </div>
 
+                                <button class="board_write_btn">글작성</button>
+
                                 <div class="table_layout">
                                     <table>
                                         <colgroup>
@@ -104,7 +106,12 @@
                                                 <td>
                                                     여기 해장국 진짜 맛있어요~
                                                 </td>
-                                                <td></td>
+                                                <td>
+                                                    <img
+                                                        src="../static/images/ico_star.svg"
+                                                        alt=""
+                                                    />
+                                                </td>
                                                 <td>D08기 홍길동</td>
                                                 <td>2024.03.14</td>
                                             </tr>
@@ -202,11 +209,9 @@
                                     </table>
                                 </div>
 
-                                <ul>
-                                    <li class="prev">
-                                        <button class="prev_btn"></button>
-                                    </li>
-                                    <li>
+                                <ul class="pagination">
+                                    <button class="prev_btn"></button>
+                                    <li class="select">
                                         <a href="#">1</a>
                                     </li>
                                     <li>
@@ -215,9 +220,7 @@
                                     <li>
                                         <a href="#">3</a>
                                     </li>
-                                    <li class="next">
-                                        <button class="next_btn"></button>
-                                    </li>
+                                    <button class="next_btn"></button>
                                 </ul>
                             </section>
                         </div>
