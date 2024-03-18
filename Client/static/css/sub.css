@@ -48,3 +48,17 @@ div.mt10 button {margin-left: 10px;}
 .sub_title {margin-top: 60px; display: flex; justify-content: center; align-items: center; text-align: center;}
 .sub_title p {color: #fff; background-color: #0a9102; padding: 12px 10px; border-radius: 8px; width: 80%; font-size: 17px; font-weight: 500; position: relative;}
 .sub_title p::after {content: ""; position: absolute; bottom: 50%; right: 2%; background: #bbb; width: 70px; height: 70px; border-radius: 100%;}
+
+/* 길찾기 */
+.map_content .map_box {height: 650px; background-color: #ddd; border-radius: 0 8px 8px 0;}
+.map_content .find_road {border-right: 1px solid #e8e8e8; text-align: center;}
+.map_content .find_road a {font-size: 15px; font-weight: 600; color: #111; display: block; width: 100%; height: 32px; line-height: 32px; padding: 10px 0 10px 15px; position: relative;}
+.map_content .find_road a::before {position: absolute; content: ""; background: #ddd; width: 18px; height: 18px; top: 16px; left: 24px;}
+.map_content > div:nth-child(2) {overflow-y: scroll;}
+.map_content > div:nth-child(2) > div {height: 650px;}
+.map_content > div:nth-child(2) p {font-size: 14px; font-weight: 500; color: #333;}
+.map_content > div:nth-child(2) .w50p .box {padding: 0; border: none; box-shadow: none;}
+.map_content > div:nth-child(2) .w50p:nth-child(odd) .box {margin: 0 10px 0 0px;}
+.map_content > div:nth-child(2) .w50p:nth-child(even) .box {margin: 0 0 0 10px;}
+.map_content .place_box {background:#ddd; height: 120px; border-radius: 4px;}
+.map_content .place_box+span {font-size: 16px; font-weight: 500; color: #111; margin: 8px 0 15px; display: inline-block;}
