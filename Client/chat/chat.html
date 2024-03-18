@@ -1,31 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BitBox</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <script src="../static/js/socket-client.js"></script>
-    <script src="../static/js/chat.js"></script>
-  </head>
-  <body>
-    <label
-      >아이디:
-      <input type="text" id="idInput" placeholder="id를 입력하세요" /></label
-    ><br />
-    <label
-      >패스워드:
-      <input
-        type="password"
-        id="passInput"
-        placeholder="pass를 입력하세요" /></label
-    ><br />
-    <button id="btnLogIn">로그인 전송</button>
-    <hr />
-    <input type="text" id="messageInput" placeholder="메시지를 입력하세요" />
-    <button id="btnChatMsg">채팅 메시지 전송</button>
-    <div id="messages">
-      <!-- 메시지 출력 영역 -->
-    </div>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BitBox~</title>
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <script src="../static/js/socket-client.js"></script>
+        <script src="../static/js/chat.js"></script>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="content">
+                <aside class="side_nav">
+                    <div class="side_container">
+                        <div class="logo_box">
+                            <h1 class="logo">
+                                <a class="" href="index.html"></a>
+                            </h1>
+                            <span>BITBOX</span>
+                        </div>
+                        <div class="login_box">
+                            <h2>Ok~Let's Go~</h2>
+                            <button class="login_btn">로그인</button>
+                            <p class="">비트박스에 오신 것을 환영합니다.</p>
+                        </div>
+                        <nav class="gnb_nav">
+                            <ul class="gnb_box">
+                                <li class="select">
+                                    <a href="index.html">HOME</a>
+                                </li>
+                                <li>
+                                    <a href="#">게시판</a>
+                                </li>
+                                <li>
+                                    <a href="#">지도</a>
+                                </li>
+                                <li>
+                                    <a href="#">채팅</a>
+                                </li>
+                                <li>
+                                    <a href="#">오늘의 할 일</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+                <div class="main_box">
+                    <header class="header">
+                        <div class="user_box">
+                            <div class="user_img">
+                                <!-- <img src="" alt="사용자 이미지" /> -->
+                                <img
+                                    src="../Client/static/images/user_info.png"
+                                    alt=""
+                                    class="user_info"
+                                />
+                            </div>
+                            <!-- <div class="user_subject">
+                   팝업 내용 넣기 
+                  </div>-->
+                        </div>
+                    </header>
+
+                    <main class="main">
+                        <div class="container">
+                            <section class="snb_nav mb10">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">HOME</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">채팅</a>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="main_content_box">
+                                <div class="title_box">
+                                    <h2 class="title orange">
+                                        비트캠프 근처 맛집
+                                    </h2>
+                                    <p>
+                                        맛잘알 수강생들의 생생한 맛집 후기도
+                                        궁금하다면? 맛집 리스트 게시판도
+                                        방문해보세요!
+                                    </p>
+                                </div>
+
+                                <div class="flex space-between chat_content">
+                                    <div class="w33p">
+                                        <div class="w100p">
+                                            <article class="box chat_list_box">
+                                                <div class="chat_add">
+                                                    <span>채팅방 목록</span>
+                                                    <button
+                                                        class="chat_add_btn"
+                                                    ></button>
+                                                </div>
+                                                <div class="chat_list">
+                                                    <a href="">스터디 모집중</a>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                    <div class="w66p">
+                                        <div class="w100p">
+                                            <article class="box">
+                                                <div
+                                                    id="messages"
+                                                    class="messages"
+                                                ></div>
+                                                <div class="msg_box">
+                                                    <input
+                                                        type="text"
+                                                        id="messageInput"
+                                                        class="msg_input"
+                                                        placeholder="메시지를 입력~"
+                                                    />
+                                                    <button
+                                                        id="btnChatMsg"
+                                                        class="msg_send_btn"
+                                                    ></button>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <footer class="footer">
+                <span>@내가 만듬</span>
+            </footer>
+        </div>
+    </body>
 </html>
