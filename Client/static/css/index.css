@@ -74,6 +74,7 @@
 .gnb_nav ul li:nth-child(4):hover {background:url(../images/ico_chat_select.svg)no-repeat 15px center #414143;}
 .gnb_nav ul li:nth-child(5):hover {background:url(../images/ico_todo_select.svg)no-repeat 15px center #414143;}
 .gnb_nav ul li:hover a{color: #fff;}
+.gnb_nav ul li:hover {transition: all 0.2s linear;}
 
 .gnb_nav ul li:nth-child(1).select {background:url(../images/ico_home_select.svg)no-repeat 15px center #414143;}
 .gnb_nav ul li:nth-child(2).select {background:url(../images/ico_board_select.svg)no-repeat 15px center #414143;}
