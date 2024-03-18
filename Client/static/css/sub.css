@@ -47,7 +47,8 @@ div.mt10 button {margin-left: 10px;}
 /* sub_title */
 .sub_title {margin-top: 60px; display: flex; justify-content: center; align-items: center; text-align: center;}
 .sub_title p {color: #fff; background-color: #0a9102; padding: 12px 10px; border-radius: 8px; width: 80%; font-size: 17px; font-weight: 500; position: relative;}
-.sub_title p::after {content: ""; position: absolute; bottom: 50%; right: 2%; background: #bbb; width: 70px; height: 70px; border-radius: 100%;}
+/*.sub_title p::after {content: ""; position: absolute; bottom: 50%; right: 2%; background: #bbb; width: 70px; height: 70px; border-radius: 100%;}*/
+.sub_title p .emoji {bottom: 35%; right: 2%; width: 70px; height: 70px; position: absolute;}
 
 /* 길찾기 */
 .map_content .map_box {height: 650px; background-color: #ddd; border-radius: 0 8px 8px 0;}
