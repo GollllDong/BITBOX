@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import db.DBConnection;
-import DTO.User;
+import dto.User;
 
 public class LoginDao {
 	Connection conn = null;

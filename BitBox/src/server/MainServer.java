@@ -7,8 +7,8 @@ import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 import org.json.JSONObject;
 
-import DTO.User;
 import db.dao.LoginDao;
+import dto.User;
 
 public class MainServer extends WebSocketServer {
     public static void main(String[] args) {

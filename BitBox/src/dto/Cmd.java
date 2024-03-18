@@ -1,4 +1,4 @@
-package DTO;
+package dto;
 
 /*
  * Cmd : 명령어 관련 클래스
