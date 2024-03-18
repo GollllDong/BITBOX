@@ -43,7 +43,7 @@ if (navigator.geolocation) {
         // 사용자의 현재 위치를 중심으로 반경 1km의 원을 생성
         var circle = new kakao.maps.Circle({
             center: new kakao.maps.LatLng(lat, lon),    // 사용자의 현재 위치를 중심으로 설정
-            radius: 1000,                               // 반경은 1km
+            radius: 500,                               // 반경은 1km
             strokeWeight: 5,
             strokeColor: '#75B8FA',
             strokeOpacity: 1,
