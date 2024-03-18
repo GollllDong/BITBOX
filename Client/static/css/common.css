@@ -6,8 +6,8 @@
 ol,ul,li {list-style: none;}
 a {text-decoration: none; display: inline-block;}
 a:link {color: #808080; text-decoration: none;}
-a:hover {color: #4769f8; text-decoration: underline;}
-a:active {color: #ff0; text-decoration: underline;}
+a:hover {color: #808080; text-decoration: underline;}
+a:active {color: #808080; text-decoration: underline;}
 input {line-height: 1.8em;}
 img,fieldset {border: none;}
 body {font-family: 'Pretendard', 'Roboto', sans-serif; font-size: 22px; font-weight: 400; color: #111;}

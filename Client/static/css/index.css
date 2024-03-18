@@ -16,7 +16,7 @@
 .font_medium {font-weight: 500;}
 .font_semibold {font-weight: 600;}
 .font_bold {font-weight: 700;}
-.title {font-size: 30x; font-weight: 700; margin: 0 10px 20px 10px; color: #111;}
+.title {font-size: 30x; font-weight: 700; color: #111;}
 .sub_title {font-size: 22px; font-weight: 600; margin-bottom: 8px; color: #333;}
 
 /* color */
@@ -42,7 +42,7 @@
 .header .user_img {cursor: pointer; background-color: #fbd107; border-radius: 100%; border: 1px solid #999; width: 45px; height: 45px;}
 
 /* navi */
-.side_nav {width: 270px; height: 100%; border-right: 1px solid #bbb; position: fixed; top: 0; left: 0; z-index: 1000; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
+.side_nav {width: 300px; height: 100%; border-right: 1px solid #bbb; position: fixed; top: 0; left: 0; z-index: 1000; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
 .side_nav .side_container {position: relative;}
 .side_nav .logo_box {padding: 20px; display: inline-flex; justify-content: space-between; align-items: center; width: 100%; }
 .side_nav .logo_box .logo {margin-right: 16px; height: 40px; width: 40px;}
@@ -78,16 +78,20 @@
 .gnb_nav ul li.select a{color: #fff;}
 
 /* main */
-.main_box {margin-left: 270px; height: 100vh;}
-.container {max-width: 1140px; margin: 30px auto;}
+.main_box {margin-left: 300px; height: 100vh;}
+.container {max-width: 1440px; margin: 30px auto;}
 
 .snb_nav {margin: 0 10px 5px;}
-.snb_nav ul {display: inline-flex;}
+.snb_nav ul {display: inline-flex; align-items: center;}
 .snb_nav ul li {padding-right: 20px; position: relative;}
-.snb_nav ul li::after {content: ""; position: absolute; top: 10px; right: 10px; background: #a9a9a9; width: 1px; height: 14px;}
+.snb_nav ul li::after {content: ""; position: absolute; top: 8px; right: 10px; background: #a9a9a9; width: 1px; height: 14px;}
 .snb_nav ul li:last-child::after {display: none;}
 .snb_nav ul li a {font-size: 13px; font-weight: 400; color: #666;}
 .snb_nav ul li:first-child a {color: #0a9102; font-weight: 500;}
+
+/* title_box */
+.title_box {margin: 20px 10px 30px;}
+.title_box p {margin-top: 10px;}
 
 /* main_content_box */
 .main_content_box p {font-size: 17px; font-weight: 400; color: #444; margin-bottom: 24px;}

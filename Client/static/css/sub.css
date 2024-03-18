@@ -1,0 +1,10 @@
+.table_layout {border: 1px solid #ddd; border-radius: 8px; padding: 1px;}
+.table_layout table {width: 100%;}
+.table_layout tr {border-bottom: 1px solid #ddd;}
+.table_layout thead tr {background: #f2f7ef;}
+.table_layout tbody tr:last-child {border-bottom: none;}
+.table_layout tr th {font-size: 17px; font-weight: 600; color: #222; text-align: center; padding: 10px 2px; border-right: 1px solid #ddd;}
+.table_layout tr th:last-child {border-right: none;}
+.table_layout tr td {font-size: 16px; font-weight: 500; color: #333; text-align: center; padding: 10px; border-right: 1px solid #ddd;}
+.table_layout tr td:last-child {border-right: none;}
+.table_layout tr td:nth-child(3) {text-align: left;}
