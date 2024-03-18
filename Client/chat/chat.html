@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BitBox</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/socket-client.js"></script>
+    <script src="../static/js/chat.js"></script>
+  </head>
+  <body>
+    <label
+      >아이디:
+      <input type="text" id="idInput" placeholder="id를 입력하세요" /></label
+    ><br />
+    <label
+      >패스워드:
+      <input
+        type="password"
+        id="passInput"
+        placeholder="pass를 입력하세요" /></label
+    ><br />
+    <button id="btnLogIn">로그인 전송</button>
+    <hr />
+    <input type="text" id="messageInput" placeholder="메시지를 입력하세요" />
+    <button id="btnChatMsg">채팅 메시지 전송</button>
+    <div id="messages">
+      <!-- 메시지 출력 영역 -->
+    </div>
+  </body>
+</html>
