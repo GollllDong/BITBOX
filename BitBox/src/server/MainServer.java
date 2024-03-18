@@ -111,9 +111,7 @@ public class MainServer extends WebSocketServer {
 
             // 전체 접속자한테 브로드캐스팅
             for (WebSocket con : this.getConnections()) {
-                if (conn != con) {
-                    con.send(message);
-                }
+            	con.send(message);
             }
         }
     }
