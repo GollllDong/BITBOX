@@ -11,9 +11,9 @@ public class DBConnection {
 	public static Connection getConnection() {
 	    Connection conn = null;
 	    
-	    final String url = "jdbc:mysql://192.168.0.5:3306/BitBox";
+	    final String url = "jdbc:mysql://192.168.0.5:3306/bitbox";
 	    final String user = "bitbox";
-	    final String password = "20140315!!";
+	    final String password = "20240315!!";
 	    
 	    try {
 	        conn = DriverManager.getConnection(url, user, password);
