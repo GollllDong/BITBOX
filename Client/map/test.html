@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>BitBox~</title>
         <link rel="stylesheet" href="../static/css/style.css" />
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2cc2127ed8271d4f203b201b1f7ba4e"></script>
     </head>
     <body>
         <div class="wrap">
@@ -87,7 +88,9 @@
                                                 <div class="w20p find_road">
                                                     <a href="#">길찾기</a>
                                                 </div>
-                                                <div class="w80p map_box"></div>
+                                                <div class="w80p map_box">
+                                                    <div id="map" style="width: 100%; height:100%"></div>
+                                                </div>
                                             </article>
                                         </div>
                                     </div>
@@ -222,5 +225,8 @@
                 <span>@내가 만듬</span>
             </footer>
         </div>
+         <!-- JavaScript 코드를 외부 파일로 분리하여 불러오기 -->
+        <script src="/Client/static/js/map.js"></script>
+        <script src="/Client/static/js/rest.js"></script>
     </body>
 </html>

@@ -16,7 +16,7 @@ getUserAroundRestaurants() : 사용자의 위도와 경도를 뽑아서 rest.js�
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표(카카오)
-        level: 5 
+        level: 5
     };
 
 let lat;
@@ -103,7 +103,7 @@ function set_user_location(lat, lon) {
 function displayMarker(locPosition, message) {
     // 사용자의 현재 위치를 나타내는 마커 이미지 설정
     const userMarkerImage = new kakao.maps.MarkerImage(
-        '../static/images/user_location.png', 
+        '../static/images/user_location.png',
         new kakao.maps.Size(50, 50), // 마커 이미지 크기
         { offset: new kakao.maps.Point(25, 50) } // 마커 이미지의 중심좌표 설정
     );

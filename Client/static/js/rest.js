@@ -15,7 +15,7 @@ function findRestaurants(lat, lon) {
         fetch(url, {
             method: 'GET',
             headers: {
-                'Authorization': 'KakaoAK 038d89c40cab6d2dd812a4067c3432ec'
+                'Authorization': 'KakaoAK b112b95dc61a549270022e580ae57096'
             }
         })
         .then(response => response.json())
