@@ -7,22 +7,32 @@ import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 import org.json.JSONObject;
 
-import db.dao.LoginDao;
+import db.DBConnection;
+import db.dao.UserDAO;
 import dto.User;
 
 public class MainServer extends WebSocketServer {
     public static void main(String[] args) {
+    	
         String host = "127.0.0.1";
-        final int PORT = 1111;
+        final int PORT = 9990;
 
         WebSocketServer server = new MainServer(new InetSocketAddress(host, PORT));
         server.run();
+        
+        
+        
+
+        
     }
 
     public MainServer(InetSocketAddress inetAddr) {
         super(inetAddr);
     }
 
+  
+
+    
     @Override
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
         System.out.println(conn + "연결이 끊겼습니다.");
@@ -39,10 +49,12 @@ public class MainServer extends WebSocketServer {
     public void onMessage(WebSocket conn, String message) {
         System.out.println("님이 들어왔습니다" + message);
 
+        
         JSONObject msgObj = new JSONObject(message);
         // 패킷 종류를 구분할 수 있는 명령어를 제일 먼저 추출
         String cmd = msgObj.getString("cmd");
-
+        
+        
         if (cmd.equals("join")) {
             String id = msgObj.getString("id");
             String pass = msgObj.getString("pass");
@@ -54,7 +66,7 @@ public class MainServer extends WebSocketServer {
                 user.setUser_id(id);
                 user.setUser_pw(pass);
 
-                int result = LoginDao.joinUser(user); // 회원가입 시도
+                int result = UserDAO.joinUser(user); // 회원가입 시도
 
                 JSONObject ackObj = new JSONObject();
                 ackObj.put("cmd", "join");
@@ -85,15 +97,15 @@ public class MainServer extends WebSocketServer {
                 user.setUser_id(id);
                 user.setUser_pw(pass);
 
-                int userId = LoginDao.loginUser(user);
+                int id_idx = UserDAO.loginUser(user);
 
                 JSONObject ackObj = new JSONObject();
                 ackObj.put("cmd", "login");
 
-                if (userId != 0) {
+                if (id_idx != 0) {
                     // 로그인 성공 시
                     ackObj.put("result", "ok");
-                    ackObj.put("userId", userId);
+                    ackObj.put("id_idx", id_idx);
                 } else {
                     // 로그인 실패 시
                     ackObj.put("result", "fail");
@@ -111,10 +123,11 @@ public class MainServer extends WebSocketServer {
 
             // 전체 접속자한테 브로드캐스팅
             for (WebSocket con : this.getConnections()) {
-            	con.send(message);
+                    con.send(message);
+                }
             }
         }
-    }
+    
 
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
@@ -129,8 +142,18 @@ public class MainServer extends WebSocketServer {
 
     @Override
     public void onStart() {
+    	// DB 연결 초기화
+    	DBConnection.open(); // DB 연결을 초기화하는 메서드 호출
         // 서버 연결
         System.out.println("BitBox 서버 실행 !!!");
+    }
+    
+    @Override
+    public void stop() throws InterruptedException {
+        // 서버 종료 시 DB 연결 종료
+        DBConnection.close();
+        super.stop();
+        System.out.println("BitBox 서버 종료 !!!");
     }
 
 }

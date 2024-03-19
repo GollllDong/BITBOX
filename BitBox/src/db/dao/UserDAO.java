@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import db.DBConnection;
 import dto.User;
 
-public class LoginDao {
+public class UserDAO{
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -33,7 +33,11 @@ public class LoginDao {
 				} catch (Exception e) {
 					// 예외 발생 시 오류 출력
 					e.printStackTrace();
+				}finally {
+
 				}
+				
+				
 				// 가입 성공 여부 반환
 				return result;
 			}
@@ -41,10 +45,10 @@ public class LoginDao {
 	
 	public static int loginUser(User user) throws Exception {
 		// 초기값 설정
-		int userId = 0;
+		int id_idx = 0;
 
 		// SQL 쿼리문 작성
-		String sql = "SELECT user_id FROM user WHERE user_id = ? AND user_pw = ?";
+		String sql = "SELECT id_idx FROM user WHERE user_id = ? AND user_pw = ?";
 		try (PreparedStatement pstmt = DBConnection.getConnection().prepareStatement(sql)) {
 			// PreparedStatement에 값 설정
 			pstmt.setString(1, user.getUser_id());
@@ -56,7 +60,7 @@ public class LoginDao {
 			// 결과가 존재하는 경우
 			if (resultSet.next()) {
 				// 로그인 성공 시 유저 ID 설정
-				userId = resultSet.getInt("user_id");
+				id_idx = resultSet.getInt("id_idx");
 			}
 		} catch (Exception e) {
 			// 예외 발생 시 오류 출력
@@ -64,8 +68,8 @@ public class LoginDao {
 		}
 
 		// 로그인 결과 출력 후 유저 ID 반환
-		System.out.printf("\n\n<<  %s  >>\n\n", userId == 0 ? "로그인에 실패했습니다. 다시 시도해 주세요." : "로그인에 성공했습니다.");
-		return userId;
+		System.out.printf("\n\n<<  %s  >>\n\n", id_idx == 0 ? "로그인에 실패했습니다. 다시 시도해 주세요." : "로그인에 성공했습니다.");
+		return id_idx;
 	}
 	
 
@@ -84,12 +88,15 @@ public class LoginDao {
 			return count > 0;
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		
-//		finally {
+		} finally {
+
+		}
+//		
 //	        // 데이터베이스 연결 닫기
 //	        DBClose.close(conn, pstmt, null);
 //	    }
+		
+		
 
 		return false;
 	}
