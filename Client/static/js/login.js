@@ -16,12 +16,8 @@ let userId = '';        // id 보관용
       document.addEventListener('DOMContentLoaded', ()=>{
 
           const login_btn = document.querySelector('#login_btn');
-        //   const showPasswordCheckbox = document.querySelector('#showPassword');
 
           login_btn.addEventListener('click', sendLogIn);
-        //   showPasswordCheckbox.addEventListener('change', function() {
-        //     passInput.type = this.checked ? "text" : "password";
-        // });
 
         $(document).ready(function(){
             $('.login_box-login img').on('click',function(){
