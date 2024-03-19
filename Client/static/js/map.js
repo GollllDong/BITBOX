@@ -1,4 +1,4 @@
-/* 
+/*
 lat = 사용자 접속 위치 위도
 lon = 사용자 접속 위치 경도
 foodLat = 음식점 위도
@@ -9,38 +9,42 @@ setCenter() : 버튼 클릭 시 사용자의 현재 위치로 이동시켜주는
 set_user_location() : 사용자 위도, 경도 설정 메서드
 set_food_location() : 음식점 위도, 경도 설정 메서드 + 해당 음식점에 마커 (사용자가 지도 안에서 음식점을 선택했을 경우 해당 경도와 위도로 바뀌게 해야됨)
 getUserAroundRestaurants() : 사용자의 위도와 경도를 뽑아서 rest.js에 넘겨주고 해당하는 좌표의 반경에 음식점을 찾아준다.
-
 */
-
 //*----------------------------------------------------------------------------------------------
-var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-const addressInput = document.getElementById('addressInput'); // 주소 입력 필드
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표(카카오)
+        level: 5
+    };
 
-mapOption = {
-    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표(카카오)
-    level: 5
-};
 
 let lat;
 let lon;
 
+
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
 
 // 사용자 위치 가져오기
 if (navigator.geolocation) {
 
+
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function (position) {
+
 
         var lat = position.coords.latitude;   // 위도
         var lon = position.coords.longitude;  // 경도
         set_user_location(lat, lon);           // 위도 경도 필드로 전달
 
+
         var locPosition = new kakao.maps.LatLng(lat, lon),                              // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             message = '<div style="font-weight:bold; padding:5px; ">내 위치 : </div>';    // 인포윈도우에 표시될 내용입니다
 
+
         // 사용자 위치에 마커
         displayMarker(locPosition, message);
+
 
         // 사용자의 현재 위치를 중심으로 반경 1km의 원을 생성
         var circle = new kakao.maps.Circle({
@@ -54,14 +58,18 @@ if (navigator.geolocation) {
             fillOpacity: 0.5                            // 원의 투명도
         });
 
+
         // 지도에 원을 표시합니다
         circle.setMap(map);
+
 
         // 사용자의 현재 위치를 중심으로 지도의 확대 레벨을 변경합니다
         map.setLevel(5);
         map.setCenter(locPosition);
 
+
     });
+
 
 } else { // 사용자 위치를 찾지 못한다면 카카오 회사를 기준으로
 
@@ -76,9 +84,9 @@ if (navigator.geolocation) {
 }
 function setCenter(lat, lon) {
     var moveLatLon = new kakao.maps.LatLng(lat, lon);
-
     map.setCenter(moveLatLon);
 }
+
 
 // 현재 위치로 이동하는 함수
 function now_location() {
@@ -95,6 +103,7 @@ function now_location() {
         console.error('@@@길찾기 기능이 오류가 발생하였습니다@@@.');
     }
 }
+
 
 function set_user_location(lat, lon) {
     this.lat = lat;
@@ -117,8 +126,10 @@ function displayMarker(locPosition, message) {
         image: userMarkerImage // 사용자의 현재 위치를 나타내는 마커 이미지로 설정
     });
 
+
     var iwContent = message, // 인포윈도우에 표시할 내용
         iwRemoveable = true;
+
 
     // 인포윈도우를 생성합니다
     var infowindow = new kakao.maps.InfoWindow({
@@ -126,10 +137,10 @@ function displayMarker(locPosition, message) {
         removable: iwRemoveable
     });
 
-    // 인포윈도우를 마커위에 표시합니다 
+
+    // 인포윈도우를 마커위에 표시합니다
     infowindow.open(map, marker);
 }
-
 
 // 사용자의 현재 위치를 받아오고 음식점 검색 함수 호출
 function getUserAroundRestaurants() {
@@ -147,6 +158,7 @@ function getUserAroundRestaurants() {
     }
 }
 
+
 // 페이지 로딩 시 사용자의 위치 정보를 받아오고 음식점 검색 함수 호출
 window.onload = function () {
     getUserAroundRestaurants();
@@ -161,27 +173,3 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-function searchAddress() {
-    const address = document.getElementById('addressInput').value;
-
-    // 주소로 좌표를 검색합니다
-    const geocoder = new kakao.maps.services.Geocoder();
-    geocoder.addressSearch(address, function (result, status) {
-        // 정상적으로 검색이 완료됐으면
-        if (status === kakao.maps.services.Status.OK) {
-            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-            // 마커를 생성하고 지도에 표시합니다
-            const marker = new kakao.maps.Marker({
-                position: coords,
-                map: map
-            });
-
-            // 지도의 중심을 마커로 이동시킵니다
-            map.setCenter(coords);
-        } else {
-            alert('주소를 찾을 수 없습니다: ' + status);
-        }
-    });
-}
