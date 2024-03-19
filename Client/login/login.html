@@ -4,67 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BitBox</title>
-    <link rel="stylesheet" href="../static/css/login.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/login.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../static/js/socket-client.js"></script>
-    <script>
-      let userId = '';        // id 보관용
-
-      const sendLogIn = function(){
-          const id = document.querySelector('#idInput').value;
-          const pass = document.querySelector('#passInput').value;
-          userId = id;        // 나중에 msg전송 때 사용하기 위해
-          const packet = {
-              cmd: 'login',
-              id:id,
-              pass:pass
-          };
-          const jsonStr = JSON.stringify(packet);     // js객체 -> json문자열
-          sendMessage(jsonStr);
-      }
-
-      document.addEventListener('DOMContentLoaded', ()=>{
-
-          const login_btn = document.querySelector('#login_btn');
-
-          login_btn.addEventListener('click', sendLogIn);
-      });
-  </script>
 
   </head>
   <body>
-    <div class="wrap-login">
-      <div class="content-login">
-        <div class="main_box-login">
-          <header class="header-login"></header>
-          <main class="main-login">
-            <div class="container-login">
-              <div class="middlebox">
-                <div class="logo_back">
-                  <div class="logo_box-login">
-                    <h1 class="logo">
-                      <a class=""></a>
-                    </h1>
-                    <span>BITBOX</span>
-                  </div>
-                </div>
-                <div class="login_box-login">
-                  <h4>비트박스에 오신 것을 환영합니다!</h4>
-                  <input type='text' id='idInput' placeholder='  아이디'><br>
-                  <p></p>
-                  <input type='password' id='passInput' placeholder='  비밀번호'><br>
-                  <p></p>
-                  <button id="login_btn">로그인</button>
-                  <p></p>
-                  <button id="signup_btn">회원가입</button>
-                </div>
-              </middlebox>
-            </div>
-          </main>
+    <div class="wrap">
+      <div class="middlebox">
+        <div class="logo_back">
+          <div class="logo_box">
+            <h1 class="logo"></h1>
+            <span>BITBOX</span>
+          </div>
         </div>
-      </div>
-      <footer class="footer-login">
-        <span>@내가 만듬</span>
-      </footer>
+        <div class="login_box">
+          <h2>Login</h2>
+          <input type='text' id='idInput' placeholder='  아이디'>
+          <input type='password' id='passInput' placeholder='  비밀번호'>
+          <img src="../static/images/ico_eye.svg" style="cursor:pointer;" class="showPassword">
+          <button id="login_btn">로그인</button>
+          <h3>or</h3>
+          <h4>아직 계정이 없으신가요?</h4>
+          <button id="signup_btn">회원가입</button>
+        </div>
+      </middlebox>
     </div>
+    <footer class="footer">
+      <span>@내가 만듬</span>
+    </footer>
   </body>
 </html>
