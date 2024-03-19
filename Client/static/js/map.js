@@ -13,11 +13,13 @@ getUserAroundRestaurants() : 사용자의 위도와 경도를 뽑아서 rest.js�
 */
 
 //*----------------------------------------------------------------------------------------------
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표(카카오)
-        level: 5
-    };
+var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+const addressInput = document.getElementById('addressInput'); // 주소 입력 필드
+
+mapOption = {
+    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표(카카오)
+    level: 5
+};
 
 let lat;
 let lon;
@@ -159,3 +161,27 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+function searchAddress() {
+    const address = document.getElementById('addressInput').value;
+
+    // 주소로 좌표를 검색합니다
+    const geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch(address, function (result, status) {
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 마커를 생성하고 지도에 표시합니다
+            const marker = new kakao.maps.Marker({
+                position: coords,
+                map: map
+            });
+
+            // 지도의 중심을 마커로 이동시킵니다
+            map.setCenter(coords);
+        } else {
+            alert('주소를 찾을 수 없습니다: ' + status);
+        }
+    });
+}
