@@ -114,3 +114,35 @@
 /* footer */
 .footer {position: fixed; bottom:0;left: 0;width: 100%; z-index: 1001; background:#414143; height: 40px; line-height: 40px;}
 .footer span {font-size: 20px; font-weight: 500; color: #fff; float: right; padding-right: 30px;}
+
+/*popup*/
+.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+
+.popup_box{border: 1px solid #000000; width: 450px; height: 600px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;}
+.popup_box .popup_close{z-index: 100;}
+.popup_box .logo_back{position: relative; background:#0a9102; width: 100%; height: 200px; border-bottom-left-radius: 13%; border-bottom-right-radius: 13%; top: 0; left: 0; z-index: 0;}
+.popup_box .logo_back .logo_box{padding: 30px; display: inline-flex; align-items: center; width: 100%; position: relative;}
+.popup_box .logo_back .logo_box .logo{height: 60px; width: 55px; margin-left: 55px; margin-right: 20px; background: url(../static/images/logo_new.svg)no-repeat center; display: inline-block;}
+.popup_box .logo_back .logo_box span {margin-right: 55px; font-weight: 700; font-size: 45px; color: #111; display: inline-block;}
+
+.popup_box .login_box{position: absolute; background:#ffffff; width: 80%; height: 400px; top: 23.5%; left: 50%; transform: translateX(-50%); z-index: 100; text-align: center;  border-radius: 8px; border: 1px solid #e8e8e8; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
+.popup_box .login_box h2{padding: 30px; font-size: 25px; font-weight: 600; color: #333;}
+.popup_box .login_box #idInput {margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
+.popup_box .login_box #passInput {margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
+.popup_box .login_box img{position: absolute; top: 43.5%; right: 10%;}
+.popup_box .login_box #login_btn {margin-bottom: 15px; background: #0a9102; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
+.popup_box .login_box h3{margin-bottom: 10px;font-size: 18px; font-weight: 500; color: #595959;}
+.popup_box .login_box h4{margin-bottom: 10px;font-size: 10px; font-weight: 100; color: #595959;}
+.popup_box .login_box #signup_btn {margin-bottom: 15px; background: #fbd107; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
+
+.popup_box .popup_cont h2 {padding:15px 0;color:#333;margin:0;}
+.popup_box .popup_cont p{ border-top: 1px solid #666;padding-top: 30px;}
+
+.popup_box .popup_btn {display:table;table-layout: fixed;width:100%;height:30px;background:#ECECEC;word-break: break-word;}
+.popup_box .popup_btn a {position: relative; display: table-cell; height:30px;  font-size:17px;text-align:center;vertical-align:middle;text-decoration:none; background:#ECECEC;}
+.popup_box .popup_btn a:before{content:'';display:block;position:absolute;top:26px;right:29px;width:1px;height:21px;background:#fff;-moz-transform: rotate(-45deg); -webkit-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg);}
+.popup_box .popup_btn a:after{content:'';display:block;position:absolute;top:26px;right:29px;width:1px;height:21px;background:#fff;-moz-transform: rotate(45deg); -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); -o-transform: rotate(45deg); transform: rotate(45deg);}
+.popup_box .popup_btn a.close_day {background:#5d5d5d;}
+.popup_box .popup_btn a.close_day:before, .popup_box .popup_btn a.close_day:after{display:none;}
+
+.popup_overlay{position:fixed;top:0px;right:0;left:0;bottom:0;z-index:1001;;background:rgba(0,0,0,0.5);}

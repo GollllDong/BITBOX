@@ -14,28 +14,29 @@
           <div class="side_container">
             <div class="logo_box">
               <h1 class="logo">
-                <a class="" href="index.html"></a>
+                <a class="" href="../Client/index.html"></a>
               </h1>
               <span>BITBOX</span>
             </div>
             <div class="login_box">
               <h2>Ok~Let's Go~</h2>
-              <button class="login_btn" onclick="openLoginPopup()">로그인</button>
+              <button onclick="openPop()" class="login_btn">로그인</button>
+              <!-- <button class="login_btn" onclick="openLoginPopup()">로그인</button> -->
               <p class="">비트박스에 오신 것을 환영합니다.</p>
             </div>
             <nav class="gnb_nav">
               <ul class="gnb_box">
                 <li class="select">
-                  <a href="index.html">HOME</a>
+                  <a href="../Client/index.html">HOME</a>
                 </li>
                 <li>
-                  <a href="#">게시판</a>
+                  <a href="../Client/board/boardRead.html">게시판</a>
                 </li>
                 <li>
-                  <a href="#">지도</a>
+                  <a href="../Client/map/map.html">지도</a>
                 </li>
                 <li>
-                  <a href="#">채팅</a>
+                  <a href="../Client/chat/chat.html">채팅</a>
                 </li>
                 <li>
                   <a href="#">오늘의 할 일</a>
@@ -62,7 +63,7 @@
               <section class="snb_nav mb10">
                 <ul>
                   <li>
-                    <a href="index.html">HOME</a>
+                    <a href="../Client/index.html">HOME</a>
                   </li>
                   <!-- <li>
                   <a href="index.html">HOME</a>
@@ -138,6 +139,45 @@
       <footer class="footer">
         <span>@내가 만듬</span>
       </footer>
+    </div>
+
+    <div class="popup_page">
+      <button onclick="openPop()">로그인</button>
+      <!-- <a href="javascript:openPop()">
+        <div>
+          로그인
+        </div>
+      </a> -->
+      <div class="popup_layer" id="popup_layer" style="display: none;">
+        <div class="popup_box">
+          <div style="height: 10px; width: 375px; float: top;">
+            <a href="javascript:closePop();"><img src="../Client/static/images/ico_plusbox.svg" class="popup_close"
+                width="30px" height="30px" z-index: 0;></a>
+          </div>
+          <!--팝업 컨텐츠 영역-->
+          <div class="popup_cont">
+            <div class="logo_back">
+              <div class="logo_box">
+                <h1 class="logo"></h1>
+                <span>BITBOX</span>
+              </div>
+            </div>
+            <div class="login_box">
+              <h2>Login</h2>
+              <input type='text' id='idInput' placeholder='  아이디'>
+              <input type='password' id='passInput' placeholder='  비밀번호'>
+              <img src="../static/images/ico_eye.svg" style="cursor:pointer;" class="showPassword">
+              <button id="login_btn">로그인</button>
+              <h3>or</h3>
+              <h4>아직 계정이 없으신가요?</h4>
+              <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
+              <!--팝업 버튼 영역-->
+              <div class="popup_btn" style="float: bottom; margin-bottom: 0;">
+                <a href="javascript:closePop();">닫기</a>
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
