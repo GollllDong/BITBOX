@@ -32,14 +32,13 @@ function searchAddress(address) {
                 new kakao.maps.Size(50, 50), // 마커 이미지 크기
                 { offset: new kakao.maps.Point(25, 50) } // 마커 이미지의 중심좌표 설정
             );
-        
+
             // 마커를 생성합니다
             const marker = new kakao.maps.Marker({
                 map: map,
                 position: coords,
                 image: userMarkerImage // 사용자의 현재 위치를 나타내는 마커 이미지로 설정
             });
-
             // 마커를 배열에 추가
             restaurantMarkers.push(marker);
 
