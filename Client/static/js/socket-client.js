@@ -87,6 +87,7 @@ const displayPacketMessage = function ($parentSelector, message) {
     const msgObj = JSON.parse(message);
 
     let msg = "";
+    let idMsg = "";
     switch (msgObj.cmd) {
         case "connect":
             msg = msgObj.result;
@@ -114,13 +115,27 @@ const displayPacketMessage = function ($parentSelector, message) {
             break;
 
         case "allchat":
-            if ("result" in msgObj)
-                msg = msgObj.result === "ok" ? "채팅 전송 성공" : "채팅 전송 실패";
-            else if ("id" in msgObj) msg = `${msgObj.id} => ${msgObj.msg}`;
+            if ("id" in msgObj) {
+                idMsg = `${msgObj.id}`;
+                msg = `${msgObj.msg}`;
+            }
             break;
     }
 
-    const childElem = document.createElement("div");
-    childElem.textContent = msg;
-    parentElem.appendChild(childElem);
+    // const childElem = document.createElement("h3");
+    // childElem.textContent = msg;
+    // parentElem.appendChild(childElem);
+
+    // 채팅부분
+    const childIdElem = document.createElement("p");
+    const childSpanElem = document.createElement("span");
+    childIdElem.textContent = idMsg;
+    childSpanElem.textContent = msg;
+    if (childSpanElem.textContent != "" && childIdElem.textContent != "") {
+        childIdElem.classList.add("chat_id");
+        childSpanElem.classList.add("chat_msg");
+        parentElem.appendChild(childIdElem);
+        parentElem.appendChild(childSpanElem);
+    }
+
 };

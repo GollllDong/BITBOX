@@ -26,7 +26,15 @@ const sendChatMsg = function () {
 document.addEventListener("DOMContentLoaded", () => {
   const btnLogIn = document.querySelector("#btnLogIn");
   const btnChagMsg = document.querySelector("#btnChatMsg");
+  const messageInput = document.querySelector("#messageInput");
 
   btnLogIn.addEventListener("click", sendLogIn);
-  btnChagMsg.addEventListener("click", sendChatMsg);
+  // btnChagMsg.addEventListener("click", sendChatMsg);
+  messageInput.addEventListener("keyup", function (e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      sendChatMsg(e);
+      document.getElementById(id).value = null;
+    }
+  });
 });
