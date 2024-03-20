@@ -173,3 +173,11 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+const restaurantlist = ["서울 강남구 강남대로98길 12-5", "서울 강남구 강남대로102길 16 지상 2층", "서울 강남구 봉은사로6길 39 바비레드", "서울 서초구 서초대로73길 7 2층",
+                        "서울 강남구 강남대로102길 35 구구당", "서울 강남구 논현로85길 43 1층", "서울 강남구 강남대로94길 27 지상1층", "서울 서초구 강남대로 463 리젠메디컬타워 101호, 201호, 202호",
+                        "서울 강남구 테헤란로5길 24 1층 나폴리회관", "서울 강남구 테헤란로1길 19"];
+""
+function recommendRestaurant() {
+
+}
