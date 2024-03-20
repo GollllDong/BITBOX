@@ -1,104 +1,126 @@
 // const SERVER_IP = "192.168.0.20";
 const SERVER_IP = "127.0.0.1";
-const SERVER_PORT = 1111;
+const SERVER_PORT = "9000";
 const server_address = `ws://${SERVER_IP}:${SERVER_PORT}`; // ws://127.0.0.1:9000
 
 const socket = new WebSocket(server_address);
 
 socket.opopen = function (e) {
-  const log_msg = "[open] 연결이 설정되었습니다.";
+    const log_msg = "[open] 연결이 설정되었습니다.";
 
-  displayMessage("#messages", log_msg);
+    displayMessage("#messages", log_msg);
 };
 
 socket.onclose = function (e) {
-  let log_msg = "";
-  if (e.wasClean)
-    log_msg = `[close] 연결이 정상적으로 종료되었습니다. 코드=${e.code}, 원인=${e.reason}`;
-  else
-    log_msg = `[close] 연결이 비정상적으로 종료되었습니다.. 코드=${e.code}, 원인=${e.reason}`;
+    let log_msg = "";
+    if (e.wasClean)
+        log_msg = `[close] 연결이 정상적으로 종료되었습니다. 코드=${e.code}, 원인=${e.reason}`;
+    else
+        log_msg = `[close] 연결이 비정상적으로 종료되었습니다.. 코드=${e.code}, 원인=${e.reason}`;
 
-  displayMessage("#messages", log_msg);
+    displayMessage("#messages", log_msg);
 };
 
 socket.onerror = function (error) {
-  const log_msg = `[error] ${error.message}`;
+    const log_msg = `[error] ${error.message}`;
 
-  displayMessage("#messages", log_msg);
+    displayMessage("#messages", log_msg);
 };
 
 socket.onmessage = function (e) {
-  const log_msg = `[message] 서버로부터 데이터 수신 : ${e.data}`;
+    const log_msg = `[message] 서버로부터 데이터 수신 : ${e.data}`;
 
-  displayMessage("#messages", log_msg);
+    displayMessage("#messages", log_msg);
+    displayPacketMessage("#messages", e.data);
 
-  displayPacketMessage("#messages", e.data);
+
+    // // <------------------------------세션 스토리지 추가-------------------------------->
+    // const msgObj = JSON.parse(e.data);
+    // if (msgObj.cmd === "login" && msgObj.result === "ok") {
+    //     // 로그인 성공 시 세션 스토리지에 'user_id', 'id_idx' 저장
+    //     sessionStorage.setItem("user_id", msgObj.data.user_id);
+    //     sessionStorage.setItem("id_idx", msgObj.data.id_idx);
+    //     // 로그인 후에 반환된 user_id와 id_idx를 로그인한 웹 세션에 고정시키고
+    //     // 기능을 서버에 요청할 때마다 cmd와 user_id를 보낼 수 있게 
+    // }
 };
+// sessionStorage.getItem("id_idx", msgObj.data.id_idx);
+// //서 - 클 연결간 == 세션
+// setItem 으로 저장했고
+// user_id = getItem 변수에 넣어주고
+// // 
+// window 객체(모든애들이 공유라)에 전역변수 var 타입으로 선언하면 
+// 아무대서나 쓸 수 있음 
+
+// nimoh
+
+// 전역변수 남발 X 
+// 필요할 때만 뽑아쓰도록..!(getItem)
+
+
 
 const sendMessage = function (message) {
-  socket.send(message); // 서버로 전송
+    socket.send(message); // 서버로 전송
 
-  const log_msg = `클라이언트 => 서버 ${message}`;
-  displayMessage("#messages", log_msg);
+    const log_msg = `클라이언트 => 서버 ${message}`;
+    displayMessage("#messages", log_msg);
 };
 
 // 이벤트 로그 출력
 const displayMessage = function ($parentSelector, log_msg, kind_log = 0) {
-  if (kind_log === 0 || kind_log === 2) console.log(log_msg);
-  if (kind_log === 1 || kind_log === 2) {
+    if (kind_log === 0 || kind_log === 2) console.log(log_msg);
+    if (kind_log === 1 || kind_log === 2) {
+        // 이 요소 아래에 메시지 요소를 추가
+        const parentElem = document.querySelector($parentSelector);
+
+        const childElem = document.createElement("div");
+        childElem.textContent = log_msg;
+        parentElem.appendChild(childElem);
+    }
+};
+// 통신 패킷 출력
+const displayPacketMessage = function ($parentSelector, message) {
     // 이 요소 아래에 메시지 요소를 추가
     const parentElem = document.querySelector($parentSelector);
 
+    // json문자열 -> js 객체로 변환
+    const msgObj = JSON.parse(message);
+
+    let msg = "";
+    switch (msgObj.cmd) {
+        case "connect":
+            msg = msgObj.result;
+            break;
+        case "signup":
+            if (msgObj.result === "ok") {
+                msg = "회원가입 성공";
+            } else if (msgObj.result === "exist") {
+                msg = "이미 존재하는 사용자입니다.";
+            } else {
+                msg = "회원가입 실패";
+            }
+            break;
+        case "login":
+            msg = msgObj.result === "ok" ? "로그인 성공" : "로그인 실패";
+            break;
+
+        // <-----------------------------insertpost 추가-------------------------------->
+        case "insertpost":
+            msg = msgObj.result === "ok" ? "게시물 작성 성공" : "게시물 작성 실패";
+            break;
+        // <----------------------------updatepost 추가-------------------------------->
+        case "updatepost":
+            msg = msgObj.result === "ok" ? "게시물 수정 성공" : "게시물 수정 실패";
+            break;
+
+        case "allchat":
+            if ("result" in msgObj)
+                msg = msgObj.result === "ok" ? "채팅 전송 성공" : "채팅 전송 실패";
+            else if ("id" in msgObj) msg = `${msgObj.id} => ${msgObj.msg}`;
+            break;
+    }
+
     const childElem = document.createElement("div");
-    childElem.textContent = log_msg;
+    childElem.textContent = msg;
     parentElem.appendChild(childElem);
-  }
-};
-
-// 통신 패킷 출력
-const displayPacketMessage = function ($parentSelector, message) {
-  // 이 요소 아래에 메시지 요소를 추가
-  const parentElem = document.querySelector($parentSelector);
-
-  // json문자열 -> js 객체로 변환
-  const msgObj = JSON.parse(message);
-
-  let msg = "";
-  let idMsg = "";
-  let infoMsg = "";
-  switch (msgObj.cmd) {
-    case "connect":
-      infoMsg = msgObj.result;
-      break;
-    case "login":
-      infoMsg = msgObj.result === "ok" ? "로그인 성공" : "로그인 실패";
-      break;
-    case "allchat":
-      // if ("result" in msgObj)
-      //   msg = msgObj.result === "ok" ? "채팅 전송 성공" : "채팅 전송 실패";
-      // else 
-      if ("id" in msgObj) 
-        idMsg = `${msgObj.id}`;
-        msg = `${msgObj.msg}`;
-        
-      break;
-  }
-
-  // 문구 설정
-  const infoMsgElm = document.createElement("div");
-  infoMsgElm.textContent = infoMsg;
-  parentElem.appendChild(infoMsgElm);
-
-  // 채팅부분
-  const childIdElem = document.createElement("p");
-  const childElem = document.createElement("span");
-  childIdElem.textContent = idMsg;
-  childElem.textContent = msg;
-  
-  if (childElem.textContent != "" && childIdElem.textContent != "") {
-    childIdElem.classList.add("chat_id");
-    childElem.classList.add("chat_msg");
-    parentElem.appendChild(childIdElem);
-    parentElem.appendChild(childElem);
-  }
 };

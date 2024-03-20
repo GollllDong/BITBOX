@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BitBox</title>
     <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/socket-client.js"></script>
     <script src="../static/js/signup.js"></script>
     <!-- <script src="../static/js/socket-client.js"></script> -->
 
@@ -18,7 +19,7 @@
                     <span>BITBOX</span>
                 </div>
             </div>
-            <div class="signup_box">
+            <div class="signup_box" id="messages">
                 <h2>계정 정보를 입력해주세요</h2>
                 <input type='text' id='idInput' placeholder='  아이디(6~12자 이내)'>
                 <input type='password' id='passInput' placeholder='  비밀번호(8자 이상)'>

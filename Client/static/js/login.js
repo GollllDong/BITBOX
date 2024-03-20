@@ -10,19 +10,25 @@ function closePop() {
 
 let userId = '';        // id 보관용
 
-      const sendLogIn = function(){
-          const id = document.querySelector('#idInput').value;
-          const pass = document.querySelector('#passInput').value;
-          userId = id;        // 나중에 msg전송 때 사용하기 위해
-          const packet = {
-              cmd: 'login',
-              id:id,
-              pass:pass
-          };
-          const jsonStr = JSON.stringify(packet);     // js객체 -> json문자열
-          sendMessage(jsonStr);
-      }
+const sendLogIn = function () {
+    const userId = document.querySelector('#idInput').value;
+    const user_pw = document.querySelector('#passInput').value;
+    user_id = userId;        // 나중에 msg전송 때 사용하기 위해
+    const packet = {
+        cmd: 'login',
+        user_id: user_id,
+        user_pw: user_pw
+    };
+    const jsonStr = JSON.stringify(packet);     // js객체 -> json문자열
+    sendMessage(jsonStr);
+}
 
+document.addEventListener('DOMContentLoaded', () => {
+
+    const login_btn = document.querySelector('#login_btn');
+
+    login_btn.addEventListener('click', sendLogIn);
+});
     //   document.addEventListener('DOMContentLoaded', ()=>{
 
     //       const login_btn = document.querySelector('#login_btn');

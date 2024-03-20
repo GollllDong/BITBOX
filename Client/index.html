@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BitBox</title>
     <link rel="stylesheet" href="static/css/style.css" />
-    <script src="../Client/static/js/login.js"></script>
     <script src="../Client/static/js/socket-client.js"></script>
+    <script src="../Client/static/js/login.js"></script>
+
 
   </head>
   <body>
@@ -163,7 +164,7 @@
                 <span>BITBOX</span>
               </div>
             </div>
-            <div class="login_box">
+            <div class="login_box" >
               <h2>Login</h2>
               <input type='text' id='idInput' placeholder='  아이디'>
               <input type='password' id='passInput' placeholder='  비밀번호'>
@@ -173,7 +174,7 @@
               <h4>아직 계정이 없으신가요?</h4>
               <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
               <!--팝업 버튼 영역-->
-              <div class="popup_btn" style="float: bottom; margin-bottom: 0;">
+              <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
                 <a href="javascript:closePop();">닫기</a>
               </div>
             </div>
