@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BitBox</title>
     <link rel="stylesheet" href="static/css/style.css" />
-    <script src="../Client/static/js/index.js"></script>
+    <script src="../Client/static/js/login.js"></script>
+    <script src="../Client/static/js/socket-client.js"></script>
+
   </head>
   <body>
     <div class="wrap">
@@ -158,7 +160,9 @@
           <div class="popup_cont">
             <div class="logo_back">
               <div class="logo_box">
-                <h1 class="logo"></h1>
+                <h1 class="logo">
+                  <img src="../Client/static/images/logo_new.svg">
+                </h1>
                 <span>BITBOX</span>
               </div>
             </div>
@@ -166,7 +170,7 @@
               <h2>Login</h2>
               <input type='text' id='idInput' placeholder='  아이디'>
               <input type='password' id='passInput' placeholder='  비밀번호'>
-              <img src="../static/images/ico_eye.svg" style="cursor:pointer;" class="showPassword">
+              <img src="../Client/static/images/ico_eye.svg" style="cursor:pointer;" class="showPassword">
               <button id="login_btn">로그인</button>
               <h3>or</h3>
               <h4>아직 계정이 없으신가요?</h4>
