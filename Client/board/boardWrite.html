@@ -122,7 +122,7 @@
 지난주에 학원 처음 오고 저녁을 팀원들과 함께 먹었는데 맛있었어요 곱창 전골 먹었는데 완전 비추~</textarea>
                                                 <div id="map" style="width: 100%; height: 400px;"></div>
                                                 <input type="text" id="addressInput" placeholder="주소를 입력하세요" />
-                                                <button onclick="searchAddress()">주소 검색</button>
+                                                <button id="searchButton" onclick="searchAddress(addressInput.value)">주소 검색</button>
                                                 <div id="map" style="width:80%;height:300px; margin-left : 10px"></div>
                                             </td>
                                         </tr>
@@ -154,6 +154,7 @@
     </div>
     <script src="/Client/static/js/map.js"></script>
     <script src="/Client/static/js/rest.js"></script>
+    <script src="/Client/static/js/userMarker.js"></script>
 </body>
 
 </html>
