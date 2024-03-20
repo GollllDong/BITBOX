@@ -21,20 +21,36 @@ const sendChatMsg = function () {
   };
   const jsonStr = JSON.stringify(packet); // js객체 -> json문자열
   sendMessage(jsonStr);
+
+  prepareScroll();
 };
+
+// 스크롤 아래로 향하게
+function prepareScroll() {
+  window.setTimeout(scrollUl, 50);
+}
+function scrollUl() {
+  let chatUl = document.querySelector("#messages");
+  chatUl.scrollTop = chatUl.scrollHeight;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const btnLogIn = document.querySelector("#btnLogIn");
   const btnChagMsg = document.querySelector("#btnChatMsg");
   const messageInput = document.querySelector("#messageInput");
+  let chatForm = document.querySelector("#messages");
 
   btnLogIn.addEventListener("click", sendLogIn);
-  // btnChagMsg.addEventListener("click", sendChatMsg);
+  btnChagMsg.addEventListener("click", function (e) {
+    e.preventDefault();
+    sendChatMsg(e);
+    messageInput.value = null;
+  });
   messageInput.addEventListener("keyup", function (e) {
     if (e.keyCode === 13) {
       e.preventDefault();
       sendChatMsg(e);
-      document.getElementById(id).value = null;
+      messageInput.value = null;
     }
   });
 });
