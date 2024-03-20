@@ -23,23 +23,23 @@ let userId = '';        // id 보관용
           sendMessage(jsonStr);
       }
 
-      document.addEventListener('DOMContentLoaded', ()=>{
+    //   document.addEventListener('DOMContentLoaded', ()=>{
 
-          const login_btn = document.querySelector('#login_btn');
+    //       const login_btn = document.querySelector('#login_btn');
 
-          login_btn.addEventListener('click', sendLogIn);
+    //       login_btn.addEventListener('click', sendLogIn);
 
-        $(document).ready(function(){
-            $('.login_box img').on('click',function(){
-                $('input').toggleClass('active');
-                if($('input').hasClass('active')){
-                    $(this).attr('class',"showPassword")
-                    .prev('input').attr('type',"text");
-                }else{
-                    $(this).attr('class',"showPassword")
-                    .prev('input').attr('type','password');
-                }
-            });
-        });
+    //     $(document).ready(function(){
+    //         $('.login_box img').on('click',function(){
+    //             $('input').toggleClass('active');
+    //             if($('input').hasClass('active')){
+    //                 $(this).attr('class',"showPassword")
+    //                 .prev('input').attr('type',"text");
+    //             }else{
+    //                 $(this).attr('class',"showPassword")
+    //                 .prev('input').attr('type','password');
+    //             }
+    //         });
+    //     });
         
-      });
+    //   });

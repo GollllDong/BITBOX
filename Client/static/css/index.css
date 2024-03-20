@@ -122,7 +122,7 @@
 .popup_box .popup_close{z-index: 100;}
 .popup_box .logo_back{position: relative; background:#0a9102; width: 100%; height: 200px; border-bottom-left-radius: 13%; border-bottom-right-radius: 13%; top: 0; left: 0; z-index: 0;}
 .popup_box .logo_back .logo_box{padding: 30px; display: inline-flex; align-items: center; width: 100%; position: relative;}
-.popup_box .logo_back .logo_box .logo{height: 60px; width: 55px; margin-left: 55px; margin-right: 20px; background: url(../static/images/logo_new.svg)no-repeat center; display: inline-block;}
+.popup_box .logo_back .logo_box .logo{height: 60px; width: 55px; margin-left: 55px; margin-right: 20px; background: url(../images/logo_new.svg)no-repeat center; display: inline-block;}
 .popup_box .logo_back .logo_box span {margin-right: 55px; font-weight: 700; font-size: 45px; color: #111; display: inline-block;}
 
 .popup_box .login_box{position: absolute; background:#ffffff; width: 80%; height: 400px; top: 23.5%; left: 50%; transform: translateX(-50%); z-index: 100; text-align: center;  border-radius: 8px; border: 1px solid #e8e8e8; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
