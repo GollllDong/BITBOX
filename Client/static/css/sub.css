@@ -77,3 +77,10 @@ div.mt10 button {margin-left: 10px;}
 
 .chat_content .chat_id {font-size: 15px;font-weight: 600;color: #0a9102;margin-left: 12px;margin-bottom: 10px;}
 .chat_content .chat_msg {font-size: 16px;font-weight: 500;color: #222;border-radius: 8px;border: 1px solid #e8e8e8;padding: 10px;margin-left: 20px; margin-bottom: 13px; display: inline-block;}
+
+/* todo */
+.todo_main{display: flex;}
+.todo_content .todo_list_box {width: 450px; height: 650px; padding: 0;}
+.todo_content .todo_category {background-color: #eee; text-align: center; text-justify: space-between; padding: 10px;}
+.todo_content .todo_inputbox{background-color: #fdf9e6; display: flex; justify-content: center;}
+.todo_content .todo_input{width: 300px; height: 30px; background-color: #fdf9e6; text-align: center; border: 1px solid #eee;}
