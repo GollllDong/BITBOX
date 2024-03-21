@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2cc2127ed8271d4f203b201b1f7ba4e"></script>
-</head>
+    <script src="../static/js/login.js"></script>
+    </head>
 
 <body>
     <div class="wrap">
@@ -23,7 +24,7 @@
                     </div>
                     <div class="login_box">
                         <h2>Ok~Let's Go~</h2>
-                        <button class="login_btn">로그인</button>
+                        <button onclick="openPop()" class="login_btn">로그인</button>
                         <p class="">비트박스에 오신 것을 환영합니다.</p>
                     </div>
                     <nav class="gnb_nav">
@@ -198,6 +199,44 @@
             <span>@내가 만듬</span>
         </footer>
     </div>
+
+    <div class="popup_page">
+        <button onclick="openPop()">로그인</button>
+        <!-- <a href="javascript:openPop()">
+            <div>
+              로그인
+            </div>
+          </a> -->
+        <div class="popup_layer" id="popup_layer" style="display: none;">
+          <div class="popup_box">
+            <div style="height: 10px; width: 375px; float: top;">
+            </div>
+            <!--팝업 컨텐츠 영역-->
+            <div class="popup_cont">
+              <div class="logo_back">
+                <div class="logo_box">
+                  <h1 class="logo"></h1>
+                  <span>BITBOX</span>
+                </div>
+              </div>
+              <div class="login_box">
+                <h2>Login</h2>
+                <input type='text' id='idInput' placeholder='  아이디'>
+                <input type='password' id='passInput' placeholder='  비밀번호'>
+                <img src="../Client/static/images/ico_eye.svg" style="cursor:pointer;" class="showPassword">
+                <button id="login_btn">로그인</button>
+                <h3>or</h3>
+                <h4>아직 계정이 없으신가요?</h4>
+                <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
+                <!--팝업 버튼 영역-->
+                <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
+                  <a href="javascript:closePop();">닫기</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
     <!-- JavaScript 코드를 외부 파일로 분리하여 불러오기 -->
     <script src="/Client/static/js/map.js"></script>
     <script src="/Client/static/js/rest.js"></script>
