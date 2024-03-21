@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = 'D:/BITBOX//Client/board/boardRead.html';
                     break;
                 case '지도':
-                    window.location.href = 'D:/BITBOX//Client/map/map_pop.html';
+                    window.location.href = 'D:/BITBOX//Client/map/map.html';
                     break;
                 case '채팅':
                     window.location.href = 'D:/BITBOX//Client/chat/chat.html';
