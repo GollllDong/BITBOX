@@ -8,6 +8,7 @@ function closePop() {
     document.getElementById("popup_layer").style.display = "none";
 }
 
+// 서버로 전송
 let userId = '';        // id 보관용
 
 const sendLogIn = function () {
@@ -29,23 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     login_btn.addEventListener('click', sendLogIn);
 });
-    //   document.addEventListener('DOMContentLoaded', ()=>{
 
-    //       const login_btn = document.querySelector('#login_btn');
+// 비밀번호 보이기, 감추기
+document.addEventListener('DOMContentLoaded', function () {
+    const loginBtn = document.querySelector('#login_btn');
+    loginBtn.addEventListener('click', sendLogIn);
 
-    //       login_btn.addEventListener('click', sendLogIn);
+    const loginBoxImg = document.querySelector('.login_box img');
+    loginBoxImg.addEventListener('click', function () {
+      const passwordInput = document.querySelector('#passInput');
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.classList.toggle('showPassword');
+    });
+  });
 
-    //     $(document).ready(function(){
-    //         $('.login_box img').on('click',function(){
-    //             $('input').toggleClass('active');
-    //             if($('input').hasClass('active')){
-    //                 $(this).attr('class',"showPassword")
-    //                 .prev('input').attr('type',"text");
-    //             }else{
-    //                 $(this).attr('class',"showPassword")
-    //                 .prev('input').attr('type','password');
-    //             }
-    //         });
-    //     });
-        
-    //   });
+  // 로그인 성공 시 페이지 전환
