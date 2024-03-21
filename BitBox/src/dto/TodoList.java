@@ -9,13 +9,13 @@ public class TodoList extends Cmd implements Serializable {
 	private String todolist_content;
 	private Boolean todolist_isComplete;
 	private Boolean todolist_isDeleted;
-	private String user_id;
+	private Integer user_id;
 	
 	public TodoList() {
 		
 	}
 	
-	public TodoList(Object cmd, Integer todolist_idx, String todolist_category, String todolist_content, Boolean todolist_isComplete, Boolean todolist_isDeleted, String user_id) {
+	public TodoList(Object cmd, Integer todolist_idx, String todolist_category, String todolist_content, Boolean todolist_isComplete, Boolean todolist_isDeleted, Integer user_id) {
 		this.cmd = cmd;
 		this.todolist_idx = todolist_idx;
 		this.todolist_category = todolist_category;
@@ -65,11 +65,11 @@ public class TodoList extends Cmd implements Serializable {
 		this.todolist_isDeleted = todolist_isDeleted;
 	}
 
-	public String getUser_id() {
+	public Integer getUser_id() {
 		return user_id;
 	}
 
-	public void setUser_id(String user_id) {
+	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
 	}
 
