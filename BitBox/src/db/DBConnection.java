@@ -3,8 +3,7 @@ package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-/*
- * */
+
 public class DBConnection {
 	private static final String URL = "jdbc:mysql://192.168.0.5:3306/bitbox";
 	private static final String USER = "bitbox";
@@ -29,7 +28,6 @@ public class DBConnection {
 	    try {
 	        connection.close();
 	        connection = null; // connection 객체를 null로 초기화
-	        System.out.println("\n\n\nDB 연결 해제");
 	    } catch (SQLException e) {
 	         System.out.println("DB 연결 해제 오류 : " + e.getMessage());
 	          //e.printStackTrace();
@@ -49,4 +47,3 @@ public class DBConnection {
 	        return connection;
 		}
 	}
-

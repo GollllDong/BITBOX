@@ -120,6 +120,9 @@ const displayPacketMessage = function ($parentSelector, message) {
                 msg = `${msgObj.msg}`;
             }
             break;
+        case "newchat":
+            msg = msgObj.result === "ok" ? "채팅방 생성 성공" : "채팅방 생성 실패";
+            break;
     }
 
     // const childElem = document.createElement("h3");

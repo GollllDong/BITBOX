@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import db.DBConnection;
 import dto.TodoList;
 
-public class todoDao {
+public class TodoDao {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;

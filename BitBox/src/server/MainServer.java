@@ -8,7 +8,7 @@ import org.java_websocket.server.WebSocketServer;
 import org.json.JSONObject;
 
 import db.DBConnection;
-import db.dao.UserDAO;
+import db.dao.UserDao;
 import dto.User;
 
 public class MainServer extends WebSocketServer {
@@ -66,7 +66,7 @@ public class MainServer extends WebSocketServer {
                 user.setUser_id(id);
                 user.setUser_pw(pass);
 
-                int result = UserDAO.joinUser(user); // 회원가입 시도
+                int result = UserDao.joinUser(user); // 회원가입 시도
 
                 JSONObject ackObj = new JSONObject();
                 ackObj.put("cmd", "join");
@@ -97,7 +97,7 @@ public class MainServer extends WebSocketServer {
                 user.setUser_id(id);
                 user.setUser_pw(pass);
 
-                int id_idx = UserDAO.loginUser(user);
+                int id_idx = UserDao.loginUser(user);
 
                 JSONObject ackObj = new JSONObject();
                 ackObj.put("cmd", "login");
@@ -123,10 +123,18 @@ public class MainServer extends WebSocketServer {
 
             // 전체 접속자한테 브로드캐스팅
             for (WebSocket con : this.getConnections()) {
-                    con.send(message);
-                }
+                con.send(message);
             }
+        }else if (cmd.equals("newchat")) {
+            int room = msgObj.getInt("room");
+            System.out.printf("room: %s\n", room);
+
+            // 응답객체
+            JSONObject ackObj = new JSONObject();
+            ackObj.put("cmd", "newchat");
+            ackObj.put("result", "ok");
         }
+    }
     
 
     @Override
@@ -138,6 +146,8 @@ public class MainServer extends WebSocketServer {
         ackObj.put("cmd", "connect");
         ackObj.put("result", "연결 성공 !!!");
         conn.send(ackObj.toString()); // 클라이언트한테 메시지 보내기
+
+//        new ClientThread(conn).start();
     }
 
     @Override

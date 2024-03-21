@@ -1,4 +1,5 @@
 let userId = ""; // id 보관용
+let cnt = 0;
 
 const sendLogIn = function () {
   const id = document.querySelector("#idInput").value;
@@ -25,6 +26,33 @@ const sendChatMsg = function () {
   prepareScroll();
 };
 
+const newChatMsg = function () {
+  const packet = {
+    cmd: "newchat",
+    room: cnt,
+  };
+  const jsonStr = JSON.stringify(packet); // js객체 -> json문자열
+  sendMessage(jsonStr);
+
+  const chatAdd = document.querySelector(".chat_add");
+  const addDiv = document.createElement("div");
+  chatAdd.after(addDiv);
+  addDiv.classList.add("chat_list");
+  addDiv.id = 'chat_list' + cnt;
+  addDiv.textContent = "채팅방" + cnt++;
+};
+
+const enterChatMsg = function () {
+  const packet = {
+    cmd: "enterchat",
+    id: userId,
+    room: cnt,
+  };
+  const jsonStr = JSON.stringify(packet); // js객체 -> json문자열
+  sendMessage(jsonStr);
+
+};
+
 // 스크롤 아래로 향하게
 function prepareScroll() {
   window.setTimeout(scrollUl, 50);
@@ -39,6 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnChagMsg = document.querySelector("#btnChatMsg");
   const messageInput = document.querySelector("#messageInput");
   let chatForm = document.querySelector("#messages");
+  const newChatBtn = document.querySelector("#chat_add_btn");
+
+
 
   btnLogIn.addEventListener("click", sendLogIn);
   btnChagMsg.addEventListener("click", function (e) {
@@ -53,4 +84,13 @@ document.addEventListener("DOMContentLoaded", () => {
       messageInput.value = null;
     }
   });
+
+  // 채팅방 셍성 버튼
+  newChatBtn.addEventListener('click', newChatMsg);
+
+  // 채팅방 들어가기 버튼
+  // addEventListener("click", function () {
+  //   console.log(this);
+  //   this.classList.add("select");
+  // });
 });
