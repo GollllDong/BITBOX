@@ -86,3 +86,21 @@ div.mt10 button {margin-left: 10px;}
 .todo_content .todo_category {background-color: #eee; text-align: center; text-justify: space-between; padding: 10px;}
 .todo_content .todo_inputbox{background-color: #fdf9e6; display: flex; justify-content: center;}
 .todo_content .todo_input{width: 300px; height: 30px; background-color: #fdf9e6; text-align: center; border: 1px solid #eee;}
+
+
+  /* 484px 이상 */
+  @media screen and (max-width: 484px) {
+    .flex-wrap{height:50px;}
+  }
+  
+/* 450px 이상 */
+@media screen and (max-width: 350px) {
+    
+    .flex-wrap{height:66px;}
+}
+
+  /* 270px 이상 */
+  @media screen and (max-width: 293px) {
+    
+    .flex-wrap{height:98px;}
+  }

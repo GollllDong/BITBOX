@@ -37,7 +37,9 @@
 .box {border: 1px solid #e8e8ee; border-radius: 8px; padding: 30px 20px; margin: 0 10px; height: 100%; box-shadow: 3px 4px 6px rgba(0,0,0,0.1); position: relative;}
 
 
-
+/* hover_nav */
+.content .hover_nav{position: absolute;}
+.hover_nav img[src="../static/images/nav_icon.png"] {margin-top: 10px;}
 
 
 /* header */
@@ -47,7 +49,7 @@
 .header .user_box .user_info {top: 60px; right: 15px; position: absolute; display: none;} /*로그인 후 user_img 클릭 시 user 기수, 이름 정보*/
  
 /* navi */
-.side_nav {width: 300px; height: 100%; border-right: 1px solid #e8e8e8; position: fixed; top: 0; left: 0; z-index: 1000; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
+.side_nav {background-color: white; width: 300px; height: 100%; border-right: 1px solid #e8e8e8; position: fixed; top: 0; left: 0; z-index: 1000; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
 .side_nav .side_container {position: relative;}
 .side_nav .logo_box {padding: 20px; display: inline-flex; justify-content: space-between; align-items: center; width: 100%; }
 .side_nav .logo_box .logo {margin-right: 16px; height: 40px; width: 40px;}
@@ -144,3 +146,54 @@
 .popup_box .popup_btn a.close_day:before, .popup_box .popup_btn a.close_day:after{display:none;}
 
 .popup_overlay{position:fixed;top:0px;right:0;left:0;bottom:0;z-index:1001;;background:rgba(0,0,0,0.5);}
+
+.side_nav {display: none;}/* 네비게이션 숨기기 */
+  /* 네비게이션 hover */
+.hover_nav:hover ~ .side_nav {
+  display: block;
+}
+  
+
+/* 반응형 flex-wrap */
+
+/* 1440px 이상 */
+@media screen and (max-width: 1440px) {
+    .main_box { margin-left: 0; }
+    .container { max-width: 100%; }
+  }
+  
+  /* 1024px 이상 */
+  @media screen and (max-width: 1440px) {
+  .flex-wrap_1024 {flex-wrap: wrap;} 
+  .emoji {top:-115px;}
+  }
+  
+ /* 768px 이상 */
+@media screen and (max-width: 1024px) {
+  .w100p_768 {width: 100% !important;}
+  .flex-wrap_768 {flex-wrap: wrap;} 
+}
+  
+  /* 540px 이상 */
+  @media screen and (max-width: 768px) {
+    .w100p_540 {width: 100% !important;}  
+    .flex-wrap_540 {flex-wrap: wrap;}
+  }
+  
+/* 450px 이상 */
+@media screen and (max-width: 450px) {
+  .w100p_450{width:100% !important;}
+  .flex-wrap_450 {flex-wrap: wrap;}
+}
+  
+  /* 325px 이상 */
+  @media screen and (max-width: 450px) {
+ .w100p_325{width:100% !important;}
+ .flex-wrap_325 {flex-wrap: wrap;}
+ .flex-wrapre_325 {flex-wrap: wrap-reverse;}
+  }
+  
+  /* 270px 이상 */
+  @media screen and (max-width: 325px) {
+   
+  }
