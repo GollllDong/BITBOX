@@ -68,7 +68,7 @@ div.mt10 button {margin-left: 10px;}
 .chat_content .chat_list_box {padding: 0; height: 650px;}
 .chat_content .chat_add {padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee;}
 .chat_content .chat_add span {font-size: 16px; font-weight: 500; color: #111;}
-.chat_content .chat_list {font-size: 15px; font-weight: 400; color: #333; display: block; padding: 10px 20px; border-bottom: 1px solid #e8e8e8;}
+.chat_content .chat_list {font-size: 15px; font-weight: 400; color: #333; display: block; padding: 10px 20px; border-bottom: 1px solid #e8e8e8; cursor: pointer;}
 .chat_content .chat_list.select {background: #eee;}
 .chat_content > div:nth-child(2) .box {height: 650px; padding: 0;}
 .chat_content .messages {overflow-y: auto; height: 600px; background: #fff6e1;}

@@ -114,7 +114,7 @@ const displayPacketMessage = function ($parentSelector, message) {
             msg = msgObj.result === "ok" ? "게시물 수정 성공" : "게시물 수정 실패";
             break;
 
-        case "allchat":
+        case "chat":
             if ("id" in msgObj) {
                 idMsg = `${msgObj.id}`;
                 msg = `${msgObj.msg}`;
@@ -122,6 +122,9 @@ const displayPacketMessage = function ($parentSelector, message) {
             break;
         case "newchat":
             msg = msgObj.result === "ok" ? "채팅방 생성 성공" : "채팅방 생성 실패";
+            break;
+        case "enterchat":
+            msg = msgObj.result === "ok" ? `${msgObj.id}님이 들어왔습니다` : "채팅방 들어가기 실패";
             break;
     }
 
@@ -134,11 +137,11 @@ const displayPacketMessage = function ($parentSelector, message) {
     const childSpanElem = document.createElement("span");
     childIdElem.textContent = idMsg;
     childSpanElem.textContent = msg;
-    if (childSpanElem.textContent != "" && childIdElem.textContent != "") {
-        childIdElem.classList.add("chat_id");
-        childSpanElem.classList.add("chat_msg");
-        parentElem.appendChild(childIdElem);
-        parentElem.appendChild(childSpanElem);
-    }
-
+    // if (childSpanElem.textContent != "" && childIdElem.textContent != "") {
+       
+    // }
+    childIdElem.classList.add("chat_id");
+    childSpanElem.classList.add("chat_msg");
+    parentElem.appendChild(childIdElem);
+    parentElem.appendChild(childSpanElem);
 };

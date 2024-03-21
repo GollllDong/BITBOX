@@ -1,7 +1,13 @@
 package server;
 
 import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import db.dao.ChatDao;
+import dto.Chat;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -14,6 +20,8 @@ import dto.TodoList;
 import dto.User;
 
 public class MainServer extends WebSocketServer {
+	private List<ChatRoom> chatRooms;
+
 	public static void main(String[] args) {
 
 		String host = "127.0.0.1";
@@ -26,6 +34,7 @@ public class MainServer extends WebSocketServer {
 
 	public MainServer(InetSocketAddress inetAddr) {
 		super(inetAddr);
+		chatRooms = new ArrayList<>();
 	}
 
 	@Override
@@ -109,23 +118,50 @@ public class MainServer extends WebSocketServer {
 				e.printStackTrace();
 			}
 
-		} else if (cmd.equals("allchat")) {
+		} else if (cmd.equals("chat")) {
 			String id = msgObj.getString("id");
 			String msg = msgObj.getString("msg");
+			int room = msgObj.getInt("room");
 			System.out.printf("id: %s   msg: %s\n", id, msg);
 
 			// 전체 접속자한테 브로드캐스팅
-			for (WebSocket con : this.getConnections()) {
-				con.send(message);
-			}
+			ChatRoom chatRoom = chatRooms.get(room);
+			WebSocket webSocket = chatRoom.getChatList().get(room);
+			webSocket.send(message);
+//			for (WebSocket con : this.getConnections()) {
+//				con.send(message);
+//			}
 		} else if (cmd.equals("newchat")) {
 			int room = msgObj.getInt("room");
-			System.out.printf("room: %s\n", room);
+			ChatRoom newRoom = new ChatRoom(room, conn);
 
+			// 채팅방생성했는지
+			System.out.printf("room: %s\n", room);
 			// 응답객체
 			JSONObject ackObj = new JSONObject();
 			ackObj.put("cmd", "newchat");
 			ackObj.put("result", "ok");
+
+			// 생성된 채팅방을 디비에 저장
+            Chat chatDto = new Chat(msgObj);
+            ChatDao chatDao = new ChatDao();
+			chatDao.saveChatRoom(chatDto);
+			chatRooms.add(newRoom);
+
+		}else if (cmd.equals("enterchat")) {
+			int room = msgObj.getInt("room");
+			String id = msgObj.getString("id");
+//			ChatRoom newRoom = new ChatRoom(room);
+			ChatRoom newRoom = chatRooms.get(room);
+			newRoom.start(); //채팅방 스레드 시작
+
+			// 응답객체
+			JSONObject ackObj = new JSONObject();
+			ackObj.put("cmd", "enterchat");
+			ackObj.put("result", "ok");
+
+			conn.send(ackObj.toString());
+
 		} else if (cmd.equals("add_todo")) {
 			String category = msgObj.getString("category");
 			String content = msgObj.getString("todo");
