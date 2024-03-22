@@ -11,3 +11,4 @@
 
 *.classpath
 *.project
+.DS_Store
