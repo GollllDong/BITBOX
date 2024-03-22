@@ -86,11 +86,29 @@ div.mt10 button {margin-left: 10px;}
 .todo_content .todo_inputbox{background-color: #fdf9e6; display: flex; justify-content: center;}
 .todo_content .todo_input{width: 300px; height: 30px; background-color: #fdf9e6; text-align: center; border: 1px solid #eee;} */
 
+/* 
 .todo_content .todo_list_box {height: 650px;}
 .todo_content .todo_category{background-color: #eee; text-align: center; text-justify: space-between; padding:10px;}
 .todo_content .todo_inputbox{width: 100%; background-color: #fdf9e6; display:flex; justify-content: center;}
-.todo_content .todo_input{height: 30px; background-color: #fdf9e6; text-align: center; border: 1px solid #eee;}
+.todo_content .todo_input{height: 30px; background-color: #fdf9e6; text-align: center; border: 1px solid #eee;} */
 
+/* to-do */
+.todo_content .todo_list_box { height: 580px; padding: 0;}
+.todo_content .todo_category {background-color: #eee; text-align: center; text-justify: space-between; padding: 10px;}
+.todo_content .todo_category #dailyCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category #dailyCategory:focus{outline: none;}
+.todo_content .todo_category #studyCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category #studyCategory:focus{outline: none;}
+.todo_content .todo_category #etcCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category #etcCategory:focus{outline: none;}
+.todo_content .todo_inputbox{width:100%; background-color: #fdf9e6; display: flex; justify-content: center;}
+.todo_content .todo_inputbox #dailyContent {width: 200px; margin-right: 6px;}
+.todo_content .todo_inputbox #dailyContent:focus{outline: none;}
+.todo_content .todo_inputbox #studyContent {width: 200px; margin-right: 6px;}
+.todo_content .todo_inputbox #studyContent:focus{outline: none;}
+.todo_content .todo_inputbox #etcContent {width: 200px; margin-right: 6px;}
+.todo_content .todo_inputbox #etcContent:focus{outline: none;}
+.todo_content .todo_input{width: 300px; height: 42px; background-color: #fdf9e6; font-size: 13px; text-align: center; border: none;}
 
 /* 게시판 수정/삭제/목록 조절 */
 

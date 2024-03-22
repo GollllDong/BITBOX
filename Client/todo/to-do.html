@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BitBox~</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/socket-client.js"></script>
+    <script src="../static/js/todo.js"></script>
+    <script src="../static/js/gnb.js"></script>
+    <script src="../static/js/login.js"></script>
+    <script src="../static/js/nav.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="content">
+            <label class="hover_nav" id="navButton"></label>
+            <aside class="side_nav" id="sideNav">
+                <div class="side_container">
+                    <div class="logo_box">
+                        <h1 class="logo">
+                            <a class="" href="../Client/index.html"></a>
+                        </h1>
+                        <span>BITBOX</span>
+                    </div>
+                    <div class="login_box">
+                        <h2>Ok~Let's Go~</h2>
+                        <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
+                        <p class="">비트박스에 오신 것을 환영합니다.</p>
+                    </div>
+                    <!--<div class="login_box_after" id="loginAfter>
+              <h2 class="">안녕하세요!</h2>
+              <h3 class="">비트캠프 수강생 여러분</p>
+              <p class="">비트박스에 오신 것을 환영합니다.</p>
+            </div>-->
+                    <nav class="gnb_nav">
+                        <ul class="gnb_box">
+                            <li class="select">
+                                <a>HOME</a>
+                            </li>
+                            <li>
+                                <a>게시판</a>
+                            </li>
+                            <li>
+                                <a>지도</a>
+                            </li>
+                            <li>
+                                <a>채팅</a>
+                            </li>
+                            <li>
+                                <a>할 일</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <div class="main_box">
+                <header class="header">
+                    <div class="user_box">
+                        <div class="user_img">
+                            <!-- 사용자 아이콘 -->
+                        </div>
+                        <!-- <div class="user_subject">
+                 팝업 내용 넣기 
+                 <img src="../Client/static/images/user_info.png" alt="" class="user_info" />
+                </div>-->
+                    </div>
+                </header>
+
+                <main class="main">
+                    <div class="container">
+                        <section class="snb_nav mb10">
+                            <ul>
+                                <li>
+                                    <a href="index.html">HOME</a>
+                                </li>
+                                <li>
+                                    <a href="#">할 일</a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="main_content_box">
+                            <div class="title_box">
+                                <h2 class="title orange">
+                                    To-Do List
+                                </h2>
+                                <p>
+                                    매일 생기는 할 일을 카테고리별로 나누어서 효율적으로 관리해보세요!
+                                </p>
+                            </div>
+                            <div class="todo_main">
+                                <div class="todo_content">
+                                    <div class="flex space-between flex-wrap_768">
+                                        <div class="w66p flex_wrap w100p_768">
+                                            <div class="w50p w100p_540">
+                                                <article class="box todo_list_box">
+                                                    <div class="todo_category">
+                                                        <select id="dailyCategory">
+                                                            <option value="일상">일상</option>
+                                                            <!-- <option value="공부">공부</option>
+                                                        <option value="기타">기타</option> -->
+                                                        </select>
+                                                    </div>
+                                                    <div class="todo_inputbox">
+                                                        <input id="dailyContent" class="todo_input" type="text"
+                                                            placeholder="입력하세요">
+                                                        <button id="dailyBtn"><img src="/static/images/ico_plusbox.svg"
+                                                                alt=""></button>
+                                                    </div>
+                                                    <div id="daily-todo-list"></div>
+                                                </article>
+                                            </div>
+                                            <div class="w50p w100p_540">
+                                                <article class="box todo_list_box">
+                                                    <div class="todo_category">
+                                                        <select id="studyCategory">
+                                                            <option value="공부">공부</option>
+                                                            <!-- <option value="일상">일상</option>
+                                                        <option value="기타">기타</option> -->
+                                                        </select>
+                                                    </div>
+                                                    <div class="todo_inputbox">
+                                                        <input id="studyContent" class="todo_input" type="text"
+                                                            placeholder="입력하세요">
+                                                        <button id="studyBtn"><img src="/static/images/ico_plusbox.svg"
+                                                                alt=""></button>
+                                                    </div>
+                                                    <div id="study-todo-list"></div>
+                                                </article>
+                                            </div>
+                                        </div>
+                                        <div class="w33p w100p_768">
+                                            <article class="box todo_list_box">
+                                                <div class="todo_category">
+                                                    <select id="etcCategory">
+                                                        <option value="기타">기타</option>
+                                                        <!-- <option value="일상">일상</option>
+                                                        <option value="공부">공부</option> -->
+                                                    </select>
+                                                </div>
+                                                <div class="todo_inputbox">
+                                                    <input id="etcContent" class="todo_input" type="text"
+                                                        placeholder="입력하세요">
+                                                    <button id="etcBtn"><img src="/static/images/ico_plusbox.svg"
+                                                            alt=""></button>
+                                                </div>
+                                                <div id="etc-todo-list"></div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -44,7 +44,7 @@
   width: 40px;
   height: 40px;
   margin-top: 10px;
-  margin-left: 38px;
+  margin-left: 20px;
 }
 .hover_nav {
   cursor: pointer;
@@ -52,7 +52,7 @@
 
 /* header */
 .header {width: 100%; height:60px; line-height: 60px; border-bottom: 1px solid #e8e8e8;}
-.header .user_box {padding-right: 30px;display: flex;justify-content: flex-end;align-items: center;height: 60px;}
+.header .user_box {padding-right: 15px;display: flex;justify-content: flex-end;align-items: center;height: 60px;}
 .header .user_img {cursor: pointer; background-color: #fbd107; border-radius: 100%; border: 1px solid #999; width: 45px; height: 45px;position: relative;}
 .header .user_box .user_info {top: 60px; right: 15px; position: absolute; display: none;} /*로그인 후 user_img 클릭 시 user 기수, 이름 정보*/
  
@@ -102,7 +102,7 @@
 /* main */
 /* .main_box {margin-left: 300px; height: 100vh;}
 .container {max-width: 1440px; margin: 30px auto;} */
-.main_box { margin-left: 30px; margin-right: 30px;}
+.main_box {padding-left: 15px; padding-right: 15px;}
 .container { max-width: 100%; }
 
 .snb_nav {margin: 0 10px 5px;}
