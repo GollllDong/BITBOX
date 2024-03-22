@@ -1,26 +1,23 @@
 package server;
 
 import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import db.dao.ChatDao;
-import dto.Chat;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import db.DBConnection;
+import db.dao.PostDao;
 import db.dao.TodoDao;
 import db.dao.UserDao;
+import dto.Post;
 import dto.TodoList;
 import dto.User;
 
 public class MainServer extends WebSocketServer {
-	private List<ChatRoom> chatRooms;
 
 	public static void main(String[] args) {
 
@@ -34,7 +31,6 @@ public class MainServer extends WebSocketServer {
 
 	public MainServer(InetSocketAddress inetAddr) {
 		super(inetAddr);
-		chatRooms = new ArrayList<>();
 	}
 
 	@Override
@@ -57,21 +53,29 @@ public class MainServer extends WebSocketServer {
 		// 패킷 종류를 구분할 수 있는 명령어를 제일 먼저 추출
 		String cmd = msgObj.getString("cmd");
 
-		if (cmd.equals("join")) {
-			String id = msgObj.getString("id");
-			String pass = msgObj.getString("pass");
-			System.out.printf("회원가입 id: %s   pass: %s\n", id, pass);
+		if (cmd.equals("signup")) {
+			String user_id = msgObj.getString("user_id");
+			String user_pw = msgObj.getString("user_pw");
+			String user_name = msgObj.getString("user_name");
+			String course_id = msgObj.getString("course_id");
+			String course_code = msgObj.getString("course_code");
+
+			System.out.printf("[회원가입] id: %s,   password: %s\n,   name: %s\n,   course: %s\n,   code: %s\n", user_id,
+					user_pw, user_name, course_id, course_code);
 
 			// 회원가입 시도
 			try {
 				User user = new User();
-				user.setUser_id(id);
-				user.setUser_pw(pass);
+				user.setUser_id(user_id);
+				user.setUser_pw(user_pw);
+				user.setUser_name(user_name);
+				user.setCourse_id(course_id);
+				user.setCourse_code(course_code);
 
-				int result = UserDao.joinUser(user); // 회원가입 시도
+				int result = UserDao.signupUser(user); // 회원가입 시도
 
 				JSONObject ackObj = new JSONObject();
-				ackObj.put("cmd", "join");
+				ackObj.put("cmd", "signup");
 
 				if (result == 1) {
 					// 회원가입 성공 시
@@ -89,15 +93,15 @@ public class MainServer extends WebSocketServer {
 				e.printStackTrace();
 			}
 		} else if (cmd.equals("login")) {
-			String id = msgObj.getString("id");
-			String pass = msgObj.getString("pass");
-			System.out.printf("로그인 id: %s   pass: %s\n", id, pass);
+			String user_id = msgObj.getString("user_id");
+			String user_pw = msgObj.getString("user_pw");
+			System.out.printf("[로그인] id: %s   pass: %s\n", user_id, user_pw);
 
 			// 로그인 시도
 			try {
 				User user = new User();
-				user.setUser_id(id);
-				user.setUser_pw(pass);
+				user.setUser_id(user_id);
+				user.setUser_pw(user_pw);
 
 				int id_idx = UserDao.loginUser(user);
 
@@ -108,6 +112,7 @@ public class MainServer extends WebSocketServer {
 					// 로그인 성공 시
 					ackObj.put("result", "ok");
 					ackObj.put("id_idx", id_idx);
+					ackObj.put("user_id", user_id); // 세션 스토리지에 저장하기 위한 응답
 				} else {
 					// 로그인 실패 시
 					ackObj.put("result", "fail");
@@ -117,50 +122,166 @@ public class MainServer extends WebSocketServer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		} else if (cmd.equals("insertpost")) {
 
-		} else if (cmd.equals("chat")) {
-			String id = msgObj.getString("id");
-			String msg = msgObj.getString("msg");
-			int room = msgObj.getInt("room");
-			System.out.printf("id: %s   msg: %s\n", id, msg);
+			String food_category = msgObj.getString("food_category");
+			String post_title = msgObj.getString("post_title");
+			String content_location = msgObj.getString("content_location");
+			String post_content = msgObj.getString("post_content");
+			String user_id = msgObj.getString("user_id");
+			System.out.printf("[게시물 작성] id: %s   post_title: %s   content_location: %s   post_content: %s\n", user_id,
+					post_title, content_location, post_content);
 
-			// 전체 접속자한테 브로드캐스팅
-			ChatRoom chatRoom = chatRooms.get(room);
-			WebSocket webSocket = chatRoom.getChatList().get(room);
-			webSocket.send(message);
-//			for (WebSocket con : this.getConnections()) {
-//				con.send(message);
-//			}
-		} else if (cmd.equals("newchat")) {
-			int room = msgObj.getInt("room");
-			ChatRoom newRoom = new ChatRoom(room, conn);
+			// 게시물 작성 시도
+			try {
+				Post post = new Post();
+				post.setFood_category(food_category);
+				post.setPost_title(post_title);
+				post.setContent_location(content_location);
+				post.setPost_content(post_content);
+				post.setUser_id(user_id);
+				int result = PostDao.insertPost(DBConnection.getConnection(), post); // 게시물 작성 시도
 
-			// 채팅방생성했는지
-			System.out.printf("room: %s\n", room);
-			// 응답객체
-			JSONObject ackObj = new JSONObject();
-			ackObj.put("cmd", "newchat");
-			ackObj.put("result", "ok");
+				JSONObject ackObj = new JSONObject();
+				ackObj.put("cmd", "insertpost");
 
-			// 생성된 채팅방을 디비에 저장
-            Chat chatDto = new Chat(msgObj);
-            ChatDao chatDao = new ChatDao();
-			chatDao.saveChatRoom(chatDto);
-			chatRooms.add(newRoom);
+				if (result == 1) {
+					// 게시물 작성 성공 시
+					ackObj.put("result", "ok");
+				} else {
+					// 그 외의 경우 (작성 실패 등)
+					ackObj.put("result", "fail");
+				}
 
-		}else if (cmd.equals("enterchat")) {
-			int room = msgObj.getInt("room");
-			String id = msgObj.getString("id");
-//			ChatRoom newRoom = new ChatRoom(room);
-			ChatRoom newRoom = chatRooms.get(room);
-			newRoom.start(); //채팅방 스레드 시작
+				conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (cmd.equals("updatepost")) {
+			String food_category = msgObj.getString("food_category");
+			String post_title = msgObj.getString("post_title");
+			String content_location = msgObj.getString("content_location");
+			String post_content = msgObj.getString("post_content");
+			String user_id = msgObj.getString("user_id");
+			Integer post_id = msgObj.getInt("post_id");
+			System.out.printf(
+					"[게시물 수정] food_category: %s   post_title: %s   content_location: %s   post_content: %s\n   user_id: %s\n   Post_id: %d\n",
+					food_category, post_title, content_location, post_content, user_id, post_id);
 
-			// 응답객체
-			JSONObject ackObj = new JSONObject();
-			ackObj.put("cmd", "enterchat");
-			ackObj.put("result", "ok");
+			// 게시물 작성 시도
+			try {
+				Post post = new Post();
+				post.setFood_category(food_category);
+				post.setPost_title(post_title);
+				post.setContent_location(content_location);
+				post.setPost_content(post_content);
+				post.setUser_id(user_id);
+				post.setPost_id(post_id);
+				int result = PostDao.updatePost(DBConnection.getConnection(), post);
 
-			conn.send(ackObj.toString());
+				JSONObject ackObj = new JSONObject();
+				ackObj.put("cmd", "updatepost");
+
+				if (result == 1) {
+					ackObj.put("result", "ok");
+				} else {
+					ackObj.put("result", "fail");
+				}
+
+				conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (cmd.equals("deletepost")) {
+			String user_id = msgObj.getString("user_id");
+			Integer post_id = msgObj.getInt("post_id");
+			System.out.printf("[게시물 삭제]  user_id: %s\n   Post_id: %d\n", user_id, post_id);
+
+			// 게시물 작성 시도
+			try {
+				Post post = new Post();
+				post.setUser_id(user_id);
+				post.setPost_id(post_id);
+
+				int result = PostDao.deletePost(DBConnection.getConnection(), post);
+
+				JSONObject ackObj = new JSONObject();
+				ackObj.put("cmd", "updatepost");
+				if (result == 1) {
+					ackObj.put("result", "ok");
+				} else {
+					ackObj.put("result", "fail");
+				}
+
+				conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  else if (cmd.equals("getallpost")) {
+		    System.out.println("[게시물 전체 조회]");
+
+		    // 게시물 전체 조회 시도
+		    try {
+		        // 모든 게시물 조회 메서드 호출
+		        List<Post> allPosts = PostDao.getAllPost(DBConnection.getConnection());
+
+		        JSONObject ackObj = new JSONObject();
+		        ackObj.put("cmd", "getallpost");
+
+		        if (!allPosts.isEmpty()) {
+		            JSONArray postArray = new JSONArray();
+		            // 게시물 목록을 JSONArray로 변환하여 응답에 추가
+		            for (Post post : allPosts) {
+		                JSONObject postObj = new JSONObject();
+		                postObj.put("post_id", post.getPost_id());
+		                postObj.put("food_category", post.getFood_category());
+		                postObj.put("post_title", post.getPost_title());
+		                postObj.put("content_location", post.getContent_location());
+		                postObj.put("user_id", post.getUser_id());
+		                postObj.put("post_createDate", post.getPost_createDate().toString()); // LocalDate를 문자열로 변환하여 전송
+		                postArray.put(postObj);
+		            }
+		            ackObj.put("posts", postArray);
+		            ackObj.put("result", "ok");
+		        } else {
+		            // 조회 결과가 없을 경우
+		            ackObj.put("result", "empty");
+		        }
+
+		        conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		}else if (cmd.equals("getpost")) {
+			Integer post_id = msgObj.getInt("post_id");
+			System.out.printf("[특정 게시물 조회] Post_id: %d\n", post_id);
+
+			try {
+				// 게시물 ID를 설정한 후 DAO를 통해 특정 게시물을 가져옴
+				Post post = new Post();
+				post.setPost_id(post_id);
+
+				Post selectedPost = PostDao.getPost(DBConnection.getConnection(), post_id);
+
+				JSONObject ackObj = new JSONObject();
+				ackObj.put("cmd", "getpost");
+
+				if (selectedPost != null) {
+					// 조회 결과를 클라이언트에 응답
+					ackObj.put("result", "ok");
+					// 특정 게시물 정보를 JSON으로 변환하여 응답에 포함
+					JSONObject postObj = new JSONObject(selectedPost);
+					ackObj.put("post", postObj);
+				} else {
+					// 게시물이 없을 경우
+					ackObj.put("result", "fail");
+				}
+
+				conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 		} else if (cmd.equals("add_todo")) {
 			String category = msgObj.getString("category");
@@ -174,7 +295,7 @@ public class MainServer extends WebSocketServer {
 				todo.setTodolist_content(content);
 				todo.setUser_id(user_id);
 
-				int result = TodoDao.categoryDaily(todo); // insertTodo(todo)
+				int result = TodoDao.categoryDaily(todo); 
 
 				if (result > 0) {
 					System.out.println("to-do list 추가되었습니다.");
@@ -197,7 +318,7 @@ public class MainServer extends WebSocketServer {
 		ackObj.put("result", "연결 성공 !!!");
 		conn.send(ackObj.toString()); // 클라이언트한테 메시지 보내기
 
-//        new ClientThread(conn).start();
+
 	}
 
 	@Override
