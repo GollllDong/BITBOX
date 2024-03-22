@@ -25,11 +25,16 @@
             </h1>
             <span>BITBOX</span>
           </div>
-          <div class="login_box">
+           <div class="login_box">
             <h2>Ok~Let's Go~</h2>
-            <button onclick="openPop()" class="login_btn">로그인</button>
+            <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
             <p class="">비트박스에 오신 것을 환영합니다.</p>
           </div>
+          <!--<div class="login_box_after" id="loginAfter>
+            <h2 class="">안녕하세요!</h2>
+            <h3 class="">비트캠프 수강생 여러분</p>
+            <p class="">비트박스에 오신 것을 환영합니다.</p>
+          </div>-->
           <nav class="gnb_nav">
             <ul class="gnb_box">
               <li class="select">
@@ -55,11 +60,11 @@
         <header class="header">
           <div class="user_box">
             <div class="user_img">
-              <!-- <img src="" alt="사용자 이미지" /> -->
-              <img src="../Client/static/images/user_info.png" alt="" class="user_info" />
+              <!-- 사용자 아이콘 -->
             </div>
             <!-- <div class="user_subject">
                팝업 내용 넣기 
+               <img src="../Client/static/images/user_info.png" alt="" class="user_info" />
               </div>-->
           </div>
         </header>
@@ -83,33 +88,42 @@
                 <div class="w66p flex_wrap w100p_768">
                   <div class="w50p mb20 w100p_450">
                     <article class="box">
+                      <div class="plus_icon">
+                        <a href="../Client/board/postReadAll.html">
+                          <img src="../Client/static/images/ico_plusbox.svg" alt="plus"> 
+                        </a>
+                      </div>
                       <h3 class="sub_subject">함께하는 비트캠프 생활</h3>
                       <p>편리한 소통의 게시판</p>
                       <div class="box_img">
-                        <!-- <img src="" alt="" /> -->
-                        <img src="../Client/static/images/ico_plusbox.svg" alt="" class="plus_icon" />
                         <div class="box_img board"></div>
                       </div>
                     </article>
                   </div>
                   <div class="w50p mb20 w100p_450">
                     <article class="box">
+                      <div class="plus_icon">
+                        <a href="../Client/chat/chat.html">
+                          <img src="../Client/static/images/ico_plusbox.svg" alt="plus"> 
+                        </a>
+                      </div>
                       <h3 class="sub_subject">더욱 편리하고 자유로운</h3>
                       <p>우리만의 실시간 채팅</p>
                       <div class="box_img">
-                        <!-- <img src="" alt="" /> -->
-                        <img src="../Client/static/images/ico_plusbox.svg" alt="" class="plus_icon" />
                         <div class="box_img chat"></div>
                       </div>
                     </article>
                   </div>
                   <div class="w100p">
                     <article class="box">
+                      <div class="plus_icon">
+                        <a href="../Client/todo/todo.html">
+                          <img src="../Client/static/images/ico_plusbox.svg" alt="plus"> 
+                        </a>
+                      </div>
                       <h3 class="sub_subject">효율적이고 뿌듯한 하루의 시작</h3>
                       <p>오늘의 할 일을 관리할 수 있는 To-Do-List</p>
                       <div class="box_img">
-                        <!-- <img src="" alt="" /> -->
-                        <img src="../Client/static/images/ico_plusbox.svg" alt="" class="plus_icon" />
                         <div class="box_img todo"></div>
                       </div>
                     </article>
@@ -117,14 +131,16 @@
                 </div>
                 <div class="w33p w100p_768">
                   <article class="box">
+                    <div class="plus_icon">
+                      <a href="../Client/map/map.html">
+                        <img src="../Client/static/images/ico_plusbox.svg" alt="plus"> 
+                      </a>
+                    </div>
                     <h3 class="sub_subject">수강생들의 맛있는 발견</h3>
                     <p>학원 근처 맛집 지도</p>
                     <div class="box_img">
                       <!-- <img src="" alt="" /> -->
-                      <link rel="stylesheet" href="/Client/map/map.html">
-                      <a href="../Client/map/map.html">
-                        <img src="../Client/static/images/ico_plusbox.svg" alt="" class="plus_icon" />
-                      </a>
+                      <link rel="stylesheet" href="../Client/map/map_pop.html">
                       <div class="box_img map1"></div>
                     </div>
                     <p></p>
