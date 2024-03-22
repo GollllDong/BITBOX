@@ -5,11 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>BitBox~</title>
         <link rel="stylesheet" href="../static/css/style.css" />
-        <script src="../static/js/socket-client.js"></script>
-        <script src="../static/js/chat.js"></script>
         <script src="../static/js/gnb.js"></script>
         <script src="../static/js/login.js"></script>
         <script src="../static/js/nav.js"></script>
+    
     </head>
     <body>
         <div class="wrap">
@@ -19,7 +18,7 @@
                     <div class="side_container">
                         <div class="logo_box">
                             <h1 class="logo">
-                                <a class="" href="../index.html"></a>
+                                <a class="" href="/Client/index.html"></a>
                             </h1>
                             <span>BITBOX</span>
                         </div>
@@ -54,15 +53,10 @@
                         <div class="user_box">
                             <div class="user_img">
                                 <!-- <img src="" alt="사용자 이미지" /> -->
-                                <img
-                                    src="../Client/static/images/user_info.png"
-                                    alt=""
-                                    class="user_info"
-                                />
                             </div>
                             <!-- <div class="user_subject">
-                   팝업 내용 넣기 
-                  </div>-->
+					 팝업 내용 넣기 
+					</div>-->
                         </div>
                     </header>
 
@@ -74,84 +68,94 @@
                                         <a>HOME</a>
                                     </li>
                                     <li>
-                                        <a>채팅</a>
+                                        <a>게시판</a>
                                     </li>
                                 </ul>
                             </section>
 
                             <section class="main_content_box">
                                 <div class="title_box">
-                                    <h2 class="title orange">
-                                        비트캠프 근처 맛집
-                                    </h2>
+                                    <h2 class="title orange">맛집 리스트</h2>
+                                </div>
+
+                                <div class="sub_title">
                                     <p>
-                                        맛잘알 수강생들의 생생한 맛집 후기도
-                                        궁금하다면? 맛집 리스트 게시판도
-                                        방문해보세요!
+                                        - 비트캠프 근처 맛집을 소개하고 추천하는
+                                        공간입니다. 여러분들의 맛있는 발견을
+                                        공유해주세요! -
+                                        <img src="../static/images/board_emoji.svg" alt="emoji" class="sub_title emoji"/>
                                     </p>
                                 </div>
-                                <label
-                                    >아이디:
-                                    <input
-                                        type="text"
-                                        id="idInput"
-                                        placeholder="id를 입력하세요" /></label
-                                ><br />
-                                <label
-                                    >패스워드:
-                                    <input
-                                        type="password"
-                                        id="passInput"
-                                        placeholder="pass를 입력하세요" /></label
-                                ><br />
-                                <button id="btnLogIn">로그인 전송</button>
-                                <div class="flex space-between chat_content flex-wrapre_325">
-                                    <div class="w33p w100p_325">
-                                        <div class="w100p">
-                                            <article class="box chat_list_box">
-                                                <div class="chat_add">
-                                                    <span>채팅방 목록</span>
-                                                    <button id="chat_add_btn">
-                                                        생성
-                                                    </button>
-                                                </div>
-                                                <div class="chat_list">
-                                                    스터디 모집중
-                                                </div>
-                                            </article>
-                                        </div>
-                                    </div>
-                                    <div class="w66p w100p_325">
-                                        <div class="w100p">
-                                            <article class="box">
-                                                <div
-                                                    id="messages"
-                                                    class="messages"
-                                                ></div>
-                                                <div class="msg_box">
-                                                    <input
-                                                        type="text"
-                                                        id="messageInput"
-                                                        class="msg_input"
-                                                        placeholder="메시지를 입력~"
+
+                                <div class="table_layout_write">
+                                    <table>
+                                        <colgroup>
+                                            <col width="20%" />
+                                            <col width="80%" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>음식 종류</th>
+                                                <td>한식</td>
+                                            </tr>
+                                            <tr>
+                                                <th>제목</th>
+                                                <td>
+                                                    여기 해장국 진짜 맛있어요~
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>작성자</th>
+                                                <td>D08기 홍길동</td>
+                                            </tr>
+                                            <tr>
+                                                <th>위치</th>
+                                                <td>
+                                                    서울특별시 강남구
+                                                    테헤란로5길 11
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>내용</th>
+                                                <td class="textarea">
+                                                    <textarea name="" id="">
+지난주에 학원 처음 오고 저녁을 팀원들과 함께 먹었는데 맛있었어요 곱창 전골 먹었는데 완전 비추~</textarea
+                                                    >
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>별점</th>
+                                                <td>
+                                                    <img
+                                                        src="../static/images/ico_star.svg"
+                                                        alt=""
                                                     />
-                                                    <button
-                                                        id="btnChatMsg"
-                                                        class="msg_send_btn"
-                                                    ><img src="../static/images/ico_btnChatMsg.svg" alt="대체 텍스트" onclick="" ></button>
-                                                </div>
-                                            </article>
-                                        </div>
-                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>비밀번호</th>
+                                                <td>1234</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="mt10">
+                                    <button class="board_delete_btn flex-wrap">
+                                        <span>삭제하기</span>
+                                    </button>
+                                    <button class="board_edit_btn flex-wrapn">
+                                        <span>수정하기</span>
+                                    </button>
+                                    <button class="board_list_btn flex-wrap">
+                                        <span>목록으로 돌아가기</span>
+                                    </button>
                                 </div>
                             </section>
                         </div>
                     </main>
                 </div>
             </div>
-            <footer class="footer">
-                <span>@내가 만듬</span>
-            </footer>
         </div>
 
         <div class="popup_page">
