@@ -95,8 +95,9 @@ public class PostDao {
 
 	public static List<Post> getAllPost(Connection conn) throws SQLException {
 		List<Post> postList = new ArrayList<>();
-		String sql = "SELECT post_id, food_category, post_title, content_location, user_id, post_createDate "
-				+ "FROM post WHERE post_isDeleted = 0 ORDER BY post_createDate ASC";
+		String sql = "SELECT post.post_id, post.food_category, post.post_title, user.course_id, user.user_name, post.post_createDate "
+				+ "FROM post, user WHERE post.user_id = user.user_id AND post.post_isDeleted=0 ORDER BY post.post_createDate ASC";
+		;
 
 		try (PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
 
@@ -105,8 +106,8 @@ public class PostDao {
 				post.setPost_id(rs.getInt("post_id"));
 				post.setFood_category(rs.getString("food_category"));
 				post.setPost_title(rs.getString("post_title"));
-				post.setContent_location(rs.getString("content_location"));
-				post.setUser_id(rs.getString("user_id"));
+				post.setCourse_id(rs.getString("course_id"));;
+				post.setUser_name(rs.getString("user_name"));
 				post.setPost_createDate(rs.getDate("post_createDate").toLocalDate());
 
 				postList.add(post);
@@ -118,8 +119,8 @@ public class PostDao {
 
 	public static Post getPost(Connection conn, int post_id) throws SQLException {
 
-		String sql = "SELECT food_category, post_title, post_createDate, user_id, content_location, post_content "
-				+ "FROM post WHERE post_isDeleted = 0 AND post_id = ?";
+		String sql = "SELECT post.post_id, post.food_category, post.post_title, user.course_id, user.user_name, post.post_createDate, post.content_location, post.post_content "
+				+ "FROM post, user WHERE post.user_id = user.user_id AND post.post_isDeleted = 0 AND post.post_id = ?";
 
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setInt(1, post_id);
@@ -129,11 +130,12 @@ public class PostDao {
 					// 쿼리 실행 결과를 Post 객체로 변환하여 반환
 
 					Post post = new Post();
-					post.setPost_id(post_id);
+					post.setPost_id(rs.getInt("post_id"));
 					post.setFood_category(rs.getString("food_category"));
 					post.setPost_title(rs.getString("post_title"));
+					post.setCourse_id(rs.getString("course_id"));;
+					post.setUser_name(rs.getString("user_name"));
 					post.setPost_createDate(rs.getDate("post_createDate").toLocalDate());
-					post.setUser_id(rs.getString("user_id"));
 					post.setContent_location(rs.getString("content_location"));
 					post.setPost_content(rs.getString("post_content"));
 
@@ -149,7 +151,5 @@ public class PostDao {
 		return null; // 객체 반환
 
 	}
-	
-	
-	
+
 }

@@ -237,8 +237,8 @@ public class MainServer extends WebSocketServer {
 		                postObj.put("post_id", post.getPost_id());
 		                postObj.put("food_category", post.getFood_category());
 		                postObj.put("post_title", post.getPost_title());
-		                postObj.put("content_location", post.getContent_location());
-		                postObj.put("user_id", post.getUser_id());
+		                postObj.put("course_id", post.getCourse_id());
+		                postObj.put("user_name", post.getUser_name());
 		                postObj.put("post_createDate", post.getPost_createDate().toString()); // LocalDate를 문자열로 변환하여 전송
 		                postArray.put(postObj);
 		            }
@@ -282,6 +282,9 @@ public class MainServer extends WebSocketServer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+			
+			
 
 		} else if (cmd.equals("add_todo")) {
 			String category = msgObj.getString("category");

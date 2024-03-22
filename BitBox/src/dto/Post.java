@@ -15,6 +15,8 @@ public class Post extends Cmd {
 	private String content_location;	// 맛집 위치 
 	private LocalDate post_createDate;	// 게시물 생성일  
 	private Boolean post_isDeleted; 	// 게시물 삭제 여부 
+	private String user_name;			// user.유저 이름 
+	private String course_id;			// user.기수 
 
 	/**
 	 * 기본 생성자
@@ -22,9 +24,10 @@ public class Post extends Cmd {
 	public Post() {
 	}
 
-	
-	public Post(Object cmd, Integer post_id, String food_category, String post_title, String user_id, String post_content, String content_location,
-			 LocalDate post_createDate, Boolean post_isDeleted) {
+	public Post(Object cmd, Integer post_id, String food_category, String post_title, String user_id, String post_content,
+			String content_location, LocalDate post_createDate, Boolean post_isDeleted, String user_name,
+			String course_id) {
+		
 		this.cmd = cmd;
 		this.post_id = post_id;
 		this.food_category = food_category;
@@ -34,6 +37,8 @@ public class Post extends Cmd {
 		this.content_location = content_location;
 		this.post_createDate = post_createDate;
 		this.post_isDeleted = post_isDeleted;
+		this.user_name = user_name;
+		this.course_id = course_id;
 	}
 
 	public Integer getPost_id() {
@@ -84,7 +89,6 @@ public class Post extends Cmd {
 		this.content_location = content_location;
 	}
 
-
 	public LocalDate getPost_createDate() {
 		return post_createDate;
 	}
@@ -101,7 +105,25 @@ public class Post extends Cmd {
 		this.post_isDeleted = post_isDeleted;
 	}
 
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public String getCourse_id() {
+		return course_id;
+	}
+
+	public void setCourse_id(String course_id) {
+		this.course_id = course_id;
+	}
+
 	
+	
+
 
 	
 
