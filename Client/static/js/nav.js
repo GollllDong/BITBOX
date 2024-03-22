@@ -1,52 +1,43 @@
-// 마우스가 네비메뉴 안쪽에 있으면 호버 상태를 계속 유지하게 하기 위한 자바스크립트
+document.addEventListener("DOMContentLoaded", function () {
+  // 버튼과 네비게이션 요소 가져오기
+  const navButton = document.getElementById("navButton");
+  const sideNav = document.getElementById("sideNav");
 
-document.addEventListener('DOMContentLoaded', function () {
-    const hoverNav = document.querySelector('.hover_nav');
-    const sideNav = document.querySelector('.side_nav');
+  // 네비게이션을 숨기는 초기 CSS 스타일 설정
+  sideNav.style.display = "none";
 
-    let isHovered = false; // 마우스 또는 터치로 네비게이션 메뉴 안에 있는지 여부를 추적하기 위한 변수
+  // 버튼 클릭 시 네비게이션 토글
+  navButton.addEventListener("click", function (e) {
+    e.stopPropagation(); // 버튼 클릭 시 부모 요소에 대한 이벤트 전파 방지
+    toggleNav();
+  });
 
-    hoverNav.addEventListener('mouseenter', function () {
-      isHovered = true;
-      showSideNav();
-    });
-
-    hoverNav.addEventListener('mouseleave', function () {
-      isHovered = false;
-      hideSideNav();
-    });
-
-    hoverNav.addEventListener('click', function () {
-      if (!isHovered) {
-        // 호버 상태가 아니라면 클릭 시에 메뉴를 토글합니다.
-        if (sideNav.style.display === 'block') {
-          hideSideNav();
-        } else {
-          showSideNav();
-        }
-      }
-    });
-
-    // 네비게이션 메뉴 안에 있는 동안 호버 상태를 유지하기 위한 처리
-    sideNav.addEventListener('mouseenter', function () {
-      isHovered = true;
-    });
-
-    sideNav.addEventListener('mouseleave', function () {
-      isHovered = false;
-      hideSideNav();
-    });
-
-    function showSideNav() {
-      sideNav.style.display = 'block';
-    }
-
-    function hideSideNav() {
-      setTimeout(function () {
-        // 네비게이션 메뉴 바깥으로 나가면 숨김
-        if (!isHovered) {
-          sideNav.style.display = 'none';
-        }
-      }, 5);
+  // 화면 클릭 시 네비게이션 닫기
+  document.addEventListener("click", function (e) {
+    const clickedElement = e.target;
+    // 클릭된 요소가 네비게이션 버튼이나 네비게이션 자체인지 확인
+    const isNavButtonClicked = clickedElement === navButton || navButton.contains(clickedElement);
+    const isSideNavClicked = clickedElement === sideNav || sideNav.contains(clickedElement);
+    // 네비게이션 버튼이나 네비게이션 자체가 아니라면 네비게이션 닫기
+    if (!isNavButtonClicked && !isSideNavClicked) {
+      closeNav();
     }
   });
+
+  // 네비게이션 토글 함수
+  function toggleNav() {
+    // 네비게이션의 현재 표시 여부 확인
+    const isNavVisible = window.getComputedStyle(sideNav).display !== "none";
+    // 네비게이션 표시 여부에 따라 토글
+    if (isNavVisible) {
+      sideNav.style.display = "none";
+    } else {
+      sideNav.style.display = "block";
+    }
+  }
+
+  // 네비게이션 닫기 함수
+  function closeNav() {
+    sideNav.style.display = "none";
+  }
+});
