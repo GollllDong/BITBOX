@@ -39,12 +39,12 @@
 
 /* hover_nav */
 .content .hover_nav{position: absolute;}.hover_nav {
-  background-image: url('../images/nav_icon.png');
+  background-image: url('../images/ico_nav.svg');
   background-size: cover;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   margin-top: 10px;
-  margin-left: 20px;
+  margin-left: 38px;
 }
 .hover_nav {
   cursor: pointer;
@@ -52,29 +52,23 @@
 
 /* header */
 .header {width: 100%; height:60px; line-height: 60px; border-bottom: 1px solid #e8e8e8;}
-.header .user_box {padding-right: 15px;display: flex;justify-content: flex-end;align-items: center;height: 60px;}
-.header .user_img {cursor: pointer; background-color: #fbd107; border-radius: 100%; border: 1px solid #999; width: 45px; height: 45px;position: relative;}
-.header .user_box .user_info {top: 60px; right: 15px; position: absolute; display: none;} /*로그인 후 user_img 클릭 시 user 기수, 이름 정보*/
+.header .user_box {padding-right: 30px;display: flex;justify-content: flex-end;align-items: center;height: 60px;}
+.header .user_img {background: url(../images/user_img.svg)no-repeat center; cursor: pointer; background-color: #fbd107; border-radius: 100%; border: 1px solid #999; width: 45px; height: 45px;position: relative;}
+.header .user_box .user_info {top: 60px; right: 15px; position: absolute; display: none;}
  
 /* navi */
 .side_nav {background-color: white; width: 300px; height: 100%; border-right: 1px solid #e8e8e8; position: fixed; top: 0; left: 0; z-index: 1000; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
 .side_nav .side_container {position: relative;}
-.side_nav .logo_box {padding: 20px; display: inline-flex; justify-content: space-between; align-items: center; width: 100%; }
+.side_nav .logo_box {padding: 20px; display: inline-flex; justify-content: space-between; align-items: center; width: 100%;}
 .side_nav .logo_box .logo {margin-right: 16px; height: 40px; width: 40px;}
-.side_nav .logo_box .logo a {height: 40px; width: 40px; background: url(../images/logo_new.svg)no-repeat center;}
-.side_nav .logo_box span {font-weight: 700; font-size: 36px; color: #111; display: inline-block;}
+.side_nav .logo_box .logo a {height: 40px; width: 40px; background: url(../images/logo_new.svg)no-repeat center; border-radius: 8px;}
+.side_nav .logo_box span {font-weight: 700; font-size: 36px; color: #111; -webkit-text-stroke: 1px rgb(255, 255, 255); display: inline-block;}
 
 .side_nav .login_box {background: #fdf9e6; margin: 0 20px 20px; border-radius: 8px; border: 1px solid #e8e8e8; padding: 16px; text-align: center;}
 .side_nav .login_box::before {content:""; position: absolute; background:#0a9102; width: 100%; height: 200px; border-radius: 13%; top: -60px; left: 0; z-index: -1;}
 .side_nav .login_box h2 {font-size: 18px; font-weight: 600; color: #333; margin-bottom: 10px;}
 .side_nav .login_box .login_btn {background: #0a9102; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: block; height: 36px;line-height: 36px; width: 100%;}
 .side_nav .login_box p {font-size: 13px; font-weight: 400; color: #333; margin-top: 10px;}
-
-/*.side_nav .login_box_after {background: #fdf9e6; margin: 0 20px 20px; border-radius: 8px; border: 1px solid #e8e8e8; padding: 16px; text-align: center; z-index: -2; position: absolute;}
-.side_nav .login_box_after::before {content:""; position: absolute; background:#0a9102; width: 100%; height: 200px; border-radius: 13%; top: -60px; left: 0; z-index: -3;}
-.side_nav .login_box_after h2 {font-size: 18px; font-weight: 600; color: #333; margin-bottom: 10px;}
-.side_nav .login_box_after h3 {font-size: 18px; font-weight: 600; color: #0a9102; margin-bottom: 10px;}
-.side_nav .login_box_after p {font-size: 13px; font-weight: 400; color: #333; margin-top: 10px;}*/
 
 .gnb_nav ul li {height: 40px; line-height: 43px;}
 .gnb_nav ul li:nth-child(1) {background:url(../images/ico_home.svg)no-repeat 15px center;}
@@ -102,7 +96,7 @@
 /* main */
 /* .main_box {margin-left: 300px; height: 100vh;}
 .container {max-width: 1440px; margin: 30px auto;} */
-.main_box {padding-left: 15px; padding-right: 15px;}
+.main_box { margin-left: 30px; margin-right: 30px;}
 .container { max-width: 100%; }
 
 .snb_nav {margin: 0 10px 5px;}
@@ -127,50 +121,49 @@
 .main_content_box .box_img .todo {background-image: url("../images/main_todo.png"); background-size: cover;}
 .main_content_box .box_img .map1 {background-image: url("../images/main_map1.png"); background-size: cover;}
 .main_content_box .box_img2 .map2 {background-image: url("../images/main_map2.png"); background-size: cover;}
-.main_content_box .plus_icon {background-color: #fff; width: 25px; height: 25px; top: 0; right: 0; position: absolute;} /*메인 화면 박스 내 플러스박스 */
+.main_content_box #link{background-image: url('../images/ico_plusbox.svg'); background-size: cover; width: 25px; height: 25px; top: 0; right: 0; position: absolute; cursor: pointer;}
 
 /* footer */
 .footer {position: fixed; bottom:0;left: 0;width: 100%; z-index: 1001; background:#414143; height: 40px; line-height: 40px;}
 .footer span {font-size: 20px; font-weight: 500; color: #fff; float: right; padding-right: 30px;}
 
 /*popup*/
-.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
+.popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); display: none;}
 
 .popup_box{width: 450px; height: 600px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;}
 .popup_box .popup_close{z-index: 100;}
 .popup_box .logo_back{position: relative; background:#0a9102; width: 100%; height: 200px; border-bottom-left-radius: 13%; border-bottom-right-radius: 13%; top: 0; left: 0; z-index: 0;}
 .popup_box .logo_back .logo_box{padding: 30px; display: inline-flex; align-items: center; width: 100%; position: relative;}
-.popup_box .logo_back .logo_box .logo{height: 60px; width: 55px; margin-left: 55px; margin-right: 20px; background: url(../images/logo_new.svg)no-repeat center; display: inline-block;}
-.popup_box .logo_back .logo_box span {margin-right: 55px; font-weight: 700; font-size: 45px; color: #111; display: inline-block;}
+.popup_box .logo_back .logo_box .logo{height: 50px; width: 50px; margin-left: 80px; margin-right: 20px; background: url(../images/logo_new.svg)no-repeat center;  background-size: cover; display: inline-block; border-radius: 8px;}
+.popup_box .logo_back .logo_box span {margin-right: 80px; font-weight: 700; font-size: 45px; color: #111; display: inline-block; -webkit-text-stroke: 1px rgb(255, 255, 255);}
 
-.popup_box .login_box{position: absolute; background:#ffffff; width: 80%; height: 400px; top: 23.5%; left: 50%; transform: translateX(-50%); z-index: 100; text-align: center;  border-radius: 8px; border: 1px solid #e8e8e8; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
+.popup_box .login_box{position: absolute; background:#ffffff; width: 80%; height: 418px; top: 23.5%; left: 50%; transform: translateX(-50%); z-index: 100; text-align: center;  border-radius: 8px; border: 1px solid #e8e8e8; box-shadow: 3px 4px 6px rgba(0,0,0,0.1);}
 .popup_box .login_box h2{padding: 30px; font-size: 25px; font-weight: 600; color: #333;}
-.popup_box .login_box #idInput {margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
+.popup_box .login_box #idInput {margin-bottom: 20px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
 .popup_box .login_box #passInput {margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
-.popup_box .login_box img{position: absolute; top: 36%; right: 10%;}
+.popup_box .login_box .showPassword{position: absolute;cursor:pointer; background: url(../images/ico_eye.svg)no-repeat center; background-size: cover; width: 25px;  height: 19px; top: 31.5%; right: 10%; z-index: 1000;}
 .popup_box .login_box #login_btn {margin-bottom: 15px; background: #0a9102; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
 .popup_box .login_box h3{margin-bottom: 10px;font-size: 18px; font-weight: 500; color: #595959;}
-.popup_box .login_box h4{margin-bottom: 10px;font-size: 10px; font-weight: 100; color: #595959;}
-.popup_box .login_box #signup_btn {margin-bottom: 15px; background: #fbd107; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
-
+.popup_box .login_box h4{margin-bottom: 10px;font-size: 12px; font-weight: 100; color: #595959;}
+.popup_box .login_box #signup_btn {background: #fbd107; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
+.popup_box .login_box p{padding: 15px; font-size: 12px; font-weight: 100; color: #ff0000;}
 .popup_box .popup_cont h2 {padding:15px 0;color:#333;margin:0;}
-.popup_box .popup_cont p{ border-top: 1px solid #666;padding-top: 30px;}
 
-.popup_box .popup_btn {display:table;table-layout: fixed;width:100%;height:30px;background:#ECECEC;word-break: break-word;}
-.popup_box .popup_btn a {position: relative; display: table-cell; height:32px;  font-size:12px; font-weight: 400px; text-align:center;vertical-align:middle;text-decoration:none; background:#ECECEC;}
+.popup_box .popup_btn {display:table; table-layout: fixed; width: 100%; height:30px; background:#ECECEC; word-break: break-word; right: 10px; border-bottom-left-radius: 8%; border-bottom-right-radius: 8%;}
+.popup_box .popup_btn a {position: relative; display: table-cell; height:32px;  font-size:12px; font-weight: 400px; text-align:center; vertical-align:middle; text-decoration:none; background:#ECECEC; border-radius: 8px;}
 .popup_box .popup_btn a.close_day {background:#5d5d5d;}
 .popup_box .popup_btn a.close_day:before, .popup_box .popup_btn a.close_day:after{display:none;}
 
 .popup_overlay{position:fixed;top:0px;right:0;left:0;bottom:0;z-index:1001;;background:rgba(0,0,0,0.5);}
 
-  
+
 
 /* 반응형 flex-wrap */
 
 /* 1440px 이상 */
 @media screen and (max-width: 1440px) {
   }
-  
+ 
   /* 1024px 이상 */
   @media screen and (max-width: 1440px) {
   .flex-wrap_1024 {flex-wrap: wrap;} 
