@@ -1,7 +1,8 @@
 /*popup*/
 .popup_layer2 {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); }
 
-.popup_box2{border: 1px solid #000000; width: 450px; height: 600px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;}
+.popup_box2{position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);background: white;width: 50%;max-width: 500px;padding: 20px;border-radius: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);}
+ 
 
 
 .popup_box2 .popup_btn {display:table;table-layout: fixed;width:100%;height:30px;background:#ECECEC;word-break: break-word;}

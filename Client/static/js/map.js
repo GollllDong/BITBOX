@@ -16,35 +16,24 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표(카카오)
         level: 5
     };
-
-
 let lat;
 let lon;
 
-
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-
 // 사용자 위치 가져오기
 if (navigator.geolocation) {
 
-
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function (position) {
-
-
         var lat = position.coords.latitude;   // 위도
         var lon = position.coords.longitude;  // 경도
         set_user_location(lat, lon);           // 위도 경도 필드로 전달
 
-
         var locPosition = new kakao.maps.LatLng(lat, lon),                              // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             message = '<div style="font-weight:bold; padding:5px; ">내 위치 : </div>';    // 인포윈도우에 표시될 내용입니다
 
-
         // 사용자 위치에 마커
         displayMarker(locPosition, message);
-
 
         // 사용자의 현재 위치를 중심으로 반경 1km의 원을 생성
         var circle = new kakao.maps.Circle({
@@ -58,21 +47,14 @@ if (navigator.geolocation) {
             fillOpacity: 0.5                            // 원의 투명도
         });
 
-
         // 지도에 원을 표시합니다
         circle.setMap(map);
-
 
         // 사용자의 현재 위치를 중심으로 지도의 확대 레벨을 변경합니다
         map.setLevel(5);
         map.setCenter(locPosition);
-
-
     });
-
-
 } else { // 사용자 위치를 찾지 못한다면 카카오 회사를 기준으로
-
     var locPosition = new kakao.maps.LatLng(33.450701, 126.570667)
     var message = '사용자의 위치를 찾을 수 없습니다.';
 
@@ -86,7 +68,6 @@ function setCenter(lat, lon) {
     var moveLatLon = new kakao.maps.LatLng(lat, lon);
     map.setCenter(moveLatLon);
 }
-
 
 // 현재 위치로 이동하는 함수
 function now_location() {
@@ -104,11 +85,11 @@ function now_location() {
     }
 }
 
-
 function set_user_location(lat, lon) {
     this.lat = lat;
     this.lon = lon;
 }
+
 
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition, message) {
@@ -118,7 +99,6 @@ function displayMarker(locPosition, message) {
         new kakao.maps.Size(50, 50), // 마커 이미지 크기
         { offset: new kakao.maps.Point(25, 50) } // 마커 이미지의 중심좌표 설정
     );
-
     // 마커를 생성합니다
     const marker = new kakao.maps.Marker({
         map: map,
@@ -126,21 +106,33 @@ function displayMarker(locPosition, message) {
         image: userMarkerImage // 사용자의 현재 위치를 나타내는 마커 이미지로 설정
     });
 
-
-    var iwContent = message, // 인포윈도우에 표시할 내용
-        iwRemoveable = true;
-
+    let iwContent = message; // 인포윈도우에 표시할 내용
+    iwRemovable = true;
 
     // 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({
+    let infowindow = new kakao.maps.InfoWindow({
         content: iwContent,
-        removable: iwRemoveable
+        removable: iwRemovable
     });
 
-
-    // 인포윈도우를 마커위에 표시합니다
-    infowindow.open(map, marker);
+    kakao.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker);
+        // 마커를 클릭했을 때 인포윈도우를 열고 다른 인포윈도우를 닫습니다.
+        closeOtherInfoWindows(infowindow);
+    });
 }
+
+
+var infowindows = []; // 정보 윈도우를 저장할 배열을 정의합니다.
+// 다른 인포윈도우를 닫는 함수
+function closeOtherInfoWindows(currentInfowindow) {
+    infowindows.forEach(function (infowindow) {
+        if (infowindow !== currentInfowindow) {
+            infowindow.close();
+        }
+    });
+}
+
 
 // 사용자의 현재 위치를 받아오고 음식점 검색 함수 호출
 function getUserAroundRestaurants() {
@@ -158,7 +150,6 @@ function getUserAroundRestaurants() {
     }
 }
 
-
 // 페이지 로딩 시 사용자의 위치 정보를 받아오고 음식점 검색 함수 호출
 window.onload = function () {
     getUserAroundRestaurants();
@@ -167,17 +158,11 @@ window.onload = function () {
 // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성
 var mapTypeControl = new kakao.maps.MapTypeControl();
 
+
 // 지도에 컨트롤 위치를 우상단에 배치
 map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
 
 // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-const restaurantlist = ["서울 강남구 강남대로98길 12-5", "서울 강남구 강남대로102길 16 지상 2층", "서울 강남구 봉은사로6길 39 바비레드", "서울 서초구 서초대로73길 7 2층",
-                        "서울 강남구 강남대로102길 35 구구당", "서울 강남구 논현로85길 43 1층", "서울 강남구 강남대로94길 27 지상1층", "서울 서초구 강남대로 463 리젠메디컬타워 101호, 201호, 202호",
-                        "서울 강남구 테헤란로5길 24 1층 나폴리회관", "서울 강남구 테헤란로1길 19"];
-""
-function recommendRestaurant() {
-
-}
