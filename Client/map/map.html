@@ -1,250 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BitBox~</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2cc2127ed8271d4f203b201b1f7ba4e"></script>
-    <script src="../static/js/login.js"></script>
-    <script src="../static/js/nav.js"></script>
-    <script src="../static/js/gnb.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BitBox~</title>
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <script
+            type="text/javascript"
+            src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b2cc2127ed8271d4f203b201b1f7ba4e&libraries=services"
+        ></script>
+        <script src="../static/js/gnb.js"></script>
+        <script src="../static/js/login.js"></script>
+        <script src="../static/js/nav.js"></script>
     </head>
 
-<body>
-    <div class="wrap">
-        <div class="content">
-            <label class="hover_nav" id="navButton"></label>
-            <aside class="side_nav" id="sideNav">
-                <div class="side_container">
-                    <div class="logo_box">
-                        <h1 class="logo">
-                            <a class="" href="../index.html"></a>
-                        </h1>
-                        <span>BITBOX</span>
-                    </div>
-                    <div class="login_box">
-                        <h2>Ok~Let's Go~</h2>
-                        <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
-                        <p class="">비트박스에 오신 것을 환영합니다.</p>
-                    </div> 
-                    <div class="login_box_after" id="loginAfter">
-                        <h2 class="">안녕하세요!</h2>
-                        <h3 class="login_btn">비트캠프 수강생 여러분</h3>
-                        <p class="">비트박스에 오신 것을 환영합니다.</p>
-                      </div>
-                    <nav class="gnb_nav">
-                        <ul class="gnb_box">
-                            <li class="select">
-                                <a>HOME</a>
-                            </li>
-                            <li>
-                                <a>게시판</a>
-                            </li>
-                            <li>
-                                <a>지도</a>
-                            </li>
-                            <li>
-                                <a>채팅</a>
-                            </li>
-                            <li>
-                                <a>할 일</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
-            <div class="main_box">
-                <header class="header">
-                    <div class="user_box">
-                        <div class="user_img">
-                            <!-- <img src="" alt="사용자 이미지" /> -->
+    <body>
+        <div class="wrap">
+            <div class="content">
+                <label class="hover_nav" id="navButton"></label>
+                <aside class="side_nav" id="sideNav">
+                    <div class="side_container">
+                        <div class="logo_box">
+                            <h1 class="logo">
+                                <a class="" href="../index.html"></a>
+                            </h1>
+                            <span>BITBOX</span>
                         </div>
-                        <!-- <div class="user_subject">
-				   팝업 내용 넣기 
-				  </div>-->
-                    </div>
-                </header>
-
-                <main class="main">
-                    <div class="container">
-                        <section class="snb_nav mb10">
-                            <ul>
+                        <div class="login_box" id="loginBefore">
+                            <h2>Ok~Let's Go~</h2>
+                            <button class="login_btn">로그인</button>
+                            <p class="">비트박스에 오신 것을 환영합니다.</p>
+                        </div>
+                        <div class="login_box_after" id="loginAfter">
+                            <h2 class="">안녕하세요!</h2>
+                            <h3 class="login_btn">비트캠프 수강생 여러분</h3>
+                            <p class="">비트박스에 오신 것을 환영합니다.</p>
+                        </div>
+                        <nav class="gnb_nav">
+                            <ul class="gnb_box">
                                 <li>
-                                    <a href="../index.html">HOME</a>
+                                    <a>HOME</a>
                                 </li>
                                 <li>
-                                    <a href="../map/map.html">지도</a>
+                                    <a>게시판</a>
+                                </li>
+                                <li class="select">
+                                    <a>지도</a>
+                                </li>
+                                <li>
+                                    <a>채팅</a>
+                                </li>
+                                <li>
+                                    <a>할 일</a>
                                 </li>
                             </ul>
-                        </section>
-
-                        <section class="main_content_box">
-                            <div class="title_box">
-                                <h2 class="title orange">
-                                    비트캠프 근처 맛집
-                                </h2>
-                                <p>
-                                    맛잘알 수강생들의 생생한 맛집 후기도
-                                    궁금하다면? 맛집 리스트 게시판도
-                                    방문해보세요!
-                                </p>
-                            </div>
-
-                            <div class="flex space-between map_content flex-wrap_768">
-                                <div class="w66p flex_wrap w100p_768">
-                                    <div class="w100p mb20">
-                                        <article class="box flex pd0">
-                                            <div class="w20p find_road">
-                                                <a href="#">길찾기</a>
-                                            </div>
-                                            <div class="w80p map_box">
-                                                <div id="map" style="width: 100%; height:100%"></div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                </div>
-                                <div class="w33p w100p_768">
-                                    <div class="w100p">
-                                        <article class="box">
-                                            <p class="w100p mb10">
-                                                # 추천맛집
-                                            </p>
-                                            <div class="flex flex_wrap w100p_450">
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/ddamddam.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>땀땀</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/midoin.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>미도인</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/bbred.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>바비레드</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/taco.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>낙원타코</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/gugudang.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>구구당</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/hobo.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>호보식당</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/mennoage.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>멘노아지</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/supersuper.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>슈퍼두퍼</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/pizza.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>나폴리회관</span>
-                                                    </article>
-                                                </div>
-                                                <div class="w50p w100p_325">
-                                                    <article class="box">
-                                                        <div class="place_box">
-                                                            <img src="/Client/static/images/namsogwan.png" style="width: 100%; height : 100%">
-                                                        </div>
-                                                        <span>남소관</span>
-                                                    </article>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                        </nav>
                     </div>
-                </main>
+                </aside>
+                <div class="main_box">
+                    <header class="header">
+                        <div class="user_box">
+                            <div class="user_img"></div>
+                            <!-- <div class="user_subject">
+				   팝업 내용 넣기 
+				  </div>-->
+                        </div>
+                    </header>
+
+                    <main class="main">
+                        <div class="container">
+                            <section class="snb_nav mb10">
+                                <ul>
+                                    <li>
+                                        <a>HOME</a>
+                                    </li>
+                                    <li>
+                                        <a>지도</a>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="main_content_box">
+                                <div class="title_box">
+                                    <h2 class="title orange">
+                                        비트캠프 근처 맛집
+                                    </h2>
+                                    <p>
+                                        맛잘알 수강생들의 생생한 맛집 후기도
+                                        궁금하다면? 맛집 리스트 게시판도
+                                        방문해보세요!
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="flex space-between map_content flex-wrap_768"
+                                >
+                                    <div class="w66p flex_wrap w100p_768">
+                                        <div class="w100p mb20">
+                                            <article class="box flex pd0">
+                                                <div class="w20p find_road">
+                                                    <a href="#">길찾기</a>
+                                                </div>
+                                                <div class="w80p map_box">
+                                                    <div
+                                                        id="map"
+                                                        style="
+                                                            width: 100%;
+                                                            height: 100%;
+                                                        "
+                                                    ></div>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                    <div class="w33p w100p_768">
+                                        <div class="w100p">
+                                            <article class="box">
+                                                <p class="w100p mb10">
+                                                    # 추천맛집
+                                                </p>
+                                                <div
+                                                    class="flex flex_wrap w100p_450"
+                                                >
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/ddamddam.png"
+                                                                    onclick="showMap('서울 강남구 강남대로98길 12-5')"
+                                                                />
+                                                            </div>
+                                                            <span>땀땀</span>
+                                                        </article>
+                                                    </div>
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/pork2.png"
+                                                                    onclick="showMap('서울 강남구 테헤란로8길 17')"
+                                                                />
+                                                            </div>
+                                                            <span>두껍삼</span>
+                                                        </article>
+                                                    </div>
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/su.png"
+                                                                    onclick="showMap('서울 강남구 테헤란로 109 강남제일빌딩 1F')"
+                                                                />
+                                                            </div>
+                                                            <span
+                                                                >갓덴스시</span
+                                                            >
+                                                        </article>
+                                                    </div>
+
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/taco.png"
+                                                                    onclick="showMap('서울 서초구 서초대로73길 7 2층')"
+                                                                />
+                                                            </div>
+                                                            <span
+                                                                >낙원타코</span
+                                                            >
+                                                        </article>
+                                                    </div>
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/cow.png"
+                                                                    onclick="showMap('서울 강남구 강남대로 362 대륭강남타워 지하1층')"
+                                                                />
+                                                            </div>
+                                                            <span>창고43</span>
+                                                        </article>
+                                                    </div>
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/tacco.png"
+                                                                    onclick="showMap('서울 강남구 강남대로 406 지하1층 감성타코')"
+                                                                />
+                                                            </div>
+                                                            <span
+                                                                >감성타코</span
+                                                            >
+                                                        </article>
+                                                    </div>
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/mennoage.png"
+                                                                    onclick="showMap('서울 강남구 강남대로94길 27 지상1층')"
+                                                                />
+                                                            </div>
+                                                            <span
+                                                                >멘노아지</span
+                                                            >
+                                                        </article>
+                                                    </div>
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/supersuper.png"
+                                                                    onclick="showMap('서울 서초구 강남대로 463 리젠메디컬타워 101호')"
+                                                                />
+                                                            </div>
+                                                            <span
+                                                                >슈퍼두퍼</span
+                                                            >
+                                                        </article>
+                                                    </div>
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/pizza.png"
+                                                                    onclick="showMap('서울 강남구 테헤란로5길 24 1층 나폴리회관')"
+                                                                />
+                                                            </div>
+                                                            <span
+                                                                >나폴리회관</span
+                                                            >
+                                                        </article>
+                                                    </div>
+                                                    <div class="w50p w100p_325">
+                                                        <article class="box">
+                                                            <div
+                                                                class="place_box"
+                                                            >
+                                                                <img
+                                                                    src="../static/images/namsogwan.png"
+                                                                    onclick="showMap('서울 강남구 테헤란로1길 19')"
+                                                                />>
+                                                            </div>
+                                                            <span>남소관</span>
+                                                        </article>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="popup_page">
-        <!-- <button onclick="openPop()">로그인</button> -->
-        <!-- <a href="javascript:openPop()">
-            <div>
-              로그인
-            </div>
-          </a> -->
-        <div class="popup_layer" id="popup_layer" style="display: none;">
-          <div class="popup_box">
-            <div style="height: 10px; width: 375px; float: top;">
-            </div>
-            <!--팝업 컨텐츠 영역-->
-            <div class="popup_cont">
-              <div class="logo_back">
-                <div class="logo_box">
-                  <h1 class="logo"></h1>
-                  <span>BITBOX</span>
+        <!-- 지도 팝업 -->
+        <div class="popup_map">
+            <div class="popup_layer2" id="popup_layer2" style="display: none">
+                <div class="popup_box2">
+                    <div style="height: 10px; width: 375px; float: top">
+                        <a href="javascript:closePop();">
+                            <img
+                                src="../Client/static/images/ico_plusbox.svg"
+                                class="popup_close"
+                                width="30px"
+                                height="30px"
+                                z-index:
+                                0;
+                            />
+                        </a>
+                    </div>
+                    <!--팝업 컨텐츠 영역-->
+                    <div class="popup_cont2">
+                        <!-- 지도를 표시할 div -->
+                        <div
+                            id="map_in_popup"
+                            style="width: 100%; height: 300px"
+                        ></div>
+                        <!--팝업 버튼 영역-->
+                        <div
+                            class="popup_btn"
+                            style="float: bottom; margin-bottom: 0"
+                            id="messages"
+                        >
+                            <a href="javascript:closePop();">닫기</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="login_box">
-                <h2>Login</h2>
-                <input type='text' id='idInput' placeholder='  아이디'>
-                <input type='password' id='passInput' placeholder='  비밀번호'>
-                <div class="showPassword"></div>
-                <button id="login_btn">로그인</button>
-                <h3>or</h3>
-                <h4>아직 계정이 없으신가요?</h4>
-                <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
-                <!--팝업 버튼 영역-->
-                <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
-                  <a href="javascript:closePop();">닫기</a>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-
-    <!-- JavaScript 코드를 외부 파일로 분리하여 불러오기 -->
-    <script src="/Client/static/js/map.js"></script>
-    <script src="/Client/static/js/rest.js"></script>
-</body>
-
+        <!-- JavaScript 코드를 외부 파일로 분리하여 불러오기 -->
+        <script src="../static/js/map.js"></script>
+        <script src="../static/js/rest.js"></script>
+        <!-- 지도 팝업 js -->
+        <script src="../static/js/map_pop.js"></script>
+    </body>
 </html>

@@ -19,7 +19,7 @@ div.mt10 button {margin-left: 10px;}
 .board_edit_btn span::before { background: url(../../static/images/ico_pen.svg)no-repeat left center/contain;}
 .board_list_btn span::before { background: url(../../static/images/ico_board_select.svg)no-repeat left center/contain;}
 
-.boardemoji{background: url(../../static/images/board_emoji.svg)no-repeat center; background-size: cover; width:57px; height: 55px; top: 17%; right: 11.5%; display: inline-block; position: absolute; z-index: 1000;}
+.boardemoji{background: url(../../static/images/board_emoji.svg)no-repeat center; background-size: cover; width:57px; height: 55px; top: -30%; right: 13%; display: inline-block; position: absolute; z-index: 1000;}
 
 .table_layout, .table_layout_write {border: 1px solid #ddd; border-radius: 8px; padding: 1px; clear: both;}
 .table_layout table, .table_layout_write table {width: 100%;}
@@ -38,7 +38,7 @@ div.mt10 button {margin-left: 10px;}
 .table_layout_write th {background: #f2f7ef; font-size: var(--font-size-15); font-weight: 500; color: #222; text-align: center; padding: 16px 2px; border-right: 1px solid #ddd;}
 .table_layout_write td {font-size:var(--font-size-15); font-weight: 400; color: #333; padding: 16px 10px;}
 .table_layout_write td.textarea {padding: 0;}
-.table_layout_write td.textarea textarea {border: none; padding: 10px; height: 300px; width: 100%; word-break: keep-all; resize: none;}
+.table_layout_write td.textarea textarea {border: none; padding: 10px; height: 150px; width: 100%; word-break: keep-all; resize: none;}
 
 .pagination {display: flex; justify-content: center; align-items: center; margin-top: 50px;}
 .pagination .prev_btn {background: url(../../static/images/ico_arrow.svg)no-repeat center/contain; width: 12px; height: 17px; margin-right: 30px;}
@@ -47,7 +47,7 @@ div.mt10 button {margin-left: 10px;}
 .pagination li.select a {font-size: var(--font-size-15); font-weight: 600; color:#ff7602; padding: 3px 10px}
 
 /* sub_title */
-.sub_title {margin-top: 60px; display: flex; justify-content: center; align-items: center; text-align: center;}
+.sub_title {margin-top: 60px; display: flex; justify-content: center; align-items: center; text-align: center; position: relative;}
 .sub_title p {color: #fff; background-color: #0a9102; padding: 12px 10px; border-radius: 8px; width: 80%; font-size: var(--font-size-17); font-weight: 500; position: relative;}
 /*.sub_title p::after {content: ""; position: absolute; bottom: 50%; right: 2%; background: #bbb; width: 70px; height: 70px; border-radius: 100%;}*/
 .sub_title p .emoji {bottom: 35%; right: 2%; width: 70px; height: 70px; position: absolute;}
@@ -96,12 +96,12 @@ div.mt10 button {margin-left: 10px;}
 
 /* to-do */
 .todo_content .todo_list_box { height: 580px; padding: 0;}
-.todo_content .todo_category {background-color: #eee; text-align: center; text-justify: space-between; padding: 10px;}
-.todo_content .todo_category #dailyCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: var(--font-size-16); font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category {background-color: #eee; text-align: center; padding: 10px; border-radius: 8px 8px 0 0px;}
+.todo_content .todo_category #dailyCategory {-webkit-appearance: none;-moz-appearance: none;appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: var(--font-size-16); font-weight: bold; border-radius: 5px;}
 .todo_content .todo_category #dailyCategory:focus{outline: none;}
-.todo_content .todo_category #studyCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: var(--font-size-16); font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category #studyCategory {-webkit-appearance: none;-moz-appearance: none;appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: var(--font-size-16); font-weight: bold; border-radius: 5px;}
 .todo_content .todo_category #studyCategory:focus{outline: none;}
-.todo_content .todo_category #etcCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: var(--font-size-16); font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category #etcCategory {-webkit-appearance: none;-moz-appearance: none;appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: var(--font-size-16); font-weight: bold; border-radius: 5px;}
 .todo_content .todo_category #etcCategory:focus{outline: none;}
 .todo_content .todo_inputbox{width:100%; background-color: #fdf9e6; display: flex; justify-content: center;}
 .todo_content .todo_inputbox #dailyContent {width: 200px; margin-right: 6px;}

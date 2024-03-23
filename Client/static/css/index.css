@@ -32,6 +32,24 @@
 .mt10 {margin-top: 10px !important;}
 .mb10 {margin-bottom: 10px !important;}
 .mb20 {margin-bottom: 20px !important;}
+.mb30 {}
+
+/* 폰트 변수 지정 */
+:root {
+  --font-size-45: 45px;
+  --font-size-36: 36px;
+  --font-size-30: 30px;
+  --font-size-25: 25px;
+  --font-size-22: 22px;
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-17: 17px;
+  --font-size-16: 16px;
+  --font-size-15: 15px;
+  --font-size-14: 14px;
+  --font-size-13: 13px;
+  --font-size-12: 12px;
+}
 
 /* box */
 .box {border: 1px solid #e8e8ee; border-radius: 8px; padding: 30px 20px; margin: 0 10px; height: 100%; box-shadow: 3px 4px 6px rgba(0,0,0,0.1); position: relative;}
@@ -100,25 +118,26 @@
 .gnb_nav ul li.select a{color: #fff;}
 
 /* main */
-/* .main_box {margin-left: 300px; height: 100vh;}
-.container {max-width: 1440px; margin: 30px auto;} */
-.main_box { margin-left: 30px; margin-right: 30px;}
-.container { max-width: 100%; }
+.main_box {margin-left: 300px;}
+.container {max-width: 1440px; margin: 30px auto;}
+/* .main_box { margin-left: 30px; margin-right: 30px;} */
+/* .container { max-width: 100%; } */
 
-.snb_nav {margin: 0 10px 5px;}
+.snb_nav {margin: 20px 10px 6px;}
 .snb_nav ul {display: inline-flex; align-items: center;}
 .snb_nav ul li {padding-right: 20px; position: relative;}
-.snb_nav ul li::after {content: ""; position: absolute; top: 8px; right: 10px; background: #a9a9a9; width: 1px; height: 14px;}
+.snb_nav ul li::after {content: ""; position: absolute; top: 4px; right: 10px; background: #a9a9a9; width: 1px; height: 14px;}
 .snb_nav ul li:last-child::after {display: none;}
 .snb_nav ul li a {font-size: var(--font-size-13); font-weight: 400; color: #666;}
 .snb_nav ul li:first-child a {color: #0a9102; font-weight: 500;}
 
 /* title_box */
-.title_box {margin: 10px 10px 20px;}
+.title_box {margin: 0px 10px 20px;}
 .title_box p {margin-top: 10px;}
 
 /* main_content_box */
-.main_content_box p {font-size: var(--font-size-17); font-weight: 400; color: #444; margin-bottom: 36px;}
+.main_content_box h3 {font-size: var(--font-size-22); font-weight: 600; color: #222; margin-bottom: 6px;}
+.main_content_box p {font-size: var(--font-size-17); font-weight: 400; color: #444; margin-bottom: 30px;}
 .main_content_box .box_img {background: #eee; height: 190px;}
 .main_content_box .box_img2 {background: #eee; /*height: 340px;*/}
 /* .main_content_box .box_img { background-image: url("../images/main_content_chat.png"); background-size: cover;} */
@@ -164,22 +183,7 @@
 
 
 
-/* 폰트 변수 지정 */
-:root {
-  --font-size-45: 45px;
-  --font-size-36: 36px;
-  --font-size-30: 30px;
-  --font-size-25: 25px;
-  --font-size-22: 22px;
-  --font-size-20: 20px;
-  --font-size-18: 18px;
-  --font-size-17: 17px;
-  --font-size-16: 16px;
-  --font-size-15: 15px;
-  --font-size-14: 14px;
-  --font-size-13: 13px;
-  --font-size-12: 12px;
-}
+
 
 /* 반응형 flex-wrap */
 

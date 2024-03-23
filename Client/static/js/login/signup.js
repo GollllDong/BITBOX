@@ -20,7 +20,6 @@ const sendSignup = function () {
 };
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const createAcct_btn = document.querySelector("#createAcct_btn");
 

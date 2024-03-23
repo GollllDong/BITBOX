@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 case '지도':
                     if (window.location.pathname.endsWith("index.html")) {
-                        window.location.href = 'map/map_pop.html';
+                        window.location.href = 'map/map.html';
                     } else {
-                        window.location.href = '../map/map_pop.html';
+                        window.location.href = '../map/map.html';
                     }
                     break;
                 case '채팅':
@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 case '지도':
                     if (window.location.pathname.endsWith("index.html")) {
-                        window.location.href = 'map/map_pop.html';
+                        window.location.href = 'map/map.html';
                     } else {
-                        window.location.href = '../map/map_pop.html';
+                        window.location.href = '../map/map.html';
                     }
                     break;
                 case '채팅':
@@ -167,9 +167,9 @@ document.addEventListener('DOMContentLoaded', function () {
         plusbox4.addEventListener('click', function (event) {
             event.preventDefault();
             if (window.location.pathname.endsWith("index.html")) {
-                window.location.href = 'map/map_pop.html';
+                window.location.href = 'map/map.html';
             } else {
-                window.location.href = '../map/map_pop.html';
+                window.location.href = '../map/map.html';
             }
         });
     }
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // 게시판: writeButton, board_delete_btn, board_edit_btn, board_list_btn
 document.addEventListener('DOMContentLoaded', function () {
-   
+
     var writeButton = document.querySelector('.board_write_btn');
     if (writeButton) {
         writeButton.addEventListener('click', function () {

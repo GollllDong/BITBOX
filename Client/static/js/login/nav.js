@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
       sideNav.style.display = "none";
       const mainBoxes = document.getElementsByClassName("main_box");
       for (let i = 0; i < mainBoxes.length; i++) {
-        mainBoxes[i].style.marginLeft = "30px";
+        mainBoxes[i].style.marginLeft = "0px";
       }
     } else {
       sideNav.style.display = "block";
       const mainBoxes = document.getElementsByClassName("main_box");
       for (let i = 0; i < mainBoxes.length; i++) {
-        mainBoxes[i].style.marginLeft = "315px";
+        mainBoxes[i].style.marginLeft = "300px";
       }
     }
   }
