@@ -3,7 +3,7 @@
 .wrap .middlebox{/*border: 1px solid #000000;*/ width: 450px; height: 600px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;}
 
 .middlebox .logo_back{position: relative; background:#0a9102; width: 100%; height: 200px; border-bottom-left-radius: 13%; border-bottom-right-radius: 13%; top: 0; left: 0; z-index: 0;}
-.middlebox .logo_back .logo_box .logo{height: 60px; width: 55px; margin-left: 65px; margin-right: 30px; background: url(../images/logo_new.svg)no-repeat center; display: inline-block;}
+.middlebox .logo_back .logo_box .logo{height: 60px; width: 55px; margin-left: 65px; margin-right: 30px; background: url(../images/logo_new.svg)no-repeat center; display: inline-block; border-radius: 8px;border-radius: 8px;border-radius: 8px;border-radius: 8px;}
 .middlebox .logo_back .logo_box{padding: 40px; display: inline-flex; align-items: center; width: 100%; position: relative;}
 .middlebox .logo_box span {margin-right: 65px; font-weight: 700; font-size: 45px; color: #111; display: inline-block;}
 
@@ -11,10 +11,10 @@
 .middlebox .login_box h2{padding: 30px; font-size: 25px; font-weight: 600; color: #333;}
 .middlebox .login_box #idInput {margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
 .middlebox .login_box #passInput {margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
-.middlebox .login_box img{background: url(../images/ico_eye.svg)no-repeat center; position: absolute; top: 43.5%; right: 10%;}
+.middlebox .login_box .showPassword{cursor:pointer; background: url(../images/ico_eye.svg)no-repeat center; background-size: cover; width: 25px;  height: 19px; position: absolute; top: 43.5%; right: 10%; z-index: 1000;}
 .middlebox .login_box #login_btn {margin-bottom: 15px; background: #0a9102; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
 .middlebox .login_box h3{margin-bottom: 10px;font-size: 18px; font-weight: 500; color: #595959;}
-.middlebox .login_box h4{margin-bottom: 10px;font-size: 10px; font-weight: 100; color: #595959;}
+.middlebox .login_box h4{margin-bottom: 10px;font-size: 12px; font-weight: 200; color: #595959;}
 .middlebox .login_box #signup_btn {margin-bottom: 15px; background: #fbd107; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
 
 /*회원가입*/
@@ -34,5 +34,8 @@
 .middlebox2 .signup_box #passCheck{margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
 .middlebox2 .signup_box #name{margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
 .middlebox2 .signup_box #course{margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
-.middlebox2 .signup_box #code{margin-bottom: 30px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
+.middlebox2 .signup_box #code{margin-bottom: 15px; border-radius: 4px; color: #000000; font-size: 15px; font-weight: 500; text-align: left; display: inline-block; width: 85%; height: 40px; line-height: 30px;}
 .middlebox2 .signup_box #createAcct_btn {margin-bottom: 0px; background: #fbd107; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
+.middlebox2 .signup_box p{padding: 15px; font-size: 12px; font-weight: 100; color: #ff0000;}
+
+input {padding-left: 10px;}
