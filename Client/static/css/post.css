@@ -1,0 +1,13 @@
+/* 클릭한 행에 대한 스타일 */
+table tbody tr.clicked {
+    border: 2px solid #007bff;
+    /* 클릭한 행에 파란색 border 추가 */
+}
+
+/* 커서를 올렸을 때 행에 대한 스타일 */
+table tbody tr:hover {
+    background-color: #f8f9fa;
+    /* 마우스를 올렸을 때 배경색 변경 */
+    cursor: pointer;
+    /* 커서 모양 변경 */
+}

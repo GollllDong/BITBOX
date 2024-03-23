@@ -118,7 +118,7 @@ const displayPacketMessage = function ($parentSelector, message) {
                 closePop();
                 location.reload()   //페이지 새로고침
             } else {
-                alert("로그인 실패");
+                login_error.style.display = "block";
             }
             break;
         case "insertpost":

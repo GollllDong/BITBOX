@@ -60,6 +60,7 @@ const sendLogIn = function () {
 document.addEventListener('DOMContentLoaded', () => {
     const loginBefore = document.getElementById("loginBefore");
     const loginAfter = document.getElementById("loginAfter");
+    const login_error = document.getElementById("login_error");
 
     if (sessionStorage.getItem("user_id") !== null) {
         
