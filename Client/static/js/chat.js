@@ -1,5 +1,7 @@
 let cnt = 0;
-let rommname = "";
+let roomname = "";
+let user_id = sessionStorage.getItem("user_id");
+let roomNum = 0;
 
 // 스크롤 아래로 향하게
 function prepareScroll() {
@@ -21,17 +23,18 @@ const newChatMsg = function () {
   addDiv.textContent = "채팅방" + cnt;
 
   // 채팅방 들어가기
-  addDiv.addEventListener("click", function(){
+  addDiv.addEventListener("click", function () {
     const box = document.querySelector(".chat_list_box");
-    
+
     for (let selectedDiv of box.children) {
-      if(selectedDiv.classList.contains("select")){
+      if (selectedDiv.classList.contains("select")) {
         selectedDiv.classList.remove("select");
       }
     }
     this.classList.add("select");
-    
+
     enterChatMsg(room, roomname);
+    // sendChatMsg(room);
   })
 
   const packet = {
@@ -47,14 +50,13 @@ const newChatMsg = function () {
 
 // 해당 채팅방 들어가기
 const enterChatMsg = function (room, roomname) {
-  const message = document.querySelector("#messageInput").value;
   const packet = {
     cmd: "enterchat",
-    id: userId,
+    id: user_id,
     room: room,
     name: roomname,
-    msg: message,
   };
+  roomNum = room;
   const jsonStr = JSON.stringify(packet); // js객체 -> json문자열
   sendMessage(jsonStr);
 };
@@ -64,8 +66,9 @@ const sendChatMsg = function () {
   const message = document.querySelector("#messageInput").value;
   const packet = {
     cmd: "chat",
-    id: userId,
+    id: user_id,
     msg: message,
+    // room: roomNum,
   };
   const jsonStr = JSON.stringify(packet); // js객체 -> json문자열
   sendMessage(jsonStr);
