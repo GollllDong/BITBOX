@@ -116,9 +116,10 @@
 .gnb_nav ul li.select a{color: #fff;}
 
 /* main */
-.main_box {margin-left: 0px;}
+.main_box {margin-left: 0px; height: 100vh;}
 .main_box.open {margin-left: 300px;}
 .container {max-width: 1440px; margin: 30px auto;}
+main {height: calc(100% - 60px); overflow-y: auto;}
 
 .snb_nav {margin: 20px 10px 6px;}
 .snb_nav ul {display: inline-flex; align-items: center;}
