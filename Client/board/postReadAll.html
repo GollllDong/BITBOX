@@ -1,274 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>BitBox~</title>
-        <link rel="stylesheet" href="../static/css/style.css" />
-        <script src="../static/js/gnb.js"></script>
-        <script src="../static/js/login.js"></script>
-        <script src="../static/js/nav.js"></script>
-    </head>
-    <body>
-        <div class="wrap">
-            <div class="content">
-                <label class="hover_nav" id="navButton"></label>
-                <aside class="side_nav" id="sideNav">
-                    <div class="side_container">
-                        <div class="logo_box">
-                            <h1 class="logo">
-                                <a class="" href="../index.html"></a>
-                            </h1>
-                            <span>BITBOX</span>
-                        </div>
-                        <div class="login_box">
-                            <h2>Ok~Let's Go~</h2>
-                            <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
-                            <p class="">비트박스에 오신 것을 환영합니다.</p>
-                        </div>
-                        <!-- <div class="login_box" id="loginAfter">
-                            <h2 class="">안녕하세요!</h2>
-                            <h3 class="login_btn">비트캠프 수강생 여러분</p>
-                        </div> -->
-                        <nav class="gnb_nav">
-                            <ul class="gnb_box">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BitBox~</title>
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/socket-client.js"></script>
+    <script src="../static/js/gnb.js"></script>
+    <script src="../static/js/login.js"></script>
+    <script src="../static/js/nav.js"></script>
+    <script src="../static/js/post.js"></script>
+    <script>
+
+    </script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="content">
+            <label class="hover_nav" id="navButton"></label>
+            <aside class="side_nav" id="sideNav">
+                <div class="side_container">
+                    <div class="logo_box">
+                        <h1 class="logo">
+                            <a class="" href="../index.html"></a>
+                        </h1>
+                        <span>BITBOX</span>
+                    </div>
+                    <div class="login_box" id="loginBefore">
+                        <h2>Ok~Let's Go~</h2>
+                        <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
+                        <p class="">비트박스에 오신 것을 환영합니다.</p>
+                      </div>
+                      <div class="login_box_after" id="loginAfter">
+                        <h2 class="">안녕하세요!</h2>
+                        <h3 class="login_btn">비트캠프 수강생 여러분</h3>
+                        <p class="">비트박스에 오신 것을 환영합니다.</p>
+                      </div>
+                    <nav class="gnb_nav">
+                        <ul class="gnb_box">
+                            <li>
+                                <a>HOME</a>
+                            </li>
+                            <li class="select">
+                                <a>게시판</a>
+                            </li>
+                            <li>
+                                <a>지도</a>
+                            </li>
+                            <li>
+                                <a>채팅</a>
+                            </li>
+                            <li>
+                                <a>할 일</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <div class="main_box">
+                <header class="header">
+                    <div class="user_box">
+                        <div class="user_img"></div>
+                        <!-- <div class="user_subject">
+					 팝업 내용 넣기 
+					</div>-->
+                    </div>
+                </header>
+
+                <main class="main">
+                    <div class="container">
+                        <section class="snb_nav mb10">
+                            <ul>
                                 <li>
                                     <a>HOME</a>
                                 </li>
-                                <li class="select">
+                                <li>
                                     <a>게시판</a>
                                 </li>
-                                <li>
-                                    <a>지도</a>
-                                </li>
-                                <li>
-                                    <a>채팅</a>
-                                </li>
-                                <li>
-                                    <a>할 일</a>
-                                </li>
                             </ul>
-                        </nav>
+                        </section>
+
+                        <section class="main_content_box">
+                            <div class="title_box">
+                                <h2 class="title orange">맛집 리스트</h2>
+                                <p>
+                                    맛잘알 수강생들의 생생한 맛집 위치가
+                                    궁금하다면? 지도를 확인해보세요!
+                                </p>
+                            </div>
+
+                            <button class="board_write_btn">
+                                <span>글작성</span>
+                            </button>
+
+                            <div class="table_layout">
+                                <table>
+                                    <colgroup>
+                                        <col width="5%" />
+                                        <col width="10%" />
+                                        <col width="45%" />
+                                        <col width="10%" />
+                                        <col width="15%" />
+                                        <col width="15%" />
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>음식 종류</th>
+                                            <th>제목</th>
+                                            <th>별점</th>
+                                            <th>작성자</th>
+                                            <th>작성일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        <tr>
+                                            <td>0</td>
+                                            <td>category</td>
+                                            <td>title</td>
+                                            <td>likes</td>
+                                            <td>course name</td>
+                                            <td>createDate</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
                     </div>
-                </aside>
-                <div class="main_box">
-                    <header class="header">
-                        <div class="user_box">
-                            <div class="user_img"></div>
-                            <!-- <div class="user_subject">
-					 팝업 내용 넣기 
-					</div>-->
-                        </div>
-                    </header>
-
-                    <main class="main">
-                        <div class="container">
-                            <section class="snb_nav mb10">
-                                <ul>
-                                    <li>
-                                        <a>HOME</a>
-                                    </li>
-                                    <li>
-                                        <a>게시판</a>
-                                    </li>
-                                </ul>
-                            </section>
-
-                            <section class="main_content_box">
-                                <div class="title_box">
-                                    <h2 class="title orange">맛집 리스트</h2>
-                                    <p>
-                                        맛잘알 수강생들의 생생한 맛집 위치가
-                                        궁금하다면? 지도를 확인해보세요!
-                                    </p>
-                                </div>
-
-                                <button class="board_write_btn">
-                                    <span>글작성</span>
-                                </button>
-
-                                <div class="table_layout">
-                                    <table>
-                                        <colgroup>
-                                            <col width="5%" />
-                                            <col width="10%" />
-                                            <col width="45%" />
-                                            <col width="10%" />
-                                            <col width="15%" />
-                                            <col width="15%" />
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th>번호</th>
-                                                <th>음식 종류</th>
-                                                <th>제목</th>
-                                                <th>별점</th>
-                                                <th>작성자</th>
-                                                <th>작성일</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                    
-                                            <tr>
-                                                <td>11</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td>
-                                                    <img
-                                                        src="../static/images/ico_star.svg"
-                                                        alt=""
-                                                    />
-                                                </td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>10</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td>
-                                                    <img
-                                                        src="../static/images/ico_star.svg"
-                                                        alt=""
-                                                    />
-                                                </td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>9</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>한식</td>
-                                                <td>
-                                                    여기 해장국 진짜 맛있어요~
-                                                </td>
-                                                <td></td>
-                                                <td>D08기 홍길동</td>
-                                                <td>2024.03.14</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </section>
-                        </div>
-                    </main>
-                </div>
+                </main>
             </div>
         </div>
+    </div>
 
-        <div class="popup_page">
-            <div class="popup_layer" id="popup_layer">
-              <div class="popup_box">
+    <div class="popup_page">
+        <div class="popup_layer" id="popup_layer">
+            <div class="popup_box">
                 <div style="height: 10px; width: 375px; float: top;">
                 </div>
                 <!--팝업 컨텐츠 영역-->
                 <div class="popup_cont">
-                  <div class="logo_back">
-                    <div class="logo_box">
-                      <h1 class="logo"></h1>
-                      <span>BITBOX</span>
+                    <div class="logo_back">
+                        <div class="logo_box">
+                            <h1 class="logo"></h1>
+                            <span>BITBOX</span>
+                        </div>
                     </div>
-                  </div>
-                  <div class="login_box">
-                    <h2>Login</h2>
-                    <input type='text' id='idInput' placeholder='  아이디'>
-                    <input type='password' id='passInput' placeholder='  비밀번호'>
-                    <div class="showPassword"></div>
-                    <button id="login_btn">로그인</button>
-                    <h3>or</h3>
-                    <h4>아직 계정이 없으신가요?</h4>
-                    <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
-                    <p id="login_error">로그인 실패</p>
-                    <!--팝업 버튼 영역-->
-                    <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
-                      <a href="javascript:closePop();">닫기</a>
+                    <div class="login_box">
+                        <h2>Login</h2>
+                        <input type='text' id='idInput' placeholder='  아이디'>
+                        <input type='password' id='passInput' placeholder='  비밀번호'>
+                        <div class="showPassword"></div>
+                        <button id="login_btn">로그인</button>
+                        <h3>or</h3>
+                        <h4>아직 계정이 없으신가요?</h4>
+                        <button onclick="window.location.href = '../Client/signup/signup.html';"
+                            id="signup_btn">회원가입</button>
+                        <p id="login_error">로그인 실패</p>
+                        <!--팝업 버튼 영역-->
+                        <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
+                            <a href="javascript:closePop();">닫기</a>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-    </body>
+        </div>
+</body>
+
 </html>

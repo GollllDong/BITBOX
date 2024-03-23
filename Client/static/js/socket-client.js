@@ -5,7 +5,10 @@ const server_address = `ws://${SERVER_IP}:${SERVER_PORT}`; // ws://127.0.0.1:900
 
 const socket = new WebSocket(server_address);
 
-socket.opopen = function (e) {
+
+let isConnected = false; // 초기값은 연결되지 않았음을 의미합니다.
+
+socket.onopen = function (e) {
     const log_msg = "[open] 연결이 설정되었습니다.";
 
     displayMessage("#messages", log_msg);
@@ -46,21 +49,6 @@ const sendMessage = function (message) {
 
 
 
-window.onload = function () {
-    // const loginBefore = document.getElementById("loginBefore");
-    // const loginAfter = document.getElementById("loginAfter");
-
-    // if (sessionStorage.getItem("user_id") !== null) {
-        
-    //     loginBefore.style.display = "none";
-    //     loginAfter.style.display = "block";
-        // } else {
-        //     console.log(isLoggedIn +"$$$$$$$");
-        //     loginBefore.style.display = "block";
-        //     loginAfter.style.display = "none";
-    // }
-};
-
 
 
 const loginSuccess = function (msgObj) {
@@ -71,6 +59,22 @@ const loginSuccess = function (msgObj) {
     sessionStorage.setItem("id_idx", msgObj.id_idx);
 };
 
+
+const connectionSuccess = function (msgObj) {
+    isConnected = true;
+    // console.log(isConnected);
+
+    // 현재 페이지 URL 가져오기
+    let currentPage = window.location.pathname;
+    // console.log(currentPage);
+    
+    // 만약 현재 페이지가 postReadAll.html이라면 sendGetAllPost() 호출
+    if (currentPage.includes('postReadAll.html')) {
+        sendGetAllPost();
+    } else if (currentPage.includes('postRead.html')) {
+        sendGetPost();
+    }
+};
 
 
 // 이벤트 로그 출력
@@ -86,6 +90,7 @@ const displayMessage = function ($parentSelector, log_msg, kind_log = 0) {
     }
 };
 
+
 // 통신 패킷 출력
 const displayPacketMessage = function ($parentSelector, message) {
     // 이 요소 아래에 메시지 요소를 추가
@@ -99,6 +104,7 @@ const displayPacketMessage = function ($parentSelector, message) {
     switch (msgObj.cmd) {
         case "connect":
             msg = msgObj.result;
+            connectionSuccess(msgObj);
             break;
         case "signup":
             if (msgObj.result === "ok") {
