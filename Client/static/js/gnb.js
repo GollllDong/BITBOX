@@ -232,4 +232,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-}); '.board_write_btn .mt10'
+});
