@@ -62,19 +62,19 @@
 .side_nav .logo_box {padding: 20px; display: inline-flex; justify-content: space-between; align-items: center; width: 100%;}
 .side_nav .logo_box .logo {margin-right: 16px; height: 40px; width: 40px;}
 .side_nav .logo_box .logo a {height: 40px; width: 40px; background: url(../images/logo_new.svg)no-repeat center; border-radius: 8px;}
-.side_nav .logo_box span {font-weight: 700; font-size: 36px; color: #111; -webkit-text-stroke: 1px rgb(255, 255, 255); display: inline-block;}
+.side_nav .logo_box span {font-weight: 700; font-size: var(--font-size-36); color: #111; -webkit-text-stroke: 1px rgb(255, 255, 255); display: inline-block;}
 
 .side_nav .login_box {background: #fdf9e6; margin: 0 20px 20px; border-radius: 8px; border: 1px solid #e8e8e8; padding: 16px; text-align: center;}
 .side_nav .login_box::before {content:""; position: absolute; background:#0a9102; width: 100%; height: 200px; border-radius: 13%; top: -60px; left: 0; z-index: -1;}
-.side_nav .login_box h2 {font-size: 18px; font-weight: 600; color: #333; margin-bottom: 10px;}
+.side_nav .login_box h2 {font-size: var(--font-size-18); font-weight: 600; color: #333; margin-bottom: 10px;}
 .side_nav .login_box .login_btn {background: #0a9102; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: block; height: 36px;line-height: 36px; width: 100%;}
-.side_nav .login_box p {font-size: 13px; font-weight: 400; color: #333; margin-top: 10px;}
+.side_nav .login_box p {font-size: var(--font-size-13); font-weight: 400; color: #333; margin-top: 10px;}
 
 .side_nav .login_box_after {background: #fdf9e6; margin: 0 20px 20px; border-radius: 8px; border: 1px solid #e8e8e8; padding: 16px; text-align: center; display: none;}
 .side_nav .login_box_after::before {content:""; position: absolute; background:#0a9102; width: 100%; height: 200px; border-radius: 13%; top: -60px; left: 0; z-index: -1;}
-.side_nav .login_box_after h2 {font-size: 18px; font-weight: 600; color: #333; margin-bottom: 10px;}
-.side_nav .login_box_after .login_btn {background: #0a9102; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: block; height: 36px;line-height: 36px; width: 100%;}
-.side_nav .login_box_after p {font-size: 13px; font-weight: 400; color: #333; margin-top: 10px;}
+.side_nav .login_box_after h2 {font-size: var(--font-size-18); font-weight: 600; color: #333; margin-bottom: 10px;}
+.side_nav .login_box_after .login_btn {background: #0a9102; border-radius: 4px; color: #fff; font-size: var(--font-size-15); font-weight: 500; text-align: center; display: block; height: 36px;line-height: 36px; width: 100%;}
+.side_nav .login_box_after p {font-size: var(--font-size-13); font-weight: 400; color: #333; margin-top: 10px;}
 
 .gnb_nav ul li {height: 40px; line-height: 43px;}
 .gnb_nav ul li:nth-child(1) {background:url(../images/ico_home.svg)no-repeat 15px center;}
@@ -167,6 +167,7 @@
 /* 폰트 변수 지정 */
 :root {
   --font-size-45: 45px;
+  --font-size-36: 36px;
   --font-size-30: 30px;
   --font-size-25: 25px;
   --font-size-22: 22px;
@@ -199,6 +200,7 @@
 
   :root {
     --font-size-45: 42px;
+    --font-size-36: 33px;
     --font-size-30: 27px;
     --font-size-25: 22px;
     --font-size-22: 19px;
@@ -226,6 +228,7 @@
   
 :root {
   --font-size-45: 39px;
+  --font-size-36: 30px;
   --font-size-30: 24px;
   --font-size-25: 19px;
   --font-size-22: 16px;
