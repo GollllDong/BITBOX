@@ -29,9 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 case '지도':
                     if (window.location.pathname.endsWith("index.html")) {
-                        window.location.href = 'map/map.html';
+                        window.location.href = 'map/map_pop.html';
                     } else {
-                        window.location.href = '../map/map.html';
+                        window.location.href = '../map/map_pop.html';
                     }
                     break;
                 case '채팅':
@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 case '지도':
                     if (window.location.pathname.endsWith("index.html")) {
-                        window.location.href = 'map/map.html';
+                        window.location.href = 'map/map_pop.html';
                     } else {
-                        window.location.href = '../map/map.html';
+                        window.location.href = '../map/map_pop.html';
                     }
                     break;
                 case '채팅':
@@ -107,4 +107,70 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+});
+
+// logo
+document.addEventListener('DOMContentLoaded', function () {
+    // logo에 클릭 이벤트 리스너를 추가합니다.
+    var logo = document.querySelector('.logo');
+    logo.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (window.location.pathname.endsWith("index.html")) {
+            window.location.href = 'index.html';
+        } else {
+            window.location.href = '../index.html';
+        }
+    });
+});
+
+// plusbox
+document.addEventListener('DOMContentLoaded', function () {
+    // plusbox1에 클릭 이벤트 리스너를 추가합니다.
+    var plusbox1 = document.querySelector('.plusbox1');
+    if (plusbox1) {
+        plusbox1.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (window.location.pathname.endsWith("index.html")) {
+                window.location.href = 'board/postReadAll.html';
+            } else {
+                window.location.href = '../board/postReadAll.html';
+            }
+        });
+    }
+    // plusbox2에 클릭 이벤트 리스너를 추가합니다.
+    var plusbox2 = document.querySelector('.plusbox2');
+    if (plusbox2) {
+        plusbox2.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (window.location.pathname.endsWith("index.html")) {
+                window.location.href = 'chat/chat.html';
+            } else {
+                window.location.href = '../chat/chat.html';
+            }
+        });
+    }
+    // plusbox3에 클릭 이벤트 리스너를 추가합니다.
+    var plusbox3 = document.querySelector('.plusbox3');
+    if (plusbox3) {
+        plusbox3.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (window.location.pathname.endsWith("index.html")) {
+                window.location.href = 'todo/todo.html';
+            } else {
+                window.location.href = '../todo/todo.html';
+            }
+        });
+    }
+    // plusbox4에 클릭 이벤트 리스너를 추가합니다.
+    var plusbox4 = document.querySelector('.plusbox4');
+    if (plusbox4) {
+        plusbox4.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (window.location.pathname.endsWith("index.html")) {
+                window.location.href = 'map/map_pop.html';
+            } else {
+                window.location.href = '../map/map_pop.html';
+            }
+        });
+    }
 });
