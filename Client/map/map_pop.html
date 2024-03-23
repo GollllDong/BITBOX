@@ -7,7 +7,7 @@
     <title>BitBox~</title>
     <link rel="stylesheet" href="../static/css/style.css" />
     <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b87e62375ab8c996a9e431db586e4fa"></script>
+        src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=5b87e62375ab8c996a9e431db586e4fa"></script>
         <link rel="stylesheet" href="../static/css/map_pop.css" />
         <script src="../static/js/gnb.js"></script>
         <script src="../static/js/login.js"></script>
@@ -28,18 +28,22 @@
                     </div>
                     <div class="login_box">
                         <h2>Ok~Let's Go~</h2>
-                        <button class="login_btn">로그인</button>
+                        <button class="login_btn" id="loginBefore">로그인</button>
                         <p class="">비트박스에 오신 것을 환영합니다.</p>
                     </div>
+                    <!-- <div class="login_box" id="loginAfter">
+                        <h2 class="">안녕하세요!</h2>
+                        <h3 class="login_btn">비트캠프 수강생 여러분</p>
+                    </div> -->
                     <nav class="gnb_nav">
                         <ul class="gnb_box">
-                            <li class="select">
+                            <li>
                                 <a>HOME</a>
                             </li>
                             <li>
                                 <a>게시판</a>
                             </li>
-                            <li>
+                            <li class="select">
                                 <a>지도</a>
                             </li>
                             <li>
@@ -55,9 +59,7 @@
             <div class="main_box">
                 <header class="header">
                     <div class="user_box">
-                        <div class="user_img">
-                            <!-- <img src="" alt="사용자 이미지" /> -->
-                        </div>
+                        <div class="user_img"></div>
                         <!-- <div class="user_subject">
 				   팝업 내용 넣기 
 				  </div>-->

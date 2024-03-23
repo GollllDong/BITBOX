@@ -66,13 +66,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const loginBtn = document.querySelector('#login_btn');
     loginBtn.addEventListener('click', sendLogIn);
 
-    const loginBoxImg = document.querySelector('.login_box img');
-    loginBoxImg.addEventListener('click', function () {
+    const showPasswordIcon = document.querySelector('.showPassword'); // 눈 아이콘을 가리키는 요소 선택
+    showPasswordIcon.addEventListener('click', function () {
         const passwordInput = document.querySelector('#passInput');
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
-        this.classList.toggle('showPassword');
+        this.classList.toggle('active'); // 클래스를 토글합니다.
     });
 });
-
-// 로그인 성공 시 페이지 전환

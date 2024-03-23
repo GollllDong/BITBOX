@@ -23,15 +23,19 @@
                         </div>
                         <div class="login_box">
                             <h2>Ok~Let's Go~</h2>
-                            <button onclick="openPop()" class="login_btn">로그인</button>
+                            <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
                             <p class="">비트박스에 오신 것을 환영합니다.</p>
                         </div>
+                        <!-- <div class="login_box" id="loginAfter">
+                            <h2 class="">안녕하세요!</h2>
+                            <h3 class="login_btn">비트캠프 수강생 여러분</p>
+                        </div> -->
                         <nav class="gnb_nav">
                             <ul class="gnb_box">
-                                <li class="select">
+                                <li>
                                     <a>HOME</a>
                                 </li>
-                                <li>
+                                <li class="select">
                                     <a>게시판</a>
                                 </li>
                                 <li>
@@ -50,9 +54,7 @@
                 <div class="main_box">
                     <header class="header">
                         <div class="user_box">
-                            <div class="user_img">
-                                <!-- <img src="" alt="사용자 이미지" /> -->
-                            </div>
+                            <div class="user_img"></div>
                             <!-- <div class="user_subject">
 					 팝업 내용 넣기 
 					</div>-->
@@ -238,13 +240,7 @@
         </div>
 
         <div class="popup_page">
-            <!-- <button onclick="openPop()">로그인</button> -->
-            <!-- <a href="javascript:openPop()">
-                <div>
-                  로그인
-                </div>
-              </a> -->
-            <div class="popup_layer" id="popup_layer" style="display: none;">
+            <div class="popup_layer" id="popup_layer">
               <div class="popup_box">
                 <div style="height: 10px; width: 375px; float: top;">
                 </div>
@@ -260,11 +256,12 @@
                     <h2>Login</h2>
                     <input type='text' id='idInput' placeholder='  아이디'>
                     <input type='password' id='passInput' placeholder='  비밀번호'>
-                    <img src="../Client/static/images/ico_eye.svg" style="cursor:pointer;" class="showPassword">
+                    <div class="showPassword"></div>
                     <button id="login_btn">로그인</button>
                     <h3>or</h3>
                     <h4>아직 계정이 없으신가요?</h4>
                     <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
+                    <p id="login_error">로그인 실패</p>
                     <!--팝업 버튼 영역-->
                     <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
                       <a href="javascript:closePop();">닫기</a>

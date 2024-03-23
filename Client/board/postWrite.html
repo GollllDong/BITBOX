@@ -7,7 +7,7 @@
     <title>BitBox~</title>
     <link rel="stylesheet" href="../static/css/style.css" />
     <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2cc2127ed8271d4f203b201b1f7ba4e&libraries=services"></script>
+        src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b2cc2127ed8271d4f203b201b1f7ba4e&libraries=services"></script>
        <script src="../static/js/gnb.js"></script>
        <script src="../static/js/login.js"></script>
        <script src="../static/js/nav.js"></script>
@@ -27,15 +27,19 @@
                     </div>
                     <div class="login_box">
                         <h2>Ok~Let's Go~</h2>
-                        <button onclick="openPop()" class="login_btn">로그인</button>
+                        <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
                         <p class="">비트박스에 오신 것을 환영합니다.</p>
                     </div>
+                    <!-- <div class="login_box" id="loginAfter">
+                        <h2 class="">안녕하세요!</h2>
+                        <h3 class="login_btn">비트캠프 수강생 여러분</p>
+                    </div> -->
                     <nav class="gnb_nav">
                         <ul class="gnb_box">
-                            <li class="select">
+                            <li>
                                 <a>HOME</a>
                             </li>
-                            <li>
+                            <li class="select">
                                 <a>게시판</a>
                             </li>
                             <li>
@@ -82,11 +86,11 @@
                             </div>
 
                             <div class="sub_title">
+                                <div class="boardemoji"></div>
                                 <p>
                                     - 비트캠프 근처 맛집을 소개하고 추천하는
                                     공간입니다. 여러분들의 맛있는 발견을
                                     공유해주세요! -
-                                    <img src="../static/images/board_emoji.svg" alt="emoji" class="sub_title emoji" />
                                 </p>
                             </div>
 
@@ -133,12 +137,12 @@
                                                 <div id="map" style="width:80%;height:300px; margin-left : 10px"></div>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th>별점</th>
                                             <td>
                                                 <img src="../static/images/ico_star.svg" alt="" />
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -154,13 +158,7 @@
     </div>
 
     <div class="popup_page">
-        <!-- <button onclick="openPop()">로그인</button> -->
-        <!-- <a href="javascript:openPop()">
-            <div>
-              로그인
-            </div>
-          </a> -->
-        <div class="popup_layer" id="popup_layer" style="display: none;">
+        <div class="popup_layer" id="popup_layer">
           <div class="popup_box">
             <div style="height: 10px; width: 375px; float: top;">
             </div>
@@ -176,11 +174,12 @@
                 <h2>Login</h2>
                 <input type='text' id='idInput' placeholder='  아이디'>
                 <input type='password' id='passInput' placeholder='  비밀번호'>
-                <img src="../Client/static/images/ico_eye.svg" style="cursor:pointer;" class="showPassword">
+                <div class="showPassword"></div>
                 <button id="login_btn">로그인</button>
                 <h3>or</h3>
                 <h4>아직 계정이 없으신가요?</h4>
                 <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
+                <p id="login_error">로그인 실패</p>
                 <!--팝업 버튼 영역-->
                 <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
                   <a href="javascript:closePop();">닫기</a>

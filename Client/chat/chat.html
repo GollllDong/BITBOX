@@ -20,19 +20,21 @@
             <aside class="side_nav" id="sideNav">
                 <div class="side_container">
                     <div class="logo_box">
-                        <h1 class="logo">
-                            <a class="" href="../index.html"></a>
-                        </h1>
+                        <h1 class="logo"></h1>
                         <span>BITBOX</span>
                     </div>
                     <div class="login_box">
                         <h2>Ok~Let's Go~</h2>
-                        <button onclick="openPop()" class="login_btn">로그인</button>
+                        <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
                         <p class="">비트박스에 오신 것을 환영합니다.</p>
                     </div>
+                    <!-- <div class="login_box" id="loginAfter">
+                        <h2 class="">안녕하세요!</h2>
+                        <h3 class="login_btn">비트캠프 수강생 여러분</p>
+                    </div> -->
                     <nav class="gnb_nav">
                         <ul class="gnb_box">
-                            <li class="select">
+                            <li>
                                 <a>HOME</a>
                             </li>
                             <li>
@@ -41,7 +43,7 @@
                             <li>
                                 <a>지도</a>
                             </li>
-                            <li>
+                            <li class="select">
                                 <a>채팅</a>
                             </li>
                             <li>
@@ -54,10 +56,7 @@
             <div class="main_box">
                 <header class="header">
                     <div class="user_box">
-                        <div class="user_img">
-                            <!-- <img src="" alt="사용자 이미지" /> -->
-                            <img src="../Client/static/images/user_info.png" alt="" class="user_info" />
-                        </div>
+                        <div class="user_img"></div>
                         <!-- <div class="user_subject">
                    팝업 내용 넣기 
                   </div>-->
@@ -116,9 +115,7 @@
                                             <div class="msg_box">
                                                 <input type="text" id="messageInput" class="msg_input"
                                                     placeholder="메시지를 입력~" />
-                                                <button id="btnChatMsg" class="msg_send_btn"><img
-                                                        src="../static/images/ico_btnChatMsg.svg" alt="대체 텍스트"
-                                                        onclick=""></button>
+                                                <button id="btnChatMsg" class="msg_send_btn" onclick=""></button>
                                             </div>
                                         </article>
                                     </div>
@@ -132,12 +129,6 @@
     </div>
 
     <div class="popup_page">
-        <!-- <button onclick="openPop()">로그인</button> -->
-        <!-- <a href="javascript:openPop()">
-                <div>
-                  로그인
-                </div>
-              </a> -->
         <div class="popup_layer" id="popup_layer" style="display: none;">
             <div class="popup_box">
                 <div style="height: 10px; width: 375px; float: top;">
@@ -154,12 +145,13 @@
                         <h2>Login</h2>
                         <input type='text' id='idInput' placeholder='  아이디'>
                         <input type='password' id='passInput' placeholder='  비밀번호'>
-                        <img src="../static/images/ico_eye.svg" style="cursor:pointer;" class="showPassword">
+                        <div class="showPassword"></div>
                         <button id="login_btn">로그인</button>
                         <h3>or</h3>
                         <h4>아직 계정이 없으신가요?</h4>
                         <button onclick="window.location.href = '../Client/signup/signup.html';"
                             id="signup_btn">회원가입</button>
+                        <p id="login_error">로그인 실패</p>
                         <!--팝업 버튼 영역-->
                         <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
                             <a href="javascript:closePop();">닫기</a>

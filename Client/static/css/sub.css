@@ -19,6 +19,8 @@ div.mt10 button {margin-left: 10px;}
 .board_edit_btn span::before { background: url(../../static/images/ico_pen.svg)no-repeat left center/contain;}
 .board_list_btn span::before { background: url(../../static/images/ico_board_select.svg)no-repeat left center/contain;}
 
+.boardemoji{background: url(../../static/images/board_emoji.svg)no-repeat center; background-size: cover; width:57px; height: 55px; top: 17%; right: 11.5%; display: inline-block; position: absolute; z-index: 1000;}
+
 .table_layout, .table_layout_write {border: 1px solid #ddd; border-radius: 8px; padding: 1px; clear: both;}
 .table_layout table, .table_layout_write table {width: 100%;}
 .table_layout tr {border-bottom: 1px solid #ddd;}
