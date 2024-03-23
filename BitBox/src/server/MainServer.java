@@ -122,7 +122,7 @@ public class MainServer extends WebSocketServer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		} else if (cmd.equals("insertpost")) {
 
 			String food_category = msgObj.getString("food_category");
@@ -158,7 +158,7 @@ public class MainServer extends WebSocketServer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (cmd.equals("updatepost")) {
+		} else if (cmd.equals("updatepost")) {
 			String food_category = msgObj.getString("food_category");
 			String post_title = msgObj.getString("post_title");
 			String content_location = msgObj.getString("content_location");
@@ -218,43 +218,43 @@ public class MainServer extends WebSocketServer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}  else if (cmd.equals("getallpost")) {
-		    System.out.println("[게시물 전체 조회]");
+		} else if (cmd.equals("getallpost")) {
+			System.out.println("[게시물 전체 조회]");
 
-		    // 게시물 전체 조회 시도
-		    try {
-		        // 모든 게시물 조회 메서드 호출
-		        List<Post> allPosts = PostDao.getAllPost(DBConnection.getConnection());
+			// 게시물 전체 조회 시도
+			try {
+				// 모든 게시물 조회 메서드 호출
+				List<Post> allPosts = PostDao.getAllPost(DBConnection.getConnection());
 
-		        JSONObject ackObj = new JSONObject();
-		        ackObj.put("cmd", "getallpost");
+				JSONObject ackObj = new JSONObject();
+				ackObj.put("cmd", "getallpost");
 
-		        if (!allPosts.isEmpty()) {
-		            JSONArray postArray = new JSONArray();
-		            // 게시물 목록을 JSONArray로 변환하여 응답에 추가
-		            for (Post post : allPosts) {
-		                JSONObject postObj = new JSONObject();
-		                postObj.put("post_id", post.getPost_id());
-		                postObj.put("food_category", post.getFood_category());
-		                postObj.put("post_title", post.getPost_title());
-		                postObj.put("course_id", post.getCourse_id());
-		                postObj.put("user_name", post.getUser_name());
-		                postObj.put("post_createDate", post.getPost_createDate().toString()); // LocalDate를 문자열로 변환하여 전송
-		                postObj.put("likes", post.getLikes());
-		                postArray.put(postObj);
-		            }
-		            ackObj.put("posts", postArray);
-		            ackObj.put("result", "ok");
-		        } else {
-		            // 조회 결과가 없을 경우
-		            ackObj.put("result", "empty");
-		        }
+				if (!allPosts.isEmpty()) {
+					JSONArray postArray = new JSONArray();
+					// 게시물 목록을 JSONArray로 변환하여 응답에 추가
+					for (Post post : allPosts) {
+						JSONObject postObj = new JSONObject();
+						postObj.put("post_id", post.getPost_id());
+						postObj.put("food_category", post.getFood_category());
+						postObj.put("post_title", post.getPost_title());
+						postObj.put("course_id", post.getCourse_id());
+						postObj.put("user_name", post.getUser_name());
+						postObj.put("post_createDate", post.getPost_createDate().toString()); // LocalDate를 문자열로 변환하여 전송
+						postObj.put("likes", post.getLikes());
+						postArray.put(postObj);
+					}
+					ackObj.put("posts", postArray);
+					ackObj.put("result", "ok");
+				} else {
+					// 조회 결과가 없을 경우
+					ackObj.put("result", "empty");
+				}
 
-		        conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		    }
-		}else if (cmd.equals("getpost")) {
+				conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (cmd.equals("getpost")) {
 			Integer post_id = msgObj.getInt("post_id");
 			System.out.printf("[특정 게시물 조회] Post_id: %d\n", post_id);
 
@@ -283,9 +283,6 @@ public class MainServer extends WebSocketServer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-			
 
 		} else if (cmd.equals("add_todo")) {
 			String category = msgObj.getString("category");
@@ -299,7 +296,7 @@ public class MainServer extends WebSocketServer {
 				todo.setTodolist_content(content);
 				todo.setUser_id(user_id);
 
-				int result = TodoDao.categoryDaily(todo); 
+				int result = TodoDao.insertTodo(DBConnection.getConnection(), todo);
 
 				if (result > 0) {
 					System.out.println("to-do list 추가되었습니다.");
@@ -308,6 +305,62 @@ public class MainServer extends WebSocketServer {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		} else if (cmd.equals("delete_todo")) {
+			String category = msgObj.getString("category");
+			String content = msgObj.getString("todo");
+			Integer user_id = msgObj.getInt("user_id");
+			System.out.printf("todo- category: %s to-do content: %s	user_id: %s\n", category, content, user_id);
+
+			try {
+				TodoList todo = new TodoList();
+				todo.setTodolist_category(category);
+				todo.setTodolist_content(content);
+				todo.setUser_id(user_id);
+
+				int result = TodoDao.deleteTodo(DBConnection.getConnection(), todo);
+
+				JSONObject ackObj = new JSONObject();
+				if (result == 1) {
+					ackObj.put("result", "ok");
+				} else {
+					ackObj.put("result", "fail");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+
+			}
+		} else if (cmd.equals("show_Todo")) {
+			String category = msgObj.getString("category");
+			String content = msgObj.getString("todo");
+			Integer todolist_id = msgObj.getInt("todolist_id");
+			System.out.printf("to-do category: %s to-do content: %s	user_id: %s\n", category, content, todolist_id);
+
+			try {
+				TodoList todo = new TodoList();
+				todo.setTodolist_id(todolist_id);
+
+				Post selectedPost = PostDao.getPost(DBConnection.getConnection(), todolist_id);
+
+				JSONObject ackObj = new JSONObject();
+				ackObj.put("cmd", "getpost");
+
+				if (selectedPost != null) {
+					// 조회 결과를 클라이언트에 응답
+					ackObj.put("result", "ok");
+					// 특정 게시물 정보를 JSON으로 변환하여 응답에 포함
+					JSONObject postObj = new JSONObject(selectedPost);
+					ackObj.put("post", postObj);
+				} else {
+					// 게시물이 없을 경우
+					ackObj.put("result", "fail");
+				}
+
+				conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+
+			} catch (Exception e) {
+				e.printStackTrace();
+
 			}
 		}
 	}
@@ -321,7 +374,6 @@ public class MainServer extends WebSocketServer {
 		ackObj.put("cmd", "connect");
 		ackObj.put("result", "연결 성공 !!!");
 		conn.send(ackObj.toString()); // 클라이언트한테 메시지 보내기
-
 
 	}
 

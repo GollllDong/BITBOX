@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class TodoList extends Cmd implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private Integer todolist_idx;
+	private Integer todolist_id;
 	private String todolist_category;
 	private String todolist_content;
 	private Boolean todolist_isComplete;
@@ -15,22 +15,22 @@ public class TodoList extends Cmd implements Serializable {
 		
 	}
 	
-	public TodoList(Object cmd, Integer todolist_idx, String todolist_category, String todolist_content, Boolean todolist_isComplete, Boolean todolist_isDeleted, Integer user_id) {
+	public TodoList(Object cmd, Integer todolist_id, String todolist_category, String todolist_content, Boolean todolist_isComplete, Boolean todolist_isDeleted, Integer user_id) {
 		this.cmd = cmd;
-		this.todolist_idx = todolist_idx;
+		this.todolist_id = todolist_id;
 		this.todolist_category = todolist_category;
 		this.todolist_content = todolist_content;
-		this.todolist_isComplete = todolist_isComplete;
-		this.todolist_isDeleted = todolist_isDeleted;
+		this.todolist_isComplete = todolist_isComplete;		// todo 선 긋기
+		this.todolist_isDeleted = todolist_isDeleted;		// todo 삭제
 		this.user_id = user_id;
 	}
 
-	public Integer getTodolist_idx() {
-		return todolist_idx;
+	public Integer getTodolist_id() {
+		return todolist_id;
 	}
 
-	public void setTodolist_idx(Integer todolist_idx) {
-		this.todolist_idx = todolist_idx;
+	public void setTodolist_id(Integer todolist_id) {
+		this.todolist_id = todolist_id;
 	}
 
 	public String getTodolist_category() {
