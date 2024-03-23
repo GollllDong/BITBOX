@@ -10,7 +10,7 @@ a:hover {color: #808080; text-decoration: underline;}
 a:active {color: #808080; text-decoration: underline;}
 input {line-height: 1.8em;}
 img,fieldset {border: none;}
-body {font-family: 'Pretendard', 'Roboto', sans-serif; font-size: 22px; font-weight: 400; color: #111;}
+body {font-family: 'Pretendard', 'Roboto', sans-serif; font-size: var(--font-size-22); font-weight: 400; color: #111;}
 .eng {font-family: "Roboto", sans-serif !important;}
 em {font-style: normal;}
 .blind {position: absolute; left: -9999px; font-size: 0;}

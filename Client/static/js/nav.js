@@ -24,33 +24,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
- // 네비게이션 토글 함수
-function toggleNav() {
-  // 네비게이션의 현재 표시 여부 확인
-  const isNavVisible = window.getComputedStyle(sideNav).display !== "none";
-  // 네비게이션 표시 여부에 따라 토글
-  if (isNavVisible) {
-    sideNav.style.display = "none";
-    const mainBoxes = document.getElementsByClassName("main_box");
-    for (let i = 0; i < mainBoxes.length; i++) {
-      mainBoxes[i].style.paddingLeft = "15px";
-    }
-  } else {
-    sideNav.style.display = "block";
-    const mainBoxes = document.getElementsByClassName("main_box");
-    for (let i = 0; i < mainBoxes.length; i++) {
-      mainBoxes[i].style.paddingLeft = "315px";
+  // 네비게이션 토글 함수
+  function toggleNav() {
+    // 네비게이션의 현재 표시 여부 확인
+    const isNavVisible = window.getComputedStyle(sideNav).display !== "none";
+    // 네비게이션 표시 여부에 따라 토글
+    if (isNavVisible) {
+      sideNav.style.display = "none";
+      const mainBoxes = document.getElementsByClassName("main_box");
+      for (let i = 0; i < mainBoxes.length; i++) {
+        mainBoxes[i].style.marginLeft = "30px";
+      }
+    } else {
+      sideNav.style.display = "block";
+      const mainBoxes = document.getElementsByClassName("main_box");
+      for (let i = 0; i < mainBoxes.length; i++) {
+        mainBoxes[i].style.marginLeft = "315px";
+      }
     }
   }
-}
 
   // 네비게이션 닫기 함수
-function closeNav() {
-  sideNav.style.display = "none";
-  // 네비게이션이 닫혔을 때
-  const mainBoxes = document.getElementsByClassName("main_box");
-  for (let i = 0; i < mainBoxes.length; i++) {
-      mainBoxes[i].style.paddingLeft = "15px";
+  function closeNav() {
+    sideNav.style.display = "none";
+    // 네비게이션이 닫혔을 때
+    const mainBoxes = document.getElementsByClassName("main_box");
+    for (let i = 0; i < mainBoxes.length; i++) {
+      mainBoxes[i].style.marginLeft = "30px";
+    }
   }
-}
 });
