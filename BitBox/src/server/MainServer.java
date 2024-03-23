@@ -240,6 +240,7 @@ public class MainServer extends WebSocketServer {
 		                postObj.put("course_id", post.getCourse_id());
 		                postObj.put("user_name", post.getUser_name());
 		                postObj.put("post_createDate", post.getPost_createDate().toString()); // LocalDate를 문자열로 변환하여 전송
+		                postObj.put("likes", post.getLikes());
 		                postArray.put(postObj);
 		            }
 		            ackObj.put("posts", postArray);

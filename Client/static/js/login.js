@@ -12,31 +12,34 @@ function closePop() {
     document.getElementById("popup_layer").style.display = "none";
 }
 
-// 로그아웃 시 세션 스토리지에서 로그인 상태 삭제
-const logout = function () {
-    sessionStorage.removeItem(SESSION_KEY);
-    // 나머지 로그아웃 처리 코드...
-};
-const SESSION_KEY = "user_login";
+// // 로그아웃 시 세션 스토리지에서 로그인 상태 삭제
+// const logout = function () {
+//     sessionStorage.removeItem(SESSION_KEY);
+//     // 나머지 로그아웃 처리 코드...
+// };
 
-console.log(document.getElementById("loginBefore"));
 
-const isLoggedIn = sessionStorage.getItem(SESSION_KEY) === "true";
-// 페이지 로드 시 로그인 상태에 따라 UI 변경
-window.onload = function () {
-    const loginBefore = document.getElementById("loginBefore");
-    const loginAfter = document.getElementById("loginAfter");
 
-    if (sessionStorage.getItem("user_id") !== null) {
-        console.log(isLoggedIn);
-        loginBefore.style.display = "none";
-        loginAfter.style.display = "block";
-        // } else {
-        //     console.log(isLoggedIn +"$$$$$$$");
-        //     loginBefore.style.display = "block";
-        //     loginAfter.style.display = "none";
-    }
-};
+// const SESSION_KEY = "user_login";
+
+// console.log(document.getElementById("loginBefore"));
+
+// const isLoggedIn = sessionStorage.getItem(SESSION_KEY) === "true";
+// // 페이지 로드 시 로그인 상태에 따라 UI 변경
+// window.onload = function () {
+//     const loginBefore = document.getElementById("loginBefore");
+//     const loginAfter = document.getElementById("loginAfter");
+
+//     if (sessionStorage.getItem("user_id") !== null) {
+//         console.log(isLoggedIn);
+//         loginBefore.style.display = "none";
+//         loginAfter.style.display = "block";
+//         // } else {
+//         //     console.log(isLoggedIn +"$$$$$$$");
+//         //     loginBefore.style.display = "block";
+//         //     loginAfter.style.display = "none";
+//     }
+// };
 
 
 
@@ -55,6 +58,14 @@ const sendLogIn = function () {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const loginBefore = document.getElementById("loginBefore");
+    const loginAfter = document.getElementById("loginAfter");
+
+    if (sessionStorage.getItem("user_id") !== null) {
+        
+        loginBefore.style.display = "none";
+        loginAfter.style.display = "block";
+    }
 
     const login_btn = document.querySelector('#login_btn');
 

@@ -17,6 +17,7 @@ public class Post extends Cmd {
 	private Boolean post_isDeleted; 	// 게시물 삭제 여부 
 	private String user_name;			// user.유저 이름 
 	private String course_id;			// user.기수 
+	private String likes; 				// 별점 (* * * * *) 
 
 	/**
 	 * 기본 생성자
@@ -26,7 +27,7 @@ public class Post extends Cmd {
 
 	public Post(Object cmd, Integer post_id, String food_category, String post_title, String user_id, String post_content,
 			String content_location, LocalDate post_createDate, Boolean post_isDeleted, String user_name,
-			String course_id) {
+			String course_id, String likes) {
 		
 		this.cmd = cmd;
 		this.post_id = post_id;
@@ -39,6 +40,7 @@ public class Post extends Cmd {
 		this.post_isDeleted = post_isDeleted;
 		this.user_name = user_name;
 		this.course_id = course_id;
+		this.likes = likes;
 	}
 
 	public Integer getPost_id() {
@@ -119,6 +121,14 @@ public class Post extends Cmd {
 
 	public void setCourse_id(String course_id) {
 		this.course_id = course_id;
+	}
+
+	public String getLikes() {
+		return likes;
+	}
+
+	public void setLikes(String likes) {
+		this.likes = likes;
 	}
 
 	

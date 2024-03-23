@@ -95,7 +95,7 @@ public class PostDao {
 
 	public static List<Post> getAllPost(Connection conn) throws SQLException {
 		List<Post> postList = new ArrayList<>();
-		String sql = "SELECT post.post_id, post.food_category, post.post_title, user.course_id, user.user_name, post.post_createDate "
+		String sql = "SELECT post.post_id, post.food_category, post.post_title, user.course_id, user.user_name, post.post_createDate, likes "
 				+ "FROM post, user WHERE post.user_id = user.user_id AND post.post_isDeleted=0 ORDER BY post.post_createDate ASC";
 		;
 
@@ -109,6 +109,7 @@ public class PostDao {
 				post.setCourse_id(rs.getString("course_id"));;
 				post.setUser_name(rs.getString("user_name"));
 				post.setPost_createDate(rs.getDate("post_createDate").toLocalDate());
+				post.setLikes(rs.getString("likes"));
 
 				postList.add(post);
 			}
@@ -119,7 +120,7 @@ public class PostDao {
 
 	public static Post getPost(Connection conn, int post_id) throws SQLException {
 
-		String sql = "SELECT post.post_id, post.food_category, post.post_title, user.course_id, user.user_name, post.post_createDate, post.content_location, post.post_content "
+		String sql = "SELECT post.post_id, post.food_category, post.post_title, user.course_id, user.user_name, post.post_createDate, post.content_location, post.post_content, likes "
 				+ "FROM post, user WHERE post.user_id = user.user_id AND post.post_isDeleted = 0 AND post.post_id = ?";
 
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -138,7 +139,7 @@ public class PostDao {
 					post.setPost_createDate(rs.getDate("post_createDate").toLocalDate());
 					post.setContent_location(rs.getString("content_location"));
 					post.setPost_content(rs.getString("post_content"));
-
+					post.setLikes(rs.getString("likes"));
 					return post;
 				}
 			}

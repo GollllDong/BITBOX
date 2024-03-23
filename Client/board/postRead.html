@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>BitBox~</title>
         <link rel="stylesheet" href="../static/css/style.css" />
+        <script src="../static/js/socket-client.js"></script>
         <script src="../static/js/gnb.js"></script>
         <script src="../static/js/login.js"></script>
         <script src="../static/js/nav.js"></script>
@@ -22,15 +23,16 @@
                             </h1>
                             <span>BITBOX</span>
                         </div>
-                        <div class="login_box">
+                        <div class="login_box" id="loginBefore">
                             <h2>Ok~Let's Go~</h2>
                             <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
                             <p class="">비트박스에 오신 것을 환영합니다.</p>
-                        </div>
-                        <!-- <div class="login_box" id="loginAfter">
+                          </div>
+                          <div class="login_box_after" id="loginAfter">
                             <h2 class="">안녕하세요!</h2>
-                            <h3 class="login_btn">비트캠프 수강생 여러분</p>
-                        </div> -->
+                            <h3 class="login_btn">비트캠프 수강생 여러분</h3>
+                            <p class="">비트박스에 오신 것을 환영합니다.</p>
+                          </div>
                         <nav class="gnb_nav">
                             <ul class="gnb_box">
                                 <li>

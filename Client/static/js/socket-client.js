@@ -46,10 +46,26 @@ const sendMessage = function (message) {
 
 
 
+window.onload = function () {
+    // const loginBefore = document.getElementById("loginBefore");
+    // const loginAfter = document.getElementById("loginAfter");
+
+    // if (sessionStorage.getItem("user_id") !== null) {
+        
+    //     loginBefore.style.display = "none";
+    //     loginAfter.style.display = "block";
+        // } else {
+        //     console.log(isLoggedIn +"$$$$$$$");
+        //     loginBefore.style.display = "block";
+        //     loginAfter.style.display = "none";
+    // }
+};
+
+
+
 const loginSuccess = function (msgObj) {
-    // 로그인 후 UI 변경
     console.log("로그인 성공!");
-    sessionStorage.setItem({SESSION_KEY}, "true");
+
     // 로그인 성공 시 세션 스토리지에 'user_id', 'id_idx' 저장
     sessionStorage.setItem("user_id", msgObj.user_id);
     sessionStorage.setItem("id_idx", msgObj.id_idx);
@@ -100,6 +116,7 @@ const displayPacketMessage = function ($parentSelector, message) {
             if (msgObj.result === "ok") {
                 loginSuccess(msgObj);
                 closePop();
+                location.reload()   //페이지 새로고침
             } else {
                 alert("로그인 실패");
             }
@@ -109,6 +126,26 @@ const displayPacketMessage = function ($parentSelector, message) {
             break;
         case "updatepost":
             msg = msgObj.result === "ok" ? "게시물 수정 성공" : "게시물 수정 실패";
+            break;
+        case "deletepost":
+            msg = msgObj.result === "ok" ? "게시물 삭제 성공" : "게시물 삭제 실패";
+            break;
+        case "getallpost":
+            if (msgObj.result === "ok") {
+                const allPosts = msgObj.posts;
+                // allPosts를 이용하여 UI를 업데이트하는 코드 작성
+                updateUIWithAllPosts(allPosts);
+            } else {
+                console.error("게시물 전체 조회 실패");
+            }
+            break;
+        case "getpost":
+            if (msgObj.result === "ok") {
+                const post = msgObj.post; // 변수명을 post로 수정
+                updateUIWithPost(post); // 함수 호출 시 변수명도 post로 수정
+            } else {
+                console.error("게시물 특정 조회 실패");
+            }
             break;
 
         case "chat":
@@ -132,7 +169,7 @@ const displayPacketMessage = function ($parentSelector, message) {
     // childElem.textContent = msg;
     // parentElem.appendChild(childElem);
 
-    
+
     // if (childSpanElem.textContent != "" && childIdElem.textContent != "") {
     //    // 채팅부분
     // const childIdElem = document.createElement("p");
@@ -145,5 +182,5 @@ const displayPacketMessage = function ($parentSelector, message) {
     // parentElem.appendChild(childIdElem);
     // parentElem.appendChild(childSpanElem);
     // }
-    
+
 };
