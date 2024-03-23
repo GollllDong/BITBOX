@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 case '할 일':
                     if (window.location.pathname.endsWith("index.html")) {
-                        window.location.href = 'todo/todo.html';
+                        window.location.href = 'todo/to-do.html';
                     } else {
-                        window.location.href = '../todo/todo.html';
+                        window.location.href = '../todo/to-do.html';
                     }
                     break;
                 default:
@@ -97,9 +97,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 case '할 일':
                     if (window.location.pathname.endsWith("index.html")) {
-                        window.location.href = 'todo/todo.html';
+                        window.location.href = 'todo/to-do.html';
                     } else {
-                        window.location.href = '../todo/todo.html';
+                        window.location.href = '../todo/to-do.html';
                     }
                     break;
                 default:
@@ -155,9 +155,9 @@ document.addEventListener('DOMContentLoaded', function () {
         plusbox3.addEventListener('click', function (event) {
             event.preventDefault();
             if (window.location.pathname.endsWith("index.html")) {
-                window.location.href = 'todo/todo.html';
+                window.location.href = 'todo/to-do.html';
             } else {
-                window.location.href = '../todo/todo.html';
+                window.location.href = '../todo/to-do.html';
             }
         });
     }
