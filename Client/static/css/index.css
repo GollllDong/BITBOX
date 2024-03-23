@@ -76,8 +76,6 @@
 .side_nav .login_box_after .login_btn {background: #0a9102; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: block; height: 36px;line-height: 36px; width: 100%;}
 .side_nav .login_box_after p {font-size: 13px; font-weight: 400; color: #333; margin-top: 10px;}
 
-
-
 .gnb_nav ul li {height: 40px; line-height: 43px;}
 .gnb_nav ul li:nth-child(1) {background:url(../images/ico_home.svg)no-repeat 15px center;}
 .gnb_nav ul li:nth-child(2) {background:url(../images/ico_board.svg)no-repeat 15px center;}
@@ -152,12 +150,12 @@
 .popup_box .login_box .showPassword{position: absolute;cursor:pointer; background: url(../images/ico_eye.svg)no-repeat center; background-size: cover; width: 25px;  height: 19px; top: 31.5%; right: 10%; z-index: 1000;}
 .popup_box .login_box #login_btn {margin-bottom: 15px; background: #0a9102; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
 .popup_box .login_box h3{margin-bottom: 10px;font-size: 18px; font-weight: 500; color: #595959;}
-.popup_box .login_box h4{margin-bottom: 10px;font-size: 12px; font-weight: 100; color: #595959;}
+.popup_box .login_box h4{margin-bottom: 10px;font-size: 14px; font-weight: 100; color: #595959;}
 .popup_box .login_box #signup_btn {background: #fbd107; border-radius: 4px; color: #fff; font-size: 15px; font-weight: 500; text-align: center; display: inline-block; width: 85%; height: 40px; line-height: 36px;}
-.popup_box .login_box p{padding: 15px; font-size: 12px; font-weight: 100; color: #ff0000;}
+.popup_box .login_box p{padding-top: 12px; font-size: 14px; font-weight: 500; color: #ff0000; display: none;}
 .popup_box .popup_cont h2 {padding:15px 0;color:#333;margin:0;}
 
-.popup_box .popup_btn {display:table; table-layout: fixed; width: 100%; height:30px; background:#ECECEC; word-break: break-word; right: 10px; border-bottom-left-radius: 8%; border-bottom-right-radius: 8%;}
+.popup_box .popup_btn {position: fixed; bottom: 0px; display:table; table-layout: fixed; width: 100%; height:30px; background:#ECECEC; word-break: break-word; border-bottom-left-radius: 8%; border-bottom-right-radius: 8%;}
 .popup_box .popup_btn a {position: relative; display: table-cell; height:32px;  font-size:12px; font-weight: 400px; text-align:center; vertical-align:middle; text-decoration:none; background:#ECECEC; border-radius: 8px;}
 .popup_box .popup_btn a.close_day {background:#5d5d5d;}
 .popup_box .popup_btn a.close_day:before, .popup_box .popup_btn a.close_day:after{display:none;}
