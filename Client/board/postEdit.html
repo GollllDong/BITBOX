@@ -7,7 +7,7 @@
     <title>BitBox~</title>
     <link rel="stylesheet" href="../static/css/style.css" />
     <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b2cc2127ed8271d4f203b201b1f7ba4e&libraries=services"></script>
+        src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=b2cc2127ed8271d4f203b201b1f7ba4e&libraries=services"></script>
     <script src="../static/js/socket-client.js"></script>
     <script src="../static/js/login/gnb.js"></script>
     <script src="../static/js/login/login.js"></script>
@@ -64,7 +64,7 @@
                             <span class="menu-line menu-line-1"></span>
                             <span class="menu-line menu-line-2"></span>
                             <span class="menu-line menu-line-3"></span>
-                          </span>
+                        </span>
                         <div class="user_img"></div>
                         <!-- <div class="user_subject">
 					 팝업 내용 넣기 
@@ -136,7 +136,10 @@
                                             <td class="textarea">
                                                 <textarea name="" id="">
 지난주에 학원 처음 오고 저녁을 팀원들과 함께 먹었는데 맛있었어요 곱창 전골 먹었는데 완전 비추~</textarea>
-                                                <div id="map" style="width: 50%; height: 400px;"></div>
+                                                <div id="map" style="width: 100%; height: 400px;"></div>
+                                                <input type="text" id="addressInput" placeholder="주소를 입력하세요" />
+                                                <button id="searchButton" onclick="searchAddress(addressInput.value)">주소
+                                                    검색</button>
                                             </td>
                                         </tr>
                                         <!-- <tr>
@@ -202,7 +205,9 @@
                 </div>
             </div>
         </div>
-        <script src="../static/js/map/map_read.js"></script>
+        <script src="/Client/static/js/map/map.js"></script>
+        <script src="/Client/static/js/map/rest.js"></script>
+        <script src="/Client/static/js/map/userMarker.js"></script>
 </body>
 
 </html>
