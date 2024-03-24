@@ -178,6 +178,19 @@ document.addEventListener('DOMContentLoaded', function () {
 // 게시판: writeButton, board_delete_btn, board_edit_btn, board_list_btn
 document.addEventListener('DOMContentLoaded', function () {
 
+    // [목록으로 돌아가기]]
+    var listButton = document.querySelector('.board_list_btn');
+    if (listButton) {
+        listButton.addEventListener('click', function () {
+            if (window.location.pathname.endsWith("index.html")) {
+                window.location.href = 'board/postReadAll.html';
+            } else {
+                window.location.href = '../board/postReadAll.html';
+            }
+        });
+    }
+
+    // [게시물 쓰기]
     var writeButton = document.querySelector('.board_write_btn');
     if (writeButton) {
         writeButton.addEventListener('click', function () {
@@ -189,47 +202,59 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    var saveButton = document.querySelector('.board_write_btn.mt10');
-    if (saveButton) {
-        saveButton.addEventListener('click', function () {
-            if (window.location.pathname.endsWith("index.html")) {
-                window.location.href = 'board/postReadAll.html';
-            } else {
-                window.location.href = '../board/postReadAll.html';
-            }
-        });
-    }
 
-    var deleteButton = document.querySelector('.board_delete_btn');
-    if (deleteButton) {
-        deleteButton.addEventListener('click', function () {
-            if (window.location.pathname.endsWith("index.html")) {
-                window.location.href = 'board/postReadAll.html';
-            } else {
-                window.location.href = '../board/postReadAll.html';
-            }
-        });
-    }
+    // var writeButton = document.querySelector('.board_write_btn');
+    // if (writeButton) {
+    //     writeButton.addEventListener('click', function () {
+    //         if (window.location.pathname.endsWith("index.html")) {
+    //             window.location.href = 'board/postWrite.html';
+    //         } else {
+    //             window.location.href = '../board/postWrite.html';
+    //         }
+    //     });
+    // }
 
-    var editButton = document.querySelector('.board_edit_btn');
-    if (editButton) {
-        editButton.addEventListener('click', function () {
-            if (window.location.pathname.endsWith("index.html")) {
-                window.location.href = 'board/postEdit.html';
-            } else {
-                window.location.href = '../board/postEdit.html';
-            }
-        });
-    }
+    // var saveButton = document.querySelector('.board_write_btn.mt10');
+    // if (saveButton) {
+    //     saveButton.addEventListener('click', function () {
+    //         if (window.location.pathname.endsWith("index.html")) {
+    //             window.location.href = 'board/postReadAll.html';
+    //         } else {
+    //             window.location.href = '../board/postReadAll.html';
+    //         }
+    //     });
+    // }
 
-    var listButton = document.querySelector('.board_list_btn');
-    if (listButton) {
-        listButton.addEventListener('click', function () {
-            if (window.location.pathname.endsWith("index.html")) {
-                window.location.href = 'board/postReadAll.html';
-            } else {
-                window.location.href = '../board/postReadAll.html';
-            }
-        });
-    }
+    // var deleteButton = document.querySelector('.board_delete_btn');
+    // if (deleteButton) {
+    //     deleteButton.addEventListener('click', function () {
+    //         if (window.location.pathname.endsWith("index.html")) {
+    //             window.location.href = 'board/postReadAll.html';
+    //         } else {
+    //             window.location.href = '../board/postReadAll.html';
+    //         }
+    //     });
+    // }
+
+    // var editButton = document.querySelector('.board_edit_btn');
+    // if (editButton) {
+    //     editButton.addEventListener('click', function () {
+    //         if (window.location.pathname.endsWith("index.html")) {
+    //             window.location.href = 'board/postEdit.html';
+    //         } else {
+    //             window.location.href = '../board/postEdit.html';
+    //         }
+    //     });
+    // }
+
+    // var listButton = document.querySelector('.board_list_btn');
+    // if (listButton) {
+    //     listButton.addEventListener('click', function () {
+    //         if (window.location.pathname.endsWith("index.html")) {
+    //             window.location.href = 'board/postReadAll.html';
+    //         } else {
+    //             window.location.href = '../board/postReadAll.html';
+    //         }
+    //     });
+    // }
 });

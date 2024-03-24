@@ -8,11 +8,13 @@ const socket = new WebSocket(server_address);
 
 let isConnected = false; // 초기값은 연결되지 않았음을 의미합니다.
 
+
 socket.onopen = function (e) {
     const log_msg = "[open] 연결이 설정되었습니다.";
 
     displayMessage("#messages", log_msg);
 };
+
 
 socket.onclose = function (e) {
     let log_msg = "";
@@ -24,20 +26,20 @@ socket.onclose = function (e) {
     displayMessage("#messages", log_msg);
 };
 
+
 socket.onerror = function (error) {
     const log_msg = `[error] ${error.message}`;
 
     displayMessage("#messages", log_msg);
 };
 
+
 socket.onmessage = function (e) {
     const log_msg = `[message] 서버로부터 데이터 수신 : ${e.data}`;
 
     displayMessage("#messages", log_msg);
     displayPacketMessage("#messages", e.data);
-
 };
-
 
 
 const sendMessage = function (message) {
@@ -46,9 +48,6 @@ const sendMessage = function (message) {
     const log_msg = `클라이언트 => 서버 ${message}`;
     displayMessage("#messages", log_msg);
 };
-
-
-
 
 
 const loginSuccess = function (msgObj) {
@@ -60,20 +59,25 @@ const loginSuccess = function (msgObj) {
 };
 
 
+// 로그인 성공 시 호출
 const connectionSuccess = function (msgObj) {
     isConnected = true;
     // console.log(isConnected);
 
     // 현재 페이지 URL 가져오기
     let currentPage = window.location.pathname;
-    // console.log(currentPage);
-    
-    // 만약 현재 페이지가 postReadAll.html이라면 sendGetAllPost() 호출
+
+    // 만약 현재 페이지가 postReadAll.html이라면 XXXX() 요청 함수 호출
     if (currentPage.includes('postReadAll.html')) {
         sendGetAllPost();
     } else if (currentPage.includes('postRead.html')) {
         sendGetPost();
+    } else if (currentPage.includes('postEdit.html')) {
+        sendGetPost();
+    } else if (currentPage.includes('postWrite.html')) {
+        sendGetUser();
     }
+
 };
 
 
@@ -81,7 +85,7 @@ const connectionSuccess = function (msgObj) {
 const displayMessage = function ($parentSelector, log_msg, kind_log = 0) {
     if (kind_log === 0 || kind_log === 2) console.log(log_msg);
     if (kind_log === 1 || kind_log === 2) {
-        // 이 요소 아래에 메시지 요소를 추가
+
         const parentElem = document.querySelector($parentSelector);
 
         const childElem = document.createElement("div");
@@ -93,9 +97,9 @@ const displayMessage = function ($parentSelector, log_msg, kind_log = 0) {
 
 // 통신 패킷 출력
 const displayPacketMessage = function ($parentSelector, message) {
-    // 이 요소 아래에 메시지 요소를 추가
+
     const parentElem = document.querySelector($parentSelector);
-    // json문자열 -> js 객체로 변환
+
     const msgObj = JSON.parse(message);
 
     let msg = "";
@@ -109,11 +113,15 @@ const displayPacketMessage = function ($parentSelector, message) {
         case "signup":
             if (msgObj.result === "ok") {
                 msg = "회원가입 성공";
-                window.location.href = '../../index.html';
-                // location.href = '../../index.html';
+                // HTML의 <a> 태그를 사용하여 페이지 이동
+                var link = document.createElement("a");
+                link.href = "../index.html";
+                document.body.appendChild(link);
+                link.click();
+                openPop();
                 //페이지 이동 & openpopup
             } else if (msgObj.result === "exist") {
-                msg = "이미 존재하는 사용자입니다.";
+                alert("이미 존재하는 사용자입니다.");
             } else {
                 msg = "회원가입 실패";
             }
@@ -127,14 +135,54 @@ const displayPacketMessage = function ($parentSelector, message) {
                 login_error.style.display = "block";
             }
             break;
+        case "getuser":
+            msg = msgObj.result === "ok" ? "작성자 확인 성공" : "작성자 확인 실패";
+            if (msgObj.result === "ok") {
+                const user = msgObj.post; // 변수명을 post로 수정
+                updateUIWithPostWriter(user);
+            }
+            break;
         case "insertpost":
             msg = msgObj.result === "ok" ? "게시물 작성 성공" : "게시물 작성 실패";
+            if (msgObj.result === "ok") {
+                alert("게시물 작성을 완료했어요.")
+                // 게시물 수정 성공 시 이전 페이지로 이동
+                const currentUrl = window.location.href; // 현재 페이지의 전체 URL
+                const baseUrl = currentUrl.split("/Client")[0]; // 기본 URL 경로 추출
+                const previousPageUrl = `${baseUrl}/Client/board/postReadAll.html`; // 이전 페이지의 전체 URL 생성
+                window.location.href = previousPageUrl; // 이전 페이지로 이동
+            } else {
+                alert("게시물은 오직 작성자만 수정할 수 있어요.");
+            }
             break;
         case "updatepost":
             msg = msgObj.result === "ok" ? "게시물 수정 성공" : "게시물 수정 실패";
+            if (msgObj.result === "ok") {
+                alert("게시물 수정을 완료했어요.")
+                // 게시물 수정 성공 시 이전 페이지로 이동
+                const urlParams = new URLSearchParams(window.location.search);
+                const postId = urlParams.get("id"); // 현재 페이지의 게시물 ID 추출
+                const currentUrl = window.location.href; // 현재 페이지의 전체 URL
+                const baseUrl = currentUrl.split("/Client")[0]; // 기본 URL 경로 추출
+                const previousPageUrl = `${baseUrl}/Client/board/postRead.html?id=${postId}`; // 이전 페이지의 전체 URL 생성
+                window.location.href = previousPageUrl; // 이전 페이지로 이동
+
+            } else {
+                alert("게시물은 오직 작성자만 수정할 수 있어요.");
+            }
             break;
         case "deletepost":
             msg = msgObj.result === "ok" ? "게시물 삭제 성공" : "게시물 삭제 실패";
+            if (msgObj.result === "ok") {
+                alert("게시물 삭제를 완료했어요.")
+                // 게시물 수정 성공 시 이전 페이지로 이동
+                const currentUrl = window.location.href; // 현재 페이지의 전체 URL
+                const baseUrl = currentUrl.split("/Client")[0]; // 기본 URL 경로 추출
+                const previousPageUrl = `${baseUrl}/Client/board/postReadAll.html`; // 이전 페이지의 전체 URL 생성
+                window.location.href = previousPageUrl; // 이전 페이지로 이동
+            } else {
+                alert("게시물 삭제에 실패 했어요.");
+            }
             break;
         case "getallpost":
             if (msgObj.result === "ok") {
@@ -148,7 +196,15 @@ const displayPacketMessage = function ($parentSelector, message) {
         case "getpost":
             if (msgObj.result === "ok") {
                 const post = msgObj.post; // 변수명을 post로 수정
-                updateUIWithPost(post); // 함수 호출 시 변수명도 post로 수정
+                const currentPage = window.location.pathname;
+                if (currentPage.includes('postRead.html')) {
+                    updateUIWithPost(post); // 함수 호출 시 변수명도 post로 수정
+                } else if (currentPage.includes('postEdit.html')) {
+                    console.log(post + "들어옴");
+                    updateUIWithPostEdit(post);
+                } else if (currentPage.includes('postWrite.html')) {
+                    updateUIWithPostWriter(postwriter);// 함수 호출 시 변수명도 post로 수정
+                }
             } else {
                 console.error("게시물 특정 조회 실패");
             }

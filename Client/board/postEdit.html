@@ -12,6 +12,7 @@
     <script src="../static/js/login/gnb.js"></script>
     <script src="../static/js/login/login.js"></script>
     <script src="../static/js/login/nav.js"></script>
+    <script src="../static/js/board/post.js"></script>
 
 </head>
 
@@ -112,9 +113,7 @@
                                         </tr>
                                         <tr>
                                             <th>제목</th>
-                                            <td>
-                                                여기 해장국 진짜 맛있어요~
-                                            </td>
+                                            <td>여기 해장국 진짜 맛있어요~</td>
                                         </tr>
                                         <tr>
                                             <th>작성자</th>
@@ -132,34 +131,29 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <th>별점</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
                                             <th>내용</th>
                                             <td class="textarea">
-                                                <textarea name="" id="">
-지난주에 학원 처음 오고 저녁을 팀원들과 함께 먹었는데 맛있었어요 곱창 전골 먹었는데 완전 비추~</textarea>
+                                                <textarea name="">새로고침을 해주세요.</textarea>
                                                 <div id="map" style="width: 100%; height: 400px;"></div>
                                                 <input type="text" id="addressInput" placeholder="주소를 입력하세요" />
                                                 <button id="searchButton" onclick="searchAddress(addressInput.value)">주소
                                                     검색</button>
                                             </td>
                                         </tr>
-                                        <!-- <tr>
-                                                <th>별점</th>
-                                                <td>
-                                                    <img
-                                                        src="../static/images/ico_star.svg"
-                                                        alt=""
-                                                    />
-                                                </td>
-                                            </tr> -->
+                                        
                                     </tbody>
                                 </table>
                             </div>
 
                             <div class="mt10">
-                                <button class="board_delete_btn flex-wrap">
+                                <button class="board_delete_btn flex-wrap" id="board_delete_btn">
                                     <span>삭제하기</span>
                                 </button>
-                                <button class="board_edit_btn flex-wrap">
+                                <button class="board_edit_btn flex-wrap" id="update_post_btn">
                                     <span>수정완료</span>
                                 </button>
                                 <button class="board_list_btn flex-wrap">

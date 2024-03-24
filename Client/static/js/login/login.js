@@ -13,10 +13,17 @@ function closePop() {
 const sendSignup = function () {
     const user_id = document.querySelector("#idInput").value;
     const user_pw = document.querySelector("#passInput").value;
+    const pw_check = document.querySelector("#passCheck").value;
     const user_name = document.querySelector("#name").value;
     const course_id = document.querySelector("#course").value;
     const course_code = document.querySelector("#code").value;
 
+
+
+    if (user_pw !== pw_check) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return;
+    }
     const packet = {
         cmd: "signup",
         user_id: user_id,

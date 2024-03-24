@@ -22,7 +22,7 @@ public class MainServer extends WebSocketServer {
 	public static void main(String[] args) {
 
 		String host = "127.0.0.1";
-		final int PORT = 9099;
+		final int PORT = 9000;
 
 		WebSocketServer server = new MainServer(new InetSocketAddress(host, PORT));
 		server.run();

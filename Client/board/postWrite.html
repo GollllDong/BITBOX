@@ -12,6 +12,7 @@
        <script src="../static/js/login/gnb.js"></script>
        <script src="../static/js/login/login.js"></script>
        <script src="../static/js/login/nav.js"></script>
+       <script src="../static/js/board/post.js"></script>
 </head>
 
 <body>
@@ -109,21 +110,15 @@
                                     <tbody>
                                         <tr>
                                             <th>음식 종류</th>
-                                            <td>한식</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <th>제목</th>
-                                            <td>
-                                                여기 해장국 진짜 맛있어요~
-                                            </td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <th>작성자</th>
-                                            <td>D08기 홍길동</td>
-                                        </tr>
-                                        <tr>
-                                            <th>작성일</th>
-                                            <td>2024-03-20</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <th>위치</th>
@@ -135,25 +130,19 @@
                                         <tr>
                                             <th>내용</th>
                                             <td class="textarea">
-                                                <textarea name="" id="">
-지난주에 학원 처음 오고 저녁을 팀원들과 함께 먹었는데 맛있었어요 곱창 전골 먹었는데 완전 비추~</textarea>
+                                                <textarea name="" id=""></textarea>
                                                 <div id="map" style="width: 80%; height: 400px;"></div>
                                                 <input type="text" id="addressInput" placeholder="주소를 입력하세요" />
                                                 <button id="searchButton" onclick="searchAddress(addressInput.value)">주소 검색</button>
                                             </td>
                                         </tr>
-                                        <!-- <tr>
-                                            <th>별점</th>
-                                            <td>
-                                                <img src="../static/images/ico_star.svg" alt="" />
-                                            </td>
-                                        </tr> -->
+                    
                                     </tbody>
                                 </table>
                             </div>
 
                             <div class="mt10">
-                                <button class="board_write_btn mb20">
+                                <button class="board_write_btn mb20" id="insert_post_btn">
                                     <span>작성 완료</span>
                                 </button>
                             </div>
