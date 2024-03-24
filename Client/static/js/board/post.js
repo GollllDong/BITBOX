@@ -368,7 +368,7 @@ const updateUIWithPost = function (post) {
             <tr>
                 <th>내용</th>
                 <td class="textarea">
-                    <textarea name="" id="">${post.post_content}</textarea>
+                    <textarea name="" id="" readonly>${post.post_content}</textarea>
                 </td>
             </tr>
             <tr>

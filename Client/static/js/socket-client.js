@@ -1,6 +1,6 @@
 // const SERVER_IP = "192.168.0.20";
 const SERVER_IP = "127.0.0.1";
-const SERVER_PORT = "9000";
+const SERVER_PORT = "9900";
 const server_address = `ws://${SERVER_IP}:${SERVER_PORT}`; // ws://127.0.0.1:9000
 
 const socket = new WebSocket(server_address);
@@ -152,21 +152,17 @@ const displayPacketMessage = function ($parentSelector, message) {
                 const previousPageUrl = `${baseUrl}/Client/board/postReadAll.html`; // 이전 페이지의 전체 URL 생성
                 window.location.href = previousPageUrl; // 이전 페이지로 이동
             } else {
-                alert("게시물은 오직 작성자만 수정할 수 있어요.");
+                alert("게시물 작성을 실패했어요.");
             }
             break;
         case "updatepost":
             msg = msgObj.result === "ok" ? "게시물 수정 성공" : "게시물 수정 실패";
             if (msgObj.result === "ok") {
                 alert("게시물 수정을 완료했어요.")
-                // 게시물 수정 성공 시 이전 페이지로 이동
-                const urlParams = new URLSearchParams(window.location.search);
-                const postId = urlParams.get("id"); // 현재 페이지의 게시물 ID 추출
                 const currentUrl = window.location.href; // 현재 페이지의 전체 URL
                 const baseUrl = currentUrl.split("/Client")[0]; // 기본 URL 경로 추출
-                const previousPageUrl = `${baseUrl}/Client/board/postRead.html?id=${postId}`; // 이전 페이지의 전체 URL 생성
+                const previousPageUrl = `${baseUrl}/Client/board/postReadAll.html`; // 이전 페이지의 전체 URL 생성
                 window.location.href = previousPageUrl; // 이전 페이지로 이동
-
             } else {
                 alert("게시물은 오직 작성자만 수정할 수 있어요.");
             }
@@ -175,7 +171,6 @@ const displayPacketMessage = function ($parentSelector, message) {
             msg = msgObj.result === "ok" ? "게시물 삭제 성공" : "게시물 삭제 실패";
             if (msgObj.result === "ok") {
                 alert("게시물 삭제를 완료했어요.")
-                // 게시물 수정 성공 시 이전 페이지로 이동
                 const currentUrl = window.location.href; // 현재 페이지의 전체 URL
                 const baseUrl = currentUrl.split("/Client")[0]; // 기본 URL 경로 추출
                 const previousPageUrl = `${baseUrl}/Client/board/postReadAll.html`; // 이전 페이지의 전체 URL 생성
@@ -200,7 +195,6 @@ const displayPacketMessage = function ($parentSelector, message) {
                 if (currentPage.includes('postRead.html')) {
                     updateUIWithPost(post); // 함수 호출 시 변수명도 post로 수정
                 } else if (currentPage.includes('postEdit.html')) {
-                    console.log(post + "들어옴");
                     updateUIWithPostEdit(post);
                 } else if (currentPage.includes('postWrite.html')) {
                     updateUIWithPostWriter(postwriter);// 함수 호출 시 변수명도 post로 수정

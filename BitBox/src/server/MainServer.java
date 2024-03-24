@@ -242,7 +242,7 @@ public class MainServer extends WebSocketServer {
 				int result = PostDao.deletePost(DBConnection.getConnection(), post);
 
 				JSONObject ackObj = new JSONObject();
-				ackObj.put("cmd", "updatepost");
+				ackObj.put("cmd", "deletepost");
 				if (result == 1) {
 					ackObj.put("result", "ok");
 				} else {
