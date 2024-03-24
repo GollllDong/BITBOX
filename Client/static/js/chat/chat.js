@@ -35,7 +35,8 @@ const newChatMsg = function () {
     this.classList.add("select");
 
     enterChatMsg(room, roomname);
-    messageBox.textContent = "";
+    messageBox.textContent = room + "채팅방입니다.";
+
   })
 
   const packet = {
