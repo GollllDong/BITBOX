@@ -403,55 +403,86 @@ public class MainServer extends WebSocketServer {
 
 			}
 		} else if (cmd.equals("newchat")) {
-			int room = msgObj.getInt("room");
-			String roomName = msgObj.getString("name");
-			Chat newRoom = new Chat(room, roomName);
-			
-			// 소켓가진 유저 채팅리스트에 넣기
-			List<Chat> chatClient = new ArrayList<Chat>();
-			chatRooms.put(room, chatClient);
-			
-			// 채팅방생성했는지
-			System.out.printf("room: %s\n", room);
-			
-			// 응답객체
-			JSONObject ackObj = new JSONObject();
-			ackObj.put("cmd", "newchat");
-			ackObj.put("result", "ok");
+            try {
+//              int room = msgObj.getInt("room");
+//              String roomName = msgObj.getString("name");
+//              Chat newRoom = new Chat(msgObj, conn);
+//
+//              List<Chat> chatClient = new ArrayList<>();
+//              chatClient.add(newRoom);
+//              chatRooms.put(room, chatClient);
+              int room = msgObj.getInt("room");
+              String roomName = msgObj.getString("name");
+              Chat newRoom = new Chat(room, roomName);
 
-			// 생성된 채팅방을 디비에 저장
-            Chat chatDto = new Chat(msgObj, conn);
-            ChatDao chatDao = new ChatDao();
-			chatDao.saveChatRoom(chatDto);
-			chatDao.showChatRoom();
-		}else if (cmd.equals("enterchat")) {
-			// 해당 채팅방에 클라이언트 들어가기
-			Chat chatClient = new Chat(msgObj, conn);
-			int room = chatClient.getRoom_id();
-			
-			List<Chat> enteredChatClient = chatRooms.get(room);
-			enteredChatClient.add(chatClient);
-			
-			// 응답객체
-			JSONObject ackObj = new JSONObject();
-			ackObj.put("cmd", "enterchat");
-			ackObj.put("result", "ok");
-			conn.send(ackObj.toString());
-			
-		} else if (cmd.equals("getchat")) {
-			ChatDao chatDao = new ChatDao();
-			List<Chat> chats = chatDao.showChatRoom();
-			
-			// 조회 결과를 클라이언트에 응답
-			JSONObject ackObj = new JSONObject();
-			// 특정게시물 정보를 JSON으로 변환하여 응답에 포함
-			JSONArray chatObj = new JSONArray(chats);
-			ackObj.put("cmd", "getchat");
-			ackObj.put("chatList", chatObj);
-			ackObj.put("result", "ok");
-			
-			conn.send(ackObj.toString());
-		} else if (cmd.equals("chat")) {
+              List<Chat> chatClient = new ArrayList<>();
+              chatRooms.put(room, chatClient);
+
+              // 채팅방생성했는지
+              System.out.printf("room: %s\n", room);
+
+              // 응답객체
+              JSONObject ackObj = new JSONObject();
+              ackObj.put("cmd", "newchat");
+              ackObj.put("result", "ok");
+
+              // 생성된 채팅방을 디비에 저장
+              Chat chatDto = new Chat(msgObj, conn);
+              ChatDao chatDao = new ChatDao();
+              chatDao.saveChatRoom(chatDto);
+              chatDao.showChatRoom();
+
+          } catch (Exception e) {
+              e.printStackTrace();
+
+          }
+
+      }else if (cmd.equals("enterchat")) {
+            try {
+                // 몇번째 채팅방인지 확인
+                int room = msgObj.getInt("room");
+                String userId = msgObj.getString("id");
+                Chat chat = new Chat(msgObj, conn);
+                int roomId = chat.getRoom_id();
+                List<Chat> chats = chatRooms.get(roomId);
+                chats.add(chat);
+
+
+
+                // 응답객체
+                JSONObject ackObj = new JSONObject();
+                ackObj.put("cmd", "enterchat");
+                ackObj.put("result", "ok");
+                conn.send(ackObj.toString());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        } else if (cmd.equals("getchat")) {
+            try {
+                ChatDao chatDao = new ChatDao();
+                List<Chat> chats = chatDao.showChatRoom();
+
+                for (int i = 0; i < chats.size(); i++){
+                    Chat chat = chats.get(i);
+                    chatRooms.put(chat.getRoom_id(), chats);
+                }
+                // 조회 결과를 클라이언트에 응답
+                JSONObject ackObj = new JSONObject();
+                // 특정 게시물 정보를 JSON으로 변환하여 응답에 포함
+                JSONArray chatObj = new JSONArray(chats);
+                ackObj.put("cmd", "getchat");
+                ackObj.put("chatList", chatObj);
+                ackObj.put("result", "ok");
+
+                conn.send(ackObj.toString());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        }else if (cmd.equals("chat")) {
 			int room = msgObj.getInt("room");
 			String id = msgObj.getString("id");
 			String msg = msgObj.getString("msg");

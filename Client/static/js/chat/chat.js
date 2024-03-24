@@ -25,6 +25,7 @@ const newChatMsg = function () {
   // 채팅방 들어가기
   addDiv.addEventListener("click", function () {
     const box = document.querySelector(".chat_list_box");
+    const messageBox = document.querySelector("#messages");
 
     for (let selectedDiv of box.children) {
       if (selectedDiv.classList.contains("select")) {
@@ -34,7 +35,7 @@ const newChatMsg = function () {
     this.classList.add("select");
 
     enterChatMsg(room, roomname);
-    // sendChatMsg(room);
+    messageBox.textContent = "";
   })
 
   const packet = {

@@ -161,6 +161,7 @@ const displayPacketMessage = function ($parentSelector, message) {
 
 const getChatList = function (allChat) {
 	const chatListElem = document.querySelector(".chat_add");
+
 	for (let i = 0; i < allChat.length; i++) {
 		const chatElem = document.createElement("div");
 		chatElem.textContent = "채팅방" + i;
@@ -184,4 +185,5 @@ const getChatList = function (allChat) {
 		cnt = allChat[i].room_id + 1;
 		console.log(cnt);
 	}
+
 }

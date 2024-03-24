@@ -1,6 +1,6 @@
 // const SERVER_IP = "192.168.0.20";
 const SERVER_IP = "127.0.0.1";
-const SERVER_PORT = "9900";
+const SERVER_PORT = "9001";
 const server_address = `ws://${SERVER_IP}:${SERVER_PORT}`; // ws://127.0.0.1:9000
 
 const socket = new WebSocket(server_address);
@@ -104,7 +104,6 @@ const displayPacketMessage = function ($parentSelector, message) {
 
     let msg = "";
     let idMsg = "";
-    let loginInfo = "";
     switch (msgObj.cmd) {
         case "connect":
             msg = msgObj.result;
@@ -203,19 +202,6 @@ const displayPacketMessage = function ($parentSelector, message) {
                 console.error("게시물 특정 조회 실패");
             }
             break;
-
-        case "chat":
-            if ("id" in msgObj) {
-                idMsg = `${msgObj.id}`;
-                msg = `${msgObj.msg}`;
-            }
-            break;
-        case "newchat":
-            msg = msgObj.result === "ok" ? "채팅방 생성 성공" : "채팅방 생성 실패";
-            break;
-        case "enterchat":
-            msg = msgObj.result === "ok" ? `${msgObj.id}님이 들어왔습니다` : "채팅방 들어가기 실패";
-            break;
     }
 
     // post 조회 뿌려줄 
@@ -224,19 +210,4 @@ const displayPacketMessage = function ($parentSelector, message) {
     // const childElem = document.createElement("h3");
     // childElem.textContent = msg;
     // parentElem.appendChild(childElem);
-
-
-    // if (childSpanElem.textContent != "" && childIdElem.textContent != "") {
-    //    // 채팅부분
-    // const childIdElem = document.createElement("p");
-    // const childSpanElem = document.createElement("span");
-    // childIdElem.textContent = idMsg;
-    // childSpanElem.textContent = msg;
-
-    // childIdElem.classList.add("chat_id");
-    // childSpanElem.classList.add("chat_msg");
-    // parentElem.appendChild(childIdElem);
-    // parentElem.appendChild(childSpanElem);
-    // }
-
 };
