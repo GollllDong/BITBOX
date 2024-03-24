@@ -63,30 +63,30 @@ public class TodoDao {
 		return result;
 	}
 
-	public static TodoList showTodo(Connection conn, int todolist_id) throws SQLException {
-
-		String sql = "SELECT todolist_category, todolist_content" + "FROM todolist WHERE todolist_isDeleted = 0";
-
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setInt(1, todolist_id);
-
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
-
-					TodoList todo = new TodoList();
-					todo.setTodolist_id(todolist_id);
-					todo.setTodolist_category(rs.getString("Todolist_category"));
-					todo.setTodolist_content(rs.getString("Todolist_content"));
-
-					return todo;
-				}
-			}
-
-		} catch (Exception e) {
-			// 예외 발생 시 오류 출력
-			e.printStackTrace();
-		} finally {
-			return null;
-		}
-	}
+//	public static TodoList showTodo(Connection conn, int todolist_id) throws SQLException {
+//
+//		String sql = "SELECT todolist_category, todolist_content" + "FROM todolist WHERE todolist_isDeleted = 0";
+//
+//		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//			pstmt.setInt(1, todolist_id);
+//
+//			try (ResultSet rs = pstmt.executeQuery()) {
+//				if (rs.next()) {
+//
+//					TodoList todo = new TodoList();
+//					todo.setTodolist_id(todolist_id);
+//					todo.setTodolist_category(rs.getString("Todolist_category"));
+//					todo.setTodolist_content(rs.getString("Todolist_content"));
+//
+//					return todo;
+//				}
+//			}
+//
+//		} catch (Exception e) {
+//			// 예외 발생 시 오류 출력
+//			e.printStackTrace();
+//		} finally {
+//			return null;
+//		}
+//	}
 }

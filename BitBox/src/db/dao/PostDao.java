@@ -17,15 +17,17 @@ public class PostDao {
 		int result = 0;
 
 		try {
-			sql = "INSERT INTO post (food_category, post_title, content_location, post_content, user_id)";
-			sql += "VALUES (?, ?, ?, ?, ?)";
+			sql = "INSERT INTO post (food_category, post_title, content_location, post_content, likes, user_id)";
+			sql += "VALUES (?, ?, ?, ?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, post.getFood_category());
 			pstmt.setString(2, post.getPost_title());
 			pstmt.setString(3, post.getContent_location());
 			pstmt.setString(4, post.getPost_content());
-			pstmt.setString(5, post.getUser_id());
+			pstmt.setString(5, post.getLikes());
+			pstmt.setString(6, post.getUser_id());
+			
 
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -45,16 +47,17 @@ public class PostDao {
 		int result = 0;
 
 		try {
-			sql = "UPDATE post SET food_category = ?, post_title = ?, content_location = ?, post_content = ?";
-			sql += "WHERE user_id = ? AND post_id = ?";
+			sql = "UPDATE post SET food_category = ?, post_title = ?, content_location = ?, post_content = ?, likes = ? ";
+			sql += " WHERE user_id = ? AND post_id = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, post.getFood_category());
 			pstmt.setString(2, post.getPost_title());
 			pstmt.setString(3, post.getContent_location());
 			pstmt.setString(4, post.getPost_content());
-			pstmt.setString(5, post.getUser_id());
-			pstmt.setInt(6, post.getPost_id());
+			pstmt.setString(5, post.getLikes());
+			pstmt.setString(6, post.getUser_id());
+			pstmt.setInt(7, post.getPost_id());
 
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -120,7 +123,7 @@ public class PostDao {
 
 	public static Post getPost(Connection conn, int post_id) throws SQLException {
 
-		String sql = "SELECT post.post_id, post.food_category, post.post_title, user.course_id, user.user_name, post.post_createDate, post.content_location, post.post_content, likes "
+		String sql = "SELECT post.post_id, post.food_category, post.post_title, user.course_id, user.user_name, post.post_createDate, post.content_location, post.post_content, post.likes "
 				+ "FROM post, user WHERE post.user_id = user.user_id AND post.post_isDeleted = 0 AND post.post_id = ?";
 
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -141,6 +144,34 @@ public class PostDao {
 					post.setPost_content(rs.getString("post_content"));
 					post.setLikes(rs.getString("likes"));
 					return post;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+
+		return null; // 객체 반환
+
+	}
+	
+	public static Post getPostWriter(Connection conn, Post post) throws SQLException {
+
+		String sql = "SELECT course_id, user_name "
+				+ "FROM user WHERE user_id = ?";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, post.getUser_id());
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					// 쿼리 실행 결과를 Post 객체로 변환하여 반환
+
+					Post loginedUser = new Post();
+					loginedUser.setCourse_id(rs.getString("course_id"));;
+					loginedUser.setUser_name(rs.getString("user_name"));
+					return loginedUser;
 				}
 			}
 		} catch (SQLException e) {

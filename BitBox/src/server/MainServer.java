@@ -22,7 +22,7 @@ public class MainServer extends WebSocketServer {
 	public static void main(String[] args) {
 
 		String host = "127.0.0.1";
-		final int PORT = 9000;
+		final int PORT = 9099;
 
 		WebSocketServer server = new MainServer(new InetSocketAddress(host, PORT));
 		server.run();
@@ -130,8 +130,9 @@ public class MainServer extends WebSocketServer {
 			String content_location = msgObj.getString("content_location");
 			String post_content = msgObj.getString("post_content");
 			String user_id = msgObj.getString("user_id");
-			System.out.printf("[게시물 작성] id: %s   post_title: %s   content_location: %s   post_content: %s\n", user_id,
-					post_title, content_location, post_content);
+			String likes = msgObj.getString("likes");
+			System.out.printf("[게시물 작성] id: %s   post_title: %s   content_location: %s   post_content: %s	likes: s\n", user_id,
+					post_title, content_location, post_content, likes);
 
 			// 게시물 작성 시도
 			try {
@@ -141,6 +142,7 @@ public class MainServer extends WebSocketServer {
 				post.setContent_location(content_location);
 				post.setPost_content(post_content);
 				post.setUser_id(user_id);
+				post.setLikes(likes);
 				int result = PostDao.insertPost(DBConnection.getConnection(), post); // 게시물 작성 시도
 
 				JSONObject ackObj = new JSONObject();
@@ -158,16 +160,48 @@ public class MainServer extends WebSocketServer {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if (cmd.equals("getuser")) {
+
+			String user_id = msgObj.getString("user_id");
+			System.out.printf("[게시물 작성자] id: %s",  user_id);
+
+			try {
+				Post post = new Post();
+				post.setUser_id(user_id);
+				
+				Post loginedUser = PostDao.getPostWriter(DBConnection.getConnection(), post); // 게시물 작성 시도
+
+				JSONObject ackObj = new JSONObject();
+				ackObj.put("cmd", "getuser");
+
+
+					if (loginedUser != null) {
+						// 조회 결과를 클라이언트에 응답
+						ackObj.put("result", "ok");
+						// 특정 게시물 정보를 JSON으로 변환하여 응답에 포함
+						JSONObject postObj = new JSONObject(loginedUser);
+						ackObj.put("post", postObj);
+					} else {
+						// 게시물이 없을 경우
+						ackObj.put("result", "fail");
+					}
+
+					conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
 		} else if (cmd.equals("updatepost")) {
 			String food_category = msgObj.getString("food_category");
 			String post_title = msgObj.getString("post_title");
 			String content_location = msgObj.getString("content_location");
 			String post_content = msgObj.getString("post_content");
+			String likes = msgObj.getString("likes");
 			String user_id = msgObj.getString("user_id");
 			Integer post_id = msgObj.getInt("post_id");
 			System.out.printf(
-					"[게시물 수정] food_category: %s   post_title: %s   content_location: %s   post_content: %s\n   user_id: %s\n   Post_id: %d\n",
-					food_category, post_title, content_location, post_content, user_id, post_id);
+					"[게시물 수정] food_category: %s   post_title: %s   content_location: %s   post_content: %s   likes: %s 	user_id: %s   Post_id: %d	\n ",
+					food_category, post_title, content_location, post_content, likes, user_id, post_id);
 
 			// 게시물 작성 시도
 			try {
@@ -176,6 +210,7 @@ public class MainServer extends WebSocketServer {
 				post.setPost_title(post_title);
 				post.setContent_location(content_location);
 				post.setPost_content(post_content);
+				post.setLikes(likes);
 				post.setUser_id(user_id);
 				post.setPost_id(post_id);
 				int result = PostDao.updatePost(DBConnection.getConnection(), post);
@@ -196,7 +231,7 @@ public class MainServer extends WebSocketServer {
 		} else if (cmd.equals("deletepost")) {
 			String user_id = msgObj.getString("user_id");
 			Integer post_id = msgObj.getInt("post_id");
-			System.out.printf("[게시물 삭제]  user_id: %s\n   Post_id: %d\n", user_id, post_id);
+			System.out.printf("[게시물 삭제]  user_id: %s   Post_id: %d", user_id, post_id);
 
 			// 게시물 작성 시도
 			try {
