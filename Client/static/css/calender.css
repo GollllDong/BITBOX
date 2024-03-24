@@ -12,13 +12,13 @@ button {
     height: 32px;
 }
 
-.header {
+.c_header {
     display: flex;
-    font-size: 40px;
+    font-size: 35px;
     justify-content: space-between  ;
     align-items: center;
-    padding-bottom: 12px;
-    margin: 12px 24px 12px 24px;
+    padding-bottom: 5px;
+    margin: 0px 24px 12px 24px;
     font-weight: bold;
 }
 
@@ -54,7 +54,7 @@ button {
 .date {
     text-align: center;
     width: calc(100%/7);
-    padding: 16px 0 16px 0;
+    padding: 6px 0 6px 0;
     box-sizing: border-box;
     font-weight: bold;
 }
@@ -62,12 +62,13 @@ button {
 .day {
     text-align: center;
     width: calc(100%/7);
-    padding: 16px 0 32px 0;
+    padding: 6px 0 12px 0;
     box-sizing: border-box;
     color: #aaaaaa;
     font-weight: bold;
 }
 
+#sunday{color: red;}
 
 .date:nth-child(7n+1) {
     background-color: var(--sun-color);
@@ -87,8 +88,8 @@ button {
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background-color: #e7e7e7;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     z-index: -1;
 }
 

@@ -142,20 +142,31 @@
                 </div>
                 <div class="w33p w100p_768">
                   <article class="box">
-                    <div class="plusbox4" id="link"></div>
-                    <h3 class="sub_subject">수강생들의 맛있는 발견</h3>
-                    <p>학원 근처 맛집 지도</p>
-                    <div class="box_img">
-                      <!-- <img src="" alt="" /> -->
-                      <link rel="stylesheet" href="map/map.html">
-                      <div class="box_img map1"></div>
+                    <div class="calender">
+                      <div class="c_header">
+                        <button class="prevBtn" onclick="prevCal()"></button>
+                        <div class="title">
+                          <div class="yearTitle"></div>
+                          <div class="monthTitle"></div>
+                        </div>
+                        <button class="nextBtn" onclick="nextCal()"></button>
+                      </div>
+                      <div class="main">
+                        <div class="daies">
+                          <div class="day" id="sunday">일</div>
+                          <div class="day">월</div>
+                          <div class="day">화</div>
+                          <div class="day">수</div>
+                          <div class="day">목</div>
+                          <div class="day">금</div>
+                          <div class="day">토</div>
+                        </div>
+                        <div class="dates"></div>
+                      </div>
                     </div>
-                    <p></p>
-                    <div class="box_img2">
-                      <!-- <img src="" alt="" /> -->
-                      <div class="box_img2 map2"></div>
-                    </div>
-                </article>
+                    <script type="text/javascript" src="../Client/static/js/calendar.js"></script>
+                  </body>
+                  </article>
                 </div>
               </div>
             </section>
