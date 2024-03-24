@@ -1,8 +1,5 @@
 :root {
     --line-color: #aaaaaa;
-    --sat-color: #0a9102;
-    --sun-color: #0ba803;
-    --today-color: #033c01;
 }
 
 body {
@@ -17,19 +14,23 @@ button {
 
 .header {
     display: flex;
-    font-size: 48px;
-    justify-content: space-around;
+    font-size: 40px;
+    justify-content: space-between  ;
     align-items: center;
     padding-bottom: 12px;
     margin: 12px 24px 12px 24px;
-    border-bottom: 2px solid var(--line-color);
+    font-weight: bold;
 }
 
 .title {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+}
+
+.yearTitle::after {
+    content: ".";
+    margin-right: 5px;
 }
 
 .main {
@@ -50,26 +51,77 @@ button {
     width: 100%;
 }
 
-.date,
-.day {
+.date {
     text-align: center;
     width: calc(100%/7);
     padding: 16px 0 16px 0;
     box-sizing: border-box;
+    font-weight: bold;
 }
 
-.date:nth-child(7n),
-.day:nth-child(7n) {
-    background-color: var(--sat-color);
-    color: blue;
+.day {
+    text-align: center;
+    width: calc(100%/7);
+    padding: 16px 0 32px 0;
+    box-sizing: border-box;
+    color: #aaaaaa;
+    font-weight: bold;
 }
 
-.date:nth-child(7n+1),
-.day:nth-child(7n+1) {
+
+.date:nth-child(7n+1) {
     background-color: var(--sun-color);
     color: red;
 }
 
 .today {
-    border: 2px solid var(--today-color) !important;
+    position: relative;
+    border-radius: 50%;
+}
+
+.today::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: #e7e7e7;
+    width: 45px;
+    height: 45px;
+    z-index: -1;
+}
+
+.prevBtn::before {
+    content: "<";
+}
+
+.nextBtn::after {
+    content: ">";
+}
+.prevBtn::before,
+.nextBtn::after {
+    font-size: 40px;
+}
+
+.prevBtn,
+.nextBtn {
+    background-color: white;
+    width: 250px;
+    height: 40px;
+}
+
+.prevBtn:hover,
+.nextBtn:hover {
+    cursor: pointer;
+}
+
+.prevMonthDate,
+.nextMonthDate {
+    color: #aaaaaa;
+}
+
+.prevBtn,
+.nextBtn {
+    align-self: center; /* Btn들이 title을 기준으로 수직 중앙 정렬되도록 설정 */
 }
