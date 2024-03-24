@@ -39,6 +39,7 @@ const newChatMsg = function () {
 
   const packet = {
     cmd: "newchat",
+    id: user_id,
     room: cnt,
     name: roomname,
   };
@@ -68,12 +69,21 @@ const sendChatMsg = function () {
     cmd: "chat",
     id: user_id,
     msg: message,
-    // room: roomNum,
+    room: roomNum,
   };
   const jsonStr = JSON.stringify(packet); // js객체 -> json문자열
   sendMessage(jsonStr);
 
   prepareScroll();
+};
+
+// 채팅방 가져오기
+const getChat = function () {
+  const packet = {
+    cmd: "getchat",
+  };
+  const jsonStr = JSON.stringify(packet); // js객체 -> json문자열
+  sendMessage(jsonStr);
 };
 
 document.addEventListener("DOMContentLoaded", () => {

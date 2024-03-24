@@ -1,6 +1,8 @@
 package server;
 
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.java_websocket.WebSocket;
@@ -10,19 +12,22 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import db.DBConnection;
+import db.dao.ChatDao;
 import db.dao.PostDao;
 import db.dao.TodoDao;
 import db.dao.UserDao;
+import dto.Chat;
 import dto.Post;
 import dto.TodoList;
 import dto.User;
 
 public class MainServer extends WebSocketServer {
-
+	// 필드
+	private HashMap<Integer, List<Chat>> chatRooms = new HashMap<>();
+		
 	public static void main(String[] args) {
-
 		String host = "127.0.0.1";
-		final int PORT = 9000;
+		final int PORT = 9001;
 
 		WebSocketServer server = new MainServer(new InetSocketAddress(host, PORT));
 		server.run();
@@ -397,7 +402,68 @@ public class MainServer extends WebSocketServer {
 				e.printStackTrace();
 
 			}
-		}
+		} else if (cmd.equals("newchat")) {
+			int room = msgObj.getInt("room");
+			String roomName = msgObj.getString("name");
+			Chat newRoom = new Chat(room, roomName);
+			
+			// 소켓가진 유저 채팅리스트에 넣기
+			List<Chat> chatClient = new ArrayList<Chat>();
+			chatRooms.put(room, chatClient);
+			
+			// 채팅방생성했는지
+			System.out.printf("room: %s\n", room);
+			
+			// 응답객체
+			JSONObject ackObj = new JSONObject();
+			ackObj.put("cmd", "newchat");
+			ackObj.put("result", "ok");
+
+			// 생성된 채팅방을 디비에 저장
+            Chat chatDto = new Chat(msgObj, conn);
+            ChatDao chatDao = new ChatDao();
+			chatDao.saveChatRoom(chatDto);
+			chatDao.showChatRoom();
+		}else if (cmd.equals("enterchat")) {
+			// 해당 채팅방에 클라이언트 들어가기
+			Chat chatClient = new Chat(msgObj, conn);
+			int room = chatClient.getRoom_id();
+			
+			List<Chat> enteredChatClient = chatRooms.get(room);
+			enteredChatClient.add(chatClient);
+			
+			// 응답객체
+			JSONObject ackObj = new JSONObject();
+			ackObj.put("cmd", "enterchat");
+			ackObj.put("result", "ok");
+			conn.send(ackObj.toString());
+			
+		} else if (cmd.equals("getchat")) {
+			ChatDao chatDao = new ChatDao();
+			List<Chat> chats = chatDao.showChatRoom();
+			
+			// 조회 결과를 클라이언트에 응답
+			JSONObject ackObj = new JSONObject();
+			// 특정게시물 정보를 JSON으로 변환하여 응답에 포함
+			JSONArray chatObj = new JSONArray(chats);
+			ackObj.put("cmd", "getchat");
+			ackObj.put("chatList", chatObj);
+			ackObj.put("result", "ok");
+			
+			conn.send(ackObj.toString());
+		} else if (cmd.equals("chat")) {
+			int room = msgObj.getInt("room");
+			String id = msgObj.getString("id");
+			String msg = msgObj.getString("msg");
+			System.out.printf("id: %s   msg: %s\n", id, msg);
+
+			// 접속한 애들의 정보
+			List<Chat> chatClientList = chatRooms.get(room);
+			for (Chat chat : chatClientList) {
+				WebSocket con = chat.getConn();
+				con.send(message);
+			}
+		} 
 	}
 
 	@Override
