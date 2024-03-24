@@ -215,8 +215,9 @@ const updateUIWithPost = function (post) {
 const getLocation = function (post) {
     const contentLocation = post.content_location;
     console.log(contentLocation);
-};
-
+    showUserAndRestaurantMap(contentLocation);
+ };
+ console.log("위치 정보:" + contentLocation);
 
 
 document.addEventListener("DOMContentLoaded", () => {

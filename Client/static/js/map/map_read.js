@@ -1,3 +1,6 @@
+// map_read.js
+
+
 // 지도를 화면에 띄우는 함수
 function displayMap() {
     // 지도를 담을 영역의 DOM 요소를 가져옵니다
@@ -6,7 +9,7 @@ function displayMap() {
  
     // 지도를 생성합니다
     const map = new kakao.maps.Map(mapContainer, {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 기본 중심 좌표는 서울시청
+        center: new kakao.maps.LatLng(37.57861, 126.97722), // 기본 중심 좌표는 경복궁
         level: 5 // 지도의 확대 레벨 설정
     });
  
@@ -35,14 +38,15 @@ function displayMap() {
  
  
     // 주소로 좌표를 검색
-    geocoder.addressSearch(address, function(result, status) {
+    geocoder.addressSearch(address, function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
             const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
  
  
+            clearRestaurantMarkers();
             const userMarkerImage = new kakao.maps.MarkerImage(
                 '../static/images/RestaurantLocation.png',
-                new kakao.maps.Size(60, 60), // 마커 이미지 크기
+                new kakao.maps.Size(50, 50), // 마커 이미지 크기
                 { offset: new kakao.maps.Point(25, 50) } // 마커 이미지의 중심좌표 설정
             );
  
@@ -65,7 +69,7 @@ function displayMap() {
  
  
  // 사용자 위치와 음식점 주소에 대한 지도를 표시합니다
- function showUserAndRestaurantMap() {
+ function showUserAndRestaurantMap(contentLocation) {
     // 지도를 화면에 띄우고 지도 객체를 가져옵니다
     const map = displayMap();
  
@@ -79,53 +83,19 @@ function displayMap() {
             const userCoords = new kakao.maps.LatLng(lat, lon); // 사용자의 현재 위치
  
  
-            const userMarkerImage = new kakao.maps.MarkerImage(
-                '../static/images/user_location.png',
-                new kakao.maps.Size(60, 60), // 마커 이미지 크기
-                { offset: new kakao.maps.Point(25, 50) } // 마커 이미지의 중심좌표 설정
-            );
- 
- 
             // 사용자의 현재 위치에 마커를 찍습니다
             const userMarker = new kakao.maps.Marker({
                 position: userCoords,
-                map: map,
-                image : userMarkerImage
+                map: map
             });
- 
- 
-            // 사용자의 현재 위치를 중심으로 반경 500m의 원을 생성합니다
-            const circle = new kakao.maps.Circle({
-                center: userCoords,
-                radius: 500, // 반경은 500m
-                strokeWeight: 5,
-                strokeColor: '#75B8FA',
-                strokeOpacity: 1,
-                strokeStyle: 'dashed',
-                fillColor: '#CFE7FF', // 원 안 색상
-                fillOpacity: 0.5 // 원의 투명도
-            });
- 
- 
-            // 원을 지도에 표시합니다
-            circle.setMap(map);
  
  
             // 지도의 중심을 사용자의 현재 위치로 설정합니다
             map.panTo(userCoords);
         });
     }
- 
- 
-    // 음식점 주소에 대한 마커를 표시합니다
-    const restaurantAddress = "서울 서초구 서초동 1310-5"; // 음식점 주소
+  
+    const restaurantAddress = contentLocation; // DB에 저장된 음식점 주소
     showMapWithMarker(map, restaurantAddress);
  }
- 
- 
- // 사용자 위치와 음식점 주소에 대한 지도를 표시합니다
- showUserAndRestaurantMap();
- 
- 
- 
- 
+ showUserAndRestaurantMap(); 
