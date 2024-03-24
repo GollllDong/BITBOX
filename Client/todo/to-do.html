@@ -7,17 +7,16 @@
     <title>BitBox~</title>
     <link rel="stylesheet" href="../static/css/style.css" />
     <script src="../static/js/socket-client.js"></script>
-    <script src="../static/js/todo.js"></script>
-    <script src="../static/js/gnb.js"></script>
-    <script src="../static/js/login.js"></script>
-    <script src="../static/js/nav.js"></script>
+    <script src="../static/js/todo/todo.js"></script>
+    <script src="../static/js/login/gnb.js"></script>
+    <script src="../static/js/login/login.js"></script>
+    <script src="../static/js/login/nav.js"></script>
 </head>
 
 <body>
     <div class="wrap">
         <div class="content">
-            <label class="hover_nav" id="navButton"></label>
-            <aside class="side_nav" id="sideNav">
+            <aside class="side_nav open" id="sideNav">
                 <div class="side_container">
                     <div class="logo_box">
                         <h1 class="logo">
@@ -37,7 +36,7 @@
                       </div>
                     <nav class="gnb_nav">
                         <ul class="gnb_box">
-                            <li class="select">
+                            <li>
                                 <a>HOME</a>
                             </li>
                             <li>
@@ -49,23 +48,22 @@
                             <li>
                                 <a>채팅</a>
                             </li>
-                            <li>
+                            <li class="select">
                                 <a>할 일</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </aside>
-            <div class="main_box">
+            <div class="main_box open">
                 <header class="header">
                     <div class="user_box">
-                        <div class="user_img">
-                            <!-- 사용자 아이콘 -->
-                        </div>
-                        <!-- <div class="user_subject">
-                 팝업 내용 넣기 
-                 <img src="../Client/static/images/user_info.png" alt="" class="user_info" />
-                </div>-->
+                        <span class="hover_nav open" id="navButton">
+                            <span class="menu-line menu-line-1"></span>
+                            <span class="menu-line menu-line-2"></span>
+                            <span class="menu-line menu-line-3"></span>
+                        </span>
+                        <div class="user_img"></div>
                     </div>
                 </header>
 
@@ -74,10 +72,10 @@
                         <section class="snb_nav mb10">
                             <ul>
                                 <li>
-                                    <a href="index.html">HOME</a>
+                                    <a>HOME</a>
                                 </li>
                                 <li>
-                                    <a href="#">할 일</a>
+                                    <a>할 일</a>
                                 </li>
                             </ul>
                         </section>
@@ -93,9 +91,9 @@
                             </div>
                             <div class="todo_main">
                                 <div class="todo_content">
-                                    <div class="flex space-between flex-wrap_768">
+                                    <div class="flex space-between flex-wrap_768 ">
                                         <div class="w66p flex_wrap w100p_768">
-                                            <div class="w50p w100p_540">
+                                            <div class="w50p mb20 w100p_540">
                                                 <article class="box todo_list_box">
                                                     <div class="todo_category">
                                                         <select id="dailyCategory">
@@ -113,7 +111,7 @@
                                                     <div id="daily-todo-list"></div>
                                                 </article>
                                             </div>
-                                            <div class="w50p w100p_540">
+                                            <div class="w50p mb20 w100p_540">
                                                 <article class="box todo_list_box">
                                                     <div class="todo_category">
                                                         <select id="studyCategory">
@@ -156,6 +154,46 @@
                         </section>
                     </div>
                 </main>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup_page">
+        <!-- <button onclick="openPop()">로그인</button> -->
+        <!-- <a href="javascript:openPop()">
+                <div>
+                  로그인
+                </div>
+              </a> -->
+        <div class="popup_layer" id="popup_layer">
+            <div class="popup_box">
+                <div style="height: 10px; width: 375px; float: top;">
+                </div>
+                <!--팝업 컨텐츠 영역-->
+                <div class="popup_cont">
+                    <div class="logo_back">
+                        <div class="logo_box">
+                            <h1 class="logo"></h1>
+                            <span>BITBOX</span>
+                        </div>
+                    </div>
+                    <div class="login_box">
+                        <h2>Login</h2>
+                        <input type='text' id='idInput' placeholder='  아이디'>
+                        <input type='password' id='passInput' placeholder='  비밀번호'>
+                        <div class="showPassword"></div>
+                        <button id="login_btn">로그인</button>
+                        <h3>or</h3>
+                        <h4>아직 계정이 없으신가요?</h4>
+                        <button onclick="window.location.href = '../Client/signup/signup.html';"
+                            id="signup_btn">회원가입</button>
+                        <p id="login_error">로그인 실패</p>
+                        <!--팝업 버튼 영역-->
+                        <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
+                            <a href="javascript:closePop();">닫기</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
