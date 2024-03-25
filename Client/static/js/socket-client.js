@@ -192,7 +192,9 @@ const displayPacketMessage = function ($parentSelector, message) {
                 const post = msgObj.post; // 변수명을 post로 수정
                 const currentPage = window.location.pathname;
                 if (currentPage.includes('postRead.html')) {
-                    updateUIWithPost(post); // 함수 호출 시 변수명도 post로 수정
+                    document.addEventListener('DOMContentLoaded', () => {
+                        getLocation(post);
+                    })
                 } else if (currentPage.includes('postEdit.html')) {
                     updateUIWithPostEdit(post);
                 } else if (currentPage.includes('postWrite.html')) {

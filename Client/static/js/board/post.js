@@ -369,6 +369,9 @@ const updateUIWithPost = function (post) {
                 <th>내용</th>
                 <td class="textarea">
                     <textarea name="" id="" readonly>${post.post_content}</textarea>
+                    <div id="map" style="width: 80%; height: 400px;"></div>
+                    <input type="text" id="addressInput" placeholder="주소를 입력하세요" />
+                    <button id="searchButton" onclick="searchAddress(addressInput.value)">주소검색</button>
                 </td>
             </tr>
             <tr>
