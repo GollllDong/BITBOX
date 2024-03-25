@@ -39,10 +39,6 @@ const displayDailyTodos = (dailyList) => {
     }
 };
 
-const removeDailyTodo = (key) => {
-    const item = document.querySelector(`#daily-todo-list [data-key="${key}"]`);
-    item.parentNode.removeChild(item);
-};
 
 const displayStudyTodos = (studyList) => {
     const studytodoList = document.querySelector('#study-todo-list');
@@ -83,17 +79,7 @@ const displayStudyTodos = (studyList) => {
     }
 };
 
-const removeStudyTodo = (key) => {
-    const item = document.querySelector(`#study-todo-list [data-key="${key}"]`);
-    item.parentNode.removeChild(item);
 
-    const delete_Data = {
-        cmd: "delete_todo",
-        content: item.outerHTML
-    };
-
-    socket.send(JSON.stringify(delete_Data));
-};
 
 const displayEtcTodos = (etcList) => {
     const etctodoList = document.querySelector('#etc-todo-list');
@@ -134,50 +120,32 @@ const displayEtcTodos = (etcList) => {
     }
 };
 
-const removeEtcTodo = (key) => {
-    const item = document.querySelector(`#etc-todo-list [data-key="${key}"]`);
-    item.parentNode.removeChild(item);
+
+
+const sendShowDailyCommand = function(){
+    const packet = {
+        cmd: "show_daily"
+    }
+    const jsonStr = JSON.stringify(packet);
+    sendMessage(jsonStr);
+};
+    
+
+
+const sendShowStudyCommand = function(){
+const packet = {
+    cmd: "show_study"
+}
+const jsonStr = JSON.stringify(packet);
+sendMessage(jsonStr);
 };
 
-// Socket 설정
-socket.onopen = () => {
-    const sendShowDailyCommand = () => {
-        const data = {
-            cmd: "show_daily"
-        };
-        socket.send(JSON.stringify(data));
+const sendShowEtcCommand = function(){
+    const packet = {
+        cmd: "show_etc"
+    }
+    const jsonStr = JSON.stringify(packet);
+    sendMessage(jsonStr);
     };
 
-    const sendShowStudyCommand = () => {
-        const data = {
-            cmd: "show_study"
-        };
-        socket.send(JSON.stringify(data));
-    };
 
-    const sendShowEtcCommand = () => {
-        const data = {
-            cmd: "show_etc"
-        };
-        socket.send(JSON.stringify(data));
-    };
-
-    socket.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        if (data.cmd === "show_daily") {
-            displayDailyTodos(data.posts);
-        } else if (data.cmd === "show_study") {
-            displayStudyTodos(data.posts);
-        } else if (data.cmd === "show_etc") {
-            displayEtcTodos(data.posts);
-        }
-    };
-
-    sendShowDailyCommand();
-    sendShowStudyCommand();
-    sendShowEtcCommand();
-};
-
-socket.onerror = (error) => {
-    console.error('WebSocket 오류 발생:', error);
-};
