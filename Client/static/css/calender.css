@@ -1,19 +1,9 @@
-:root {
-    --line-color: #aaaaaa;
-}
-
-body {
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-}
-
-button {
+.calender button {
     border: none;
     height: 32px;
 }
 
-.c_header {
+.calender .c_header {
     display: flex;
     font-size: 35px;
     justify-content: space-between  ;
@@ -23,36 +13,36 @@ button {
     font-weight: bold;
 }
 
-.title {
+.calender .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.yearTitle::after {
+.calender .yearTitle::after {
     content: ".";
     margin-right: 5px;
 }
 
-.main {
+.calender .main {
     display: flex;
     flex-direction: column;
     margin: 12px 20px 0px 20px;
 }
 
-.daies {
+.calender .daies {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
 }
 
-.dates {
+.calender .dates {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
 }
 
-.date {
+.calender .date {
     text-align: center;
     width: calc(100%/7);
     padding: 6px 0 6px 0;
@@ -60,7 +50,7 @@ button {
     font-weight: bold;
 }
 
-.day {
+.calender .day {
     text-align: center;
     width: calc(100%/7);
     padding: 6px 0 6px 0;
@@ -69,19 +59,19 @@ button {
     font-weight: bold;
 }
 
-#sunday{color: red;}
+.calender #sunday{color: red;}
 
-.date:nth-child(7n+1) {
+.calender .date:nth-child(7n+1) {
     background-color: var(--sun-color);
     color: red;
 }
 
-.today {
+.calender .today {
     position: relative;
     border-radius: 50%;
 }
 
-.today::after {
+.calender .today::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -94,36 +84,36 @@ button {
     z-index: -1;
 }
 
-.prevBtn::before {
+.calender .prevBtn::before {
     content: "<";
 }
 
-.nextBtn::after {
+.calender .nextBtn::after {
     content: ">";
 }
-.prevBtn::before,
-.nextBtn::after {
+.calender .prevBtn::before,
+.calender .nextBtn::after {
     font-size: 35px;
 }
 
-.prevBtn,
-.nextBtn {
+.calender .prevBtn,
+.calender .nextBtn {
     background-color: white;
     width: 250px;
     height: 40px;
 }
 
-.prevBtn:hover,
-.nextBtn:hover {
+.calender .prevBtn:hover,
+.calender .nextBtn:hover {
     cursor: pointer;
 }
 
-.prevMonthDate,
-.nextMonthDate {
+.calender .prevMonthDate,
+.calender .nextMonthDate {
     color: #aaaaaa;
 }
 
-.prevBtn,
-.nextBtn {
+.calender .prevBtn,
+.calender .nextBtn {
     align-self: center; /* Btn들이 title을 기준으로 수직 중앙 정렬되도록 설정 */
 }
