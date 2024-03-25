@@ -14,6 +14,13 @@ div.mt10 button {margin-left: 10px;}
 .board_list_btn span::before,
 .board_write_btn span::before {content: ""; position: absolute; top:2px; left: -5px; width: 15px; height: 15px; display: inline-block;}
 
+
+/* 추가한 부분 logout_btn */
+.logout_btn {height: 34px; text-align: center;  border-radius: 8px; float: right; margin-bottom: 8px; padding: 0 25px; color: #fff;}
+.logout_btn {background:#ff7602;}
+
+
+
 .board_write_btn span::before { background: url(../../static/images/ico_pen.svg)no-repeat left center/contain;}
 .board_delete_btn span::before { background: url(../../static/images/ico_trashcan.svg)no-repeat left center/contain;}
 .board_edit_btn span::before { background: url(../../static/images/ico_pen.svg)no-repeat left center/contain;}

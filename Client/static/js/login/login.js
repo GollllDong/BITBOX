@@ -53,13 +53,24 @@ const sendLogIn = function () {
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginBefore = document.getElementById("loginBefore");
-    const loginAfter = document.getElementById("loginAfter");
+    const loginAfter = document.getElementById("loginAfter"); 
+    const logout_btn = document.getElementById("logout_btn");
     const login_error = document.getElementById("login_error");
 
     if (sessionStorage.getItem("user_id") !== null) {
         loginBefore.style.display = "none";
         loginAfter.style.display = "block";
     }
+
+    if(logout_btn) logout_btn.addEventListener('click', () => {
+        sessionStorage.removeItem('user_id');
+        sessionStorage.removeItem('id_idx');
+        
+        // 로그인 상자 초기 상태로 변경
+        loginBefore.style.display = "block";
+        loginAfter.style.display = "none";
+    });
+
 
     const login_btn = document.querySelector('#login_btn');
     if (login_btn) login_btn.addEventListener('click', sendLogIn);

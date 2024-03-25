@@ -58,16 +58,14 @@
       <div class="main_box open">
         <header class="header">
           <div class="user_box">
-          <span class="hover_nav open" id="navButton">
-            <span class="menu-line menu-line-1"></span>
-            <span class="menu-line menu-line-2"></span>
-            <span class="menu-line menu-line-3"></span>
-          </span>
+            <span class="hover_nav open" id="navButton">
+              <span class="menu-line menu-line-1"></span>
+              <span class="menu-line menu-line-2"></span>
+              <span class="menu-line menu-line-3"></span>
+            </span>
+            <!-- logout_btn 추가 -->
+            <button class="logout_btn" id="logout_btn"><span>로그아웃</span></button>
             <div class="user_img"></div>
-            <!-- <div class="user_subject">
-               팝업 내용 넣기 
-               <img src="../Client/static/images/user_info.png" alt="" class="user_info" />
-              </div>-->
           </div>
         </header>
 
@@ -124,21 +122,21 @@
                       <!-- <img src="" alt="" /> -->
                       <div class="box_img2 map2"></div>
                     </div>
-                </article>
+                  </article>
                 </div>
               </div>
               <div class="flex space-between flex-wrap_768">
                 <div class="w66p flex_wrap w100p_768">
-                    <div class="w100p">
-                        <article class="box">
-                          <div class="plusbox3" id="link"></div>
-                          <h3 class="sub_subject">효율적이고 뿌듯한 하루의 시작</h3>
-                          <p>오늘의 할 일을 관리할 수 있는 To-Do-List</p>
-                          <div class="box_img">
-                            <div class="box_img todo"></div>
-                          </div>
-                        </article>
+                  <div class="w100p">
+                    <article class="box">
+                      <div class="plusbox3" id="link"></div>
+                      <h3 class="sub_subject">효율적이고 뿌듯한 하루의 시작</h3>
+                      <p>오늘의 할 일을 관리할 수 있는 To-Do-List</p>
+                      <div class="box_img">
+                        <div class="box_img todo"></div>
                       </div>
+                    </article>
+                  </div>
                 </div>
                 <div class="w33p w100p_768">
                   <article class="box">
@@ -165,49 +163,49 @@
                       </div>
                     </div>
                     <script type="text/javascript" src="../Client/static/js/calendar.js"></script>
-                  </body>
-                  </article>
-                </div>
-              </div>
-            </section>
-          </div>
-      </div>
-      </main>
-    </div>
-  </div>
-  </div>
-
-  <div class="popup_page">
-    <div class="popup_layer" id="popup_layer">
-      <div class="popup_box">
-        <div style="height: 10px; width: 375px; float: top;">
-        </div>
-        <!--팝업 컨텐츠 영역-->
-        <div class="popup_cont">
-          <div class="logo_back">
-            <div class="logo_box">
-              <h1 class="logo"></h1>
-              <span>BITBOX</span>
-            </div>
-          </div>
-          <div class="login_box">
-            <h2>Login</h2>
-            <input type='text' id='idInput' placeholder='  아이디'>
-            <input type='password' id='passInput' placeholder='  비밀번호'>
-            <div class="showPassword active"></div>
-            <button id="login_btn">로그인</button>
-            <h3>or</h3>
-            <h4>아직 계정이 없으신가요?</h4>
-            <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
-            <p id="login_error">로그인 실패</p>
-            <!--팝업 버튼 영역-->
-            <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
-              <a href="javascript:closePop();">닫기</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 </body>
+</article>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+
+<div class="popup_page">
+  <div class="popup_layer" id="popup_layer">
+    <div class="popup_box">
+      <div style="height: 10px; width: 375px; float: top;">
+      </div>
+      <!--팝업 컨텐츠 영역-->
+      <div class="popup_cont">
+        <div class="logo_back">
+          <div class="logo_box">
+            <h1 class="logo"></h1>
+            <span>BITBOX</span>
+          </div>
+        </div>
+        <div class="login_box">
+          <h2>Login</h2>
+          <input type='text' id='idInput' placeholder='  아이디'>
+          <input type='password' id='passInput' placeholder='  비밀번호'>
+          <div class="showPassword active"></div>
+          <button id="login_btn">로그인</button>
+          <h3>or</h3>
+          <h4>아직 계정이 없으신가요?</h4>
+          <button onclick="window.location.href = '../Client/signup/signup.html';" id="signup_btn">회원가입</button>
+          <p id="login_error">로그인 실패</p>
+          <!--팝업 버튼 영역-->
+          <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
+            <a href="javascript:closePop();">닫기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
 
 </html>
