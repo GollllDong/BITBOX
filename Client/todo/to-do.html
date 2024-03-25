@@ -1,204 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BitBox~</title>
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <script src="../static/js/socket-client.js"></script>
+        <script src="../static/js/todo/todo.js"></script>
+        <script src="../static/js/todo/showAllTodo.js"></script>
+        <script src="../static/js/login/gnb.js"></script>
+        <script src="../static/js/login/login.js"></script>
+        <script src="../static/js/login/nav.js"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BitBox~</title>
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <script src="../static/js/socket-client.js"></script>
-    <script src="../static/js/todo/todo.js"></script>
-    <script src="../static/js/todo/showAllTodo.js"></script>
-    <script src="../static/js/login/gnb.js"></script>
-    <script src="../static/js/login/login.js"></script>
-    <script src="../static/js/login/nav.js"></script>
-</head>
-
-<body>
-    <div class="wrap">
-        <div class="content">
-            <aside class="side_nav open" id="sideNav">
-                <div class="side_container">
-                    <div class="logo_box">
-                        <h1 class="logo">
-                            <a class="" href="index.html"></a>
-                        </h1>
-                        <span>BITBOX</span>
-                    </div>
-                    <div class="login_box" id="loginBefore">
-                        <h2>Ok~Let's Go~</h2>
-                        <button onclick="openPop()" class="login_btn" id="loginBefore">로그인</button>
-                        <p class="">비트박스에 오신 것을 환영합니다.</p>
-                      </div>
-                      <div class="login_box_after" id="loginAfter">
-                        <h2 class="">안녕하세요!</h2>
-                        <h3>비트캠프 수강생 여러분</h3>
-                        <button class="logout_btn" id="logout_btn"><span>로그아웃</span></button>
-                        <p class="">비트박스에 오신 것을 환영합니다.</p>
-                      </div>
-                    <nav class="gnb_nav">
-                        <ul class="gnb_box">
-                            <li>
-                                <a>HOME</a>
-                            </li>
-                            <li class="select">
-                                <a>게시판</a>
-                            </li>
-                            <li>
-                                <a>지도</a>
-                            </li>
-                            <li>
-                                <a>채팅</a>
-                            </li>
-                            <li>
-                                <a>할 일</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
-            <div class="main_box open">
-                <header class="header">
-                    <div class="user_box">
-                        <span class="hover_nav open" id="navButton">
-                            <span class="menu-line menu-line-1"></span>
-                            <span class="menu-line menu-line-2"></span>
-                            <span class="menu-line menu-line-3"></span>
-                        </span>
-                        <div class="user_img"></div>
-                    </div>
-                </header>
-
-                <main class="main">
-                    <div class="container">
-                        <section class="snb_nav mb10">
-                            <ul>
+    <body>
+        <div class="wrap">
+            <div class="content">
+                <aside class="side_nav open" id="sideNav">
+                    <div class="side_container">
+                        <div class="logo_box">
+                            <h1 class="logo">
+                                <a class="" href="index.html"></a>
+                            </h1>
+                            <span>BITBOX</span>
+                        </div>
+                        <div class="login_box" id="loginBefore">
+                            <h2>Ok~Let's Go~</h2>
+                            <button
+                                onclick="openPop()"
+                                class="login_btn"
+                                id="loginBefore"
+                            >
+                                로그인
+                            </button>
+                            <p class="">비트박스에 오신 것을 환영합니다.</p>
+                        </div>
+                        <div class="login_box_after" id="loginAfter">
+                            <h2 class="">안녕하세요!</h2>
+                            <h3>비트캠프 수강생 여러분</h3>
+                            <button class="logout_btn" id="logout_btn">
+                                <span>로그아웃</span>
+                            </button>
+                            <p class="">비트박스에 오신 것을 환영합니다.</p>
+                        </div>
+                        <nav class="gnb_nav">
+                            <ul class="gnb_box">
                                 <li>
                                     <a>HOME</a>
                                 </li>
                                 <li>
+                                    <a>게시판</a>
+                                </li>
+                                <li>
+                                    <a>지도</a>
+                                </li>
+                                <li>
+                                    <a>채팅</a>
+                                </li>
+                                <li class="select">
                                     <a>할 일</a>
                                 </li>
                             </ul>
-                        </section>
+                        </nav>
+                    </div>
+                </aside>
+                <div class="main_box open">
+                    <header class="header">
+                        <div class="user_box">
+                            <span class="hover_nav open" id="navButton">
+                                <span class="menu-line menu-line-1"></span>
+                                <span class="menu-line menu-line-2"></span>
+                                <span class="menu-line menu-line-3"></span>
+                            </span>
+                            <div class="user_img"></div>
+                        </div>
+                    </header>
 
-                        <section class="main_content_box">
-                            <div class="title_box">
-                                <h2 class="title orange">
-                                    To-Do List
-                                </h2>
-                                <p>
-                                    매일 생기는 할 일을 카테고리별로 나누어서 효율적으로 관리해보세요!
-                                </p>
-                            </div>
-                            <div class="todo_main">
-                                <div class="todo_content">
-                                    <div class="flex space-between flex-wrap_768 ">
-                                        <div class="w66p flex_wrap w100p_768">
-                                            <div class="w50p mb20 w100p_540">
-                                                <article class="box todo_list_box">
-                                                    <div class="todo_category">
-                                                        <select id="dailyCategory">
-                                                            <option value="일상">일상</option>
-                                                            <!-- <option value="공부">공부</option>
+                    <main class="main">
+                        <div class="container">
+                            <section class="snb_nav mb10">
+                                <ul>
+                                    <li>
+                                        <a>HOME</a>
+                                    </li>
+                                    <li>
+                                        <a>할 일</a>
+                                    </li>
+                                </ul>
+                            </section>
+
+                            <section class="main_content_box">
+                                <div class="title_box">
+                                    <h2 class="title orange">To-Do List</h2>
+                                    <p>
+                                        매일 생기는 할 일을 카테고리별로
+                                        나누어서 효율적으로 관리해보세요!
+                                    </p>
+                                </div>
+                                <div class="todo_main">
+                                    <div class="todo_content">
+                                        <div
+                                            class="flex space-between flex-wrap_768"
+                                        >
+                                            <div
+                                                class="w66p flex_wrap w100p_768"
+                                            >
+                                                <div
+                                                    class="w50p mb20 w100p_540"
+                                                >
+                                                    <article
+                                                        class="box todo_list_box"
+                                                    >
+                                                        <div
+                                                            class="todo_category"
+                                                        >
+                                                            <select
+                                                                id="dailyCategory"
+                                                            >
+                                                                <option
+                                                                    value="일상"
+                                                                >
+                                                                    일상
+                                                                </option>
+                                                                <!-- <option value="공부">공부</option>
                                                         <option value="기타">기타</option> -->
-                                                        </select>
-                                                    </div>
-                                                    <div class="todo_inputbox">
-                                                        <input id="dailyContent" class="todo_input" type="text"
-                                                            placeholder="입력하세요">
-                                                        <button id="dailyBtn"><img src="/static/images/ico_plusbox.svg"
-                                                                alt=""></button>
-                                                    </div>
-                                                    <div id="daily-todo-list"></div>
-                                                </article>
+                                                            </select>
+                                                        </div>
+                                                        <div
+                                                            class="todo_inputbox"
+                                                        >
+                                                            <input
+                                                                id="dailyContent"
+                                                                class="todo_input"
+                                                                type="text"
+                                                                placeholder="입력하세요"
+                                                            />
+                                                            <button
+                                                                id="dailyBtn"
+                                                            >
+                                                                <img
+                                                                    src="/static/images/ico_plusbox.svg"
+                                                                    alt=""
+                                                                />
+                                                            </button>
+                                                        </div>
+                                                        <div
+                                                            id="daily-todo-list"
+                                                        ></div>
+                                                    </article>
+                                                </div>
+                                                <div
+                                                    class="w50p mb20 w100p_540"
+                                                >
+                                                    <article
+                                                        class="box todo_list_box"
+                                                    >
+                                                        <div
+                                                            class="todo_category"
+                                                        >
+                                                            <select
+                                                                id="studyCategory"
+                                                            >
+                                                                <option
+                                                                    value="공부"
+                                                                >
+                                                                    공부
+                                                                </option>
+                                                                <!-- <option value="일상">일상</option>
+                                                        <option value="기타">기타</option> -->
+                                                            </select>
+                                                        </div>
+                                                        <div
+                                                            class="todo_inputbox"
+                                                        >
+                                                            <input
+                                                                id="studyContent"
+                                                                class="todo_input"
+                                                                type="text"
+                                                                placeholder="입력하세요"
+                                                            />
+                                                            <button
+                                                                id="studyBtn"
+                                                            >
+                                                                <img
+                                                                    src="/static/images/ico_plusbox.svg"
+                                                                    alt=""
+                                                                />
+                                                            </button>
+                                                        </div>
+                                                        <div
+                                                            id="study-todo-list"
+                                                        ></div>
+                                                    </article>
+                                                </div>
                                             </div>
-                                            <div class="w50p mb20 w100p_540">
-                                                <article class="box todo_list_box">
+                                            <div class="w33p w100p_768">
+                                                <article
+                                                    class="box todo_list_box"
+                                                >
                                                     <div class="todo_category">
-                                                        <select id="studyCategory">
-                                                            <option value="공부">공부</option>
+                                                        <select
+                                                            id="etcCategory"
+                                                        >
+                                                            <option
+                                                                value="기타"
+                                                            >
+                                                                기타
+                                                            </option>
                                                             <!-- <option value="일상">일상</option>
-                                                        <option value="기타">기타</option> -->
+                                                        <option value="공부">공부</option> -->
                                                         </select>
                                                     </div>
                                                     <div class="todo_inputbox">
-                                                        <input id="studyContent" class="todo_input" type="text"
-                                                            placeholder="입력하세요">
-                                                        <button id="studyBtn"><img src="/static/images/ico_plusbox.svg"
-                                                                alt=""></button>
+                                                        <input
+                                                            id="etcContent"
+                                                            class="todo_input"
+                                                            type="text"
+                                                            placeholder="입력하세요"
+                                                        />
+                                                        <button id="etcBtn">
+                                                            <img
+                                                                src="/static/images/ico_plusbox.svg"
+                                                                alt=""
+                                                            />
+                                                        </button>
                                                     </div>
-                                                    <div id="study-todo-list"></div>
+                                                    <div
+                                                        id="etc-todo-list"
+                                                    ></div>
                                                 </article>
                                             </div>
-                                        </div>
-                                        <div class="w33p w100p_768">
-                                            <article class="box todo_list_box">
-                                                <div class="todo_category">
-                                                    <select id="etcCategory">
-                                                        <option value="기타">기타</option>
-                                                        <!-- <option value="일상">일상</option>
-                                                        <option value="공부">공부</option> -->
-                                                    </select>
-                                                </div>
-                                                <div class="todo_inputbox">
-                                                    <input id="etcContent" class="todo_input" type="text"
-                                                        placeholder="입력하세요">
-                                                    <button id="etcBtn"><img src="/static/images/ico_plusbox.svg"
-                                                            alt=""></button>
-                                                </div>
-                                                <div id="etc-todo-list"></div>
-                                            </article>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                    </div>
-                </main>
+                            </section>
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="popup_page">
-        <!-- <button onclick="openPop()">로그인</button> -->
-        <!-- <a href="javascript:openPop()">
+        <div class="popup_page">
+            <!-- <button onclick="openPop()">로그인</button> -->
+            <!-- <a href="javascript:openPop()">
                 <div>
                   로그인
                 </div>
               </a> -->
-        <div class="popup_layer" id="popup_layer">
-            <div class="popup_box">
-                <div style="height: 10px; width: 375px; float: top;">
-                </div>
-                <!--팝업 컨텐츠 영역-->
-                <div class="popup_cont">
-                    <div class="logo_back">
-                        <div class="logo_box">
-                            <h1 class="logo"></h1>
-                            <span>BITBOX</span>
+            <div class="popup_layer" id="popup_layer">
+                <div class="popup_box">
+                    <div style="height: 10px; width: 375px; float: top"></div>
+                    <!--팝업 컨텐츠 영역-->
+                    <div class="popup_cont">
+                        <div class="logo_back">
+                            <div class="logo_box">
+                                <h1 class="logo"></h1>
+                                <span>BITBOX</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="login_box">
-                        <h2>Login</h2>
-                        <input type='text' id='idInput' placeholder='  아이디'>
-                        <input type='password' id='passInput' placeholder='  비밀번호'>
-                        <div class="showPassword"></div>
-                        <button id="login_btn">로그인</button>
-                        <h3>or</h3>
-                        <h4>아직 계정이 없으신가요?</h4>
-                        <button onclick="window.location.href = '../Client/signup/signup.html';"
-                            id="signup_btn">회원가입</button>
-                        <p id="login_error">로그인 실패</p>
-                        <!--팝업 버튼 영역-->
-                        <div class="popup_btn" style="float: bottom; margin-bottom: 0;" id="messages">
-                            <a href="javascript:closePop();">닫기</a>
+                        <div class="login_box">
+                            <h2>Login</h2>
+                            <input
+                                type="text"
+                                id="idInput"
+                                placeholder="  아이디"
+                            />
+                            <input
+                                type="password"
+                                id="passInput"
+                                placeholder="  비밀번호"
+                            />
+                            <div class="showPassword"></div>
+                            <button id="login_btn">로그인</button>
+                            <h3>or</h3>
+                            <h4>아직 계정이 없으신가요?</h4>
+                            <button
+                                onclick="window.location.href = '../Client/signup/signup.html';"
+                                id="signup_btn"
+                            >
+                                회원가입
+                            </button>
+                            <p id="login_error">로그인 실패</p>
+                            <!--팝업 버튼 영역-->
+                            <div
+                                class="popup_btn"
+                                style="float: bottom; margin-bottom: 0"
+                                id="messages"
+                            >
+                                <a href="javascript:closePop();">닫기</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
-
+    </body>
 </html>
