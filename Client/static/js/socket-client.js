@@ -77,7 +77,6 @@ const connectionSuccess = function (msgObj) {
     } else if (currentPage.includes('postWrite.html')) {
         sendGetUser();
     } else if (currentPage.includes('to-do.html')) {
-
         sendShowDailyCommand();
         sendShowStudyCommand();
         sendShowEtcCommand();
@@ -219,7 +218,7 @@ const connectionSuccess = function (msgObj) {
             case "show_study":
                 if (msgObj.result === "ok") {
                     const studyList = msgObj.todos; // 변수명을 post로 수정
-                    displayDailyTodos(studyList);
+                    displayStudyTodos(studyList);
                 } else {
                     console.error("투두리스트 조회 실패");
                 }
@@ -227,7 +226,7 @@ const connectionSuccess = function (msgObj) {
             case "show_etc":
                 if (msgObj.result === "ok") {
                     const etcList = msgObj.todos; // 변수명을 post로 수정
-                    displayDailyTodos(etcList);
+                    displayEtcTodos(etcList);
                 } else {
                     console.error("투두리스트 조회 실패");
                 }

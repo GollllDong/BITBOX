@@ -325,83 +325,142 @@ public class MainServer extends WebSocketServer {
 			}
 
 		} else if (cmd.equals("add_todo")) {
-			String category = msgObj.getString("category");
-			String content = msgObj.getString("todo");
-			Integer user_id = msgObj.getInt("user_id");
-			System.out.printf("todo- category: %s to-do content: %s	user_id: %s\n", category, content, user_id);
+	         String category = msgObj.getString("category");
+	         String content = msgObj.getString("todo");
+	         String user_id = msgObj.getString("user_id");
+	         System.out.printf("todo- category: %s to-do content: %s   user_id: %s\n", category, content, user_id);
 
-			try {
-				TodoList todo = new TodoList();
-				todo.setTodolist_category(category);
-				todo.setTodolist_content(content);
-				todo.setUser_id(user_id);
+	         try {
+	            TodoList todo = new TodoList();
+	            todo.setTodolist_category(category);
+	            todo.setTodolist_content(content);
+	            todo.setUser_id(user_id);
 
-				int result = TodoDao.insertTodo(DBConnection.getConnection(), todo);
+	            int result = TodoDao.insertTodo(DBConnection.getConnection(), todo);
 
-				if (result > 0) {
-					System.out.println("to-do list 추가되었습니다.");
-				} else {
-					System.out.println("to-do list 추가에 실패했습니다.");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (cmd.equals("delete_todo")) {
-			String category = msgObj.getString("category");
-			String content = msgObj.getString("todo");
-			Integer user_id = msgObj.getInt("user_id");
-			System.out.printf("todo- category: %s to-do content: %s	user_id: %s\n", category, content, user_id);
+	            if (result > 0) {
+	               System.out.println("to-do list 추가되었습니다.");
+	            } else {
+	               System.out.println("to-do list 추가에 실패했습니다.");
+	            }
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	         }
+	      } else if (cmd.equals("delete_todo")) {
+	         String user_id = msgObj.getString("user_id");
 
-			try {
-				TodoList todo = new TodoList();
-				todo.setTodolist_category(category);
-				todo.setTodolist_content(content);
-				todo.setUser_id(user_id);
+	         try {
+	            TodoList todo = new TodoList();
+	            todo.setUser_id(user_id);
 
-				int result = TodoDao.deleteTodo(DBConnection.getConnection(), todo);
+	            int result = TodoDao.deleteTodo(DBConnection.getConnection(), todo);
 
-				JSONObject ackObj = new JSONObject();
-				if (result == 1) {
-					ackObj.put("result", "ok");
-				} else {
-					ackObj.put("result", "fail");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+	            JSONObject ackObj = new JSONObject();
+	            if (result == 1) {
+	               ackObj.put("result", "ok");
+	            } else {
+	               ackObj.put("result", "fail");
+	            }
+	         } catch (Exception e) {
+	            e.printStackTrace();
 
-			}
-		} else if (cmd.equals("show_Todo")) {
-			String category = msgObj.getString("category");
-			String content = msgObj.getString("todo");
-			Integer todolist_id = msgObj.getInt("todolist_id");
-			System.out.printf("to-do category: %s to-do content: %s	user_id: %s\n", category, content, todolist_id);
+	         }
+	      } else if (cmd.equals("show_daily")) {
+	         System.out.printf("일상 to-do List 조회");
 
-			try {
-				TodoList todo = new TodoList();
-				todo.setTodolist_id(todolist_id);
+	         try {
+	            List<TodoList> dailyList = TodoDao.showDailyTodo(DBConnection.getConnection());
 
-				Post selectedPost = PostDao.getPost(DBConnection.getConnection(), todolist_id);
+	            JSONObject ackObj = new JSONObject();
+	            ackObj.put("cmd", "show_daily");
 
-				JSONObject ackObj = new JSONObject();
-				ackObj.put("cmd", "getpost");
+	            if (!dailyList.isEmpty()) {
+	               JSONArray dailyArray = new JSONArray();
 
-				if (selectedPost != null) {
-					// 조회 결과를 클라이언트에 응답
-					ackObj.put("result", "ok");
-					// 특정 게시물 정보를 JSON으로 변환하여 응답에 포함
-					JSONObject postObj = new JSONObject(selectedPost);
-					ackObj.put("post", postObj);
-				} else {
-					// 게시물이 없을 경우
-					ackObj.put("result", "fail");
-				}
+	               for (TodoList todo : dailyList) {
+	                  JSONObject studyObj = new JSONObject();
+	                  studyObj.put("todolist_id", todo.getTodolist_id());
+	                  studyObj.put("todolist_category", todo.getTodolist_category());
+	                  studyObj.put("todolist_content", todo.getTodolist_content());
+	                  dailyArray.put(studyObj);
+	               }
+	               ackObj.put("todos", dailyArray);
+	               ackObj.put("result", "ok");
+	            } else {
+	               // 게시물이 없을 경우
+	               ackObj.put("result", "fail");
+	            }
 
-				conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+	            conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
 
-			} catch (Exception e) {
-				e.printStackTrace();
+	         } catch (Exception e) {
+	            e.printStackTrace();
 
-			}
+	         }
+	      } else if (cmd.equals("show_study")) {
+	         System.out.printf("공부 to-do List 조회");
+
+	         try {
+	            List<TodoList> studyList = TodoDao.showStudyTodo(DBConnection.getConnection());
+
+	            JSONObject ackObj = new JSONObject();
+	            ackObj.put("cmd", "show_study");
+
+	            if (!studyList.isEmpty()) {
+	               JSONArray studyArray = new JSONArray();
+
+	               for (TodoList todo : studyList) {
+	                  JSONObject studyObj = new JSONObject();
+	                  studyObj.put("todolist_id", todo.getTodolist_id());
+	                  studyObj.put("todolist_category", todo.getTodolist_category());
+	                  studyObj.put("todolist_content", todo.getTodolist_content());
+	                  studyArray.put(studyObj);
+	               }
+	               ackObj.put("todos", studyArray);
+	               ackObj.put("result", "ok");
+	            } else {
+	               // 게시물이 없을 경우
+	               ackObj.put("result", "fail");
+	            }
+
+	            conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+
+	         } catch (Exception e) {
+	            e.printStackTrace();
+
+	         }
+	      } else if (cmd.equals("show_etc")) {
+	         System.out.printf("기타 to-do List 조회");
+
+	         try {
+	            List<TodoList> etcList = TodoDao.showEtcTodo(DBConnection.getConnection());
+
+	            JSONObject ackObj = new JSONObject();
+	            ackObj.put("cmd", "show_etc");
+
+	            if (!etcList.isEmpty()) {
+	               JSONArray etcArray = new JSONArray();
+
+	               for (TodoList todo : etcList) {
+	                  JSONObject studyObj = new JSONObject();
+	                  studyObj.put("todolist_id", todo.getTodolist_id());
+	                  studyObj.put("todolist_category", todo.getTodolist_category());
+	                  studyObj.put("todolist_content", todo.getTodolist_content());
+	                  etcArray.put(studyObj);
+	               }
+	               ackObj.put("todos", etcArray);
+	               ackObj.put("result", "ok");
+	            } else {
+	               // 게시물이 없을 경우
+	               ackObj.put("result", "fail");
+	            }
+
+	            conn.send(ackObj.toString()); // 클라이언트에게 응답 전송
+
+	         } catch (Exception e) {
+	            e.printStackTrace();
+
+	         }
 		} else if (cmd.equals("newchat")) {
 			int room = msgObj.getInt("room");
 			String roomName = msgObj.getString("name");
