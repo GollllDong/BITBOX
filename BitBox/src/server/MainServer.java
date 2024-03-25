@@ -26,8 +26,8 @@ public class MainServer extends WebSocketServer {
 	private HashMap<Integer, List<Chat>> chatRooms = new HashMap<>();
 		
 	public static void main(String[] args) {
-		String host = "192.168.0.5";
-		final int PORT = 9001;
+		String host = "192.168.0.21";
+		final int PORT = 9000;
 
 		WebSocketServer server = new MainServer(new InetSocketAddress(host, PORT));
 		server.run();
