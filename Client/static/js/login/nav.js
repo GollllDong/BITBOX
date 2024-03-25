@@ -71,16 +71,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // 화면 클릭 시 네비게이션 닫기
-  document.addEventListener("click", function (e) {
-    const clickedElement = e.target;
-    // 클릭된 요소가 네비게이션 버튼이나 네비게이션 자체인지 확인
-    const isNavButtonClicked = clickedElement === navButton || navButton.contains(clickedElement);
-    const isSideNavClicked = clickedElement === sideNav || sideNav.contains(clickedElement);
-    // 네비게이션 버튼이나 네비게이션 자체가 아니라면 네비게이션 닫기
-    if (!isNavButtonClicked && !isSideNavClicked) {
-      navButton.classList.remove("open");
-      sideNav.classList.remove("open");
-      toggle.classList.remove("open");
-    }
-  });
+  // document.addEventListener("click", function (e) {
+  //   const clickedElement = e.target;
+  //   // 클릭된 요소가 네비게이션 버튼이나 네비게이션 자체인지 확인
+  //   const isNavButtonClicked = clickedElement === navButton || navButton.contains(clickedElement);
+  //   const isSideNavClicked = clickedElement === sideNav || sideNav.contains(clickedElement);
+  //   // 네비게이션 버튼이나 네비게이션 자체가 아니라면 네비게이션 닫기
+  //   if (!isNavButtonClicked && !isSideNavClicked) {
+  //     navButton.classList.remove("open");
+  //     sideNav.classList.remove("open");
+  //     toggle.classList.remove("open");
+  //   }
+  // });
 })
