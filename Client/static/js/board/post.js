@@ -388,6 +388,8 @@ const updateUIWithPost = function (post) {
 //해당 게시물 위치 정보 contentLocation 변수에 할당
 const getLocation = function (post) {
     const contentLocation = post.content_location;
+    console.log(contentLocation);
+    showUserAndRestaurantMap(contentLocation);
     // console.log("위치 함수:" + contentLocation);
 };
 

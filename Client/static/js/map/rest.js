@@ -41,12 +41,14 @@ function findRestaurants(lat, lon) {
  
                     // 인포윈도우에 표시할 내용 구성
                     const infoContent = `
-                        <div class="test" style=" display: block;
-                        background: #008000; color: #fff;text-align: center; border-radius:4px; padding:3px 10px; font-size:17px;font-weight:600;>
+                    <div class="map_marker_box">
+                        <div style=" display: block;
+                        background: #008000; color: #fff;text-align: center; border-radius:4px; padding:3px 10px; font-size:15px;font-weight:600 word-break: keep-all;;>
                             <div style="font-weight:bold; font-size:15px;" margin-left : 5px>${place.place_name}</div>
                             <div style="word-break: keep-all;margin-top:3px; font-size:13px;font-weight:500; padding:0px 6px;"> 종류: ${place.category_name}</div>
                             <div style="font-size:12px; margin-top:3px; font-weight:400; color:#999; padding: 0px 6px;">전화번호: ${place.phone}</div>
                             <div style="display : block; margin-top:8px; font-size:1rem; padding: 0 6px;"><a style="font-size:14px; font-weight:600; color: #008000;" href="https://map.kakao.com/link/to/${place.place_name},${place.y},${place.x}">길찾기</a></div>
+                        </div>
                         </div>`;
                     // 인포윈도우 생성
                     const infowindow = new kakao.maps.InfoWindow({
