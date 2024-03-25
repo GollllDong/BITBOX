@@ -100,6 +100,8 @@ const updateUIWithPostWriter = function (user) {
         <th>내용</th>
         <td class="textarea">
         <textarea name="" id="postContentInput" placeholder="내용을 입력하세요"></textarea>
+        <div id="map" style="width: 80%; height: 400px;"></div>
+        </td>
     </tr>
     
         `;
