@@ -199,7 +199,9 @@ const connectionSuccess = function (msgObj) {
                             getLocation(post);
                         })
                     } else if (currentPage.includes('postEdit.html')) {
-                        updateUIWithPostEdit(post);
+                        document.addEventListener('DOMContentLoaded', () => { 
+                            updateUIWithPostEdit(post); 
+                        })
                     } else if (currentPage.includes('postWrite.html')) {
                         updateUIWithPostWriter(postwriter);// 함수 호출 시 변수명도 post로 수정
                     }
