@@ -110,11 +110,11 @@ div.mt10 button {margin-left: 10px;}
 .todo_main{display: flex;}
 .todo_content .todo_list_box {width: 420px; height: 580px; margin: 20px 30px; padding: 0;}
 .todo_content .todo_category {background-color: #eee; text-align: center; text-justify: space-between; padding: 10px;}
-.todo_content .todo_category #dailyCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category #dailyCategory {-webkit-appearance: none;-moz-appearance: none;appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
 .todo_content .todo_category #dailyCategory:focus{outline: none;}
-.todo_content .todo_category #studyCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category #studyCategory {-webkit-appearance: none;-moz-appearance: none;appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
 .todo_content .todo_category #studyCategory:focus{outline: none;}
-.todo_content .todo_category #etcCategory {appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
+.todo_content .todo_category #etcCategory {-webkit-appearance: none;-moz-appearance: none;appearance: none; width: 50px; height: 35px; text-align: center; border: 1px solid #eee; background-color: #eee; font-size: 16px; font-weight: bold; border-radius: 5px;}
 .todo_content .todo_category #etcCategory:focus{outline: none;}
 .todo_content .todo_inputbox{background-color: #fdf9e6; display: flex; justify-content: center;}
 .todo_content .todo_inputbox #dailyContent {width: 200px; margin-right: 6px;}
@@ -143,6 +143,9 @@ div.mt10 button {margin-left: 10px;}
 .todo_content #showEtcList span {margin: 0 5px; font-size: 15px;}
 .todo_content #showEtcDel button {color: white; background-color: #333; border-radius: 5px; padding: 5px 7px;}
 
+
+.todo-scroll {overflow-y: auto;}
+.todo-scroll > div {height: 450px; padding-top: 16px;}
 .place_box img {height: 100%; width: 100%; border-radius: 3px; -o-object-fit: contain; object-fit: contain;}
 
 /* 게시판 수정/삭제/목록 조절 */
