@@ -88,9 +88,10 @@
 
 .side_nav .login_box_after {background: #fdf9e6; margin: 0 20px 20px; border-radius: 8px; border: 1px solid #e8e8e8; padding: 16px; text-align: center; display: none;}
 .side_nav .login_box_after::before {content:""; position: absolute; background:#0a9102; width: 100%; height: 200px; border-radius: 13%; top: -60px; left: 0; z-index: -1;}
-.side_nav .login_box_after h2 {font-size: var(--font-size-18); font-weight: 600; color: #333; margin-bottom: 10px;}
-.side_nav .login_box_after .login_btn {background: #0a9102; border-radius: 4px; color: #fff; font-size: var(--font-size-15); font-weight: 500; text-align: center; display: block; height: 36px;line-height: 36px; width: 100%;}
-.side_nav .login_box_after p {font-size: var(--font-size-13); font-weight: 400; color: #333; margin-top: 10px;}
+.side_nav .login_box_after h2 {font-size: var(--font-size-14); font-weight: 500; color: #444; margin-bottom: 6px;}
+.side_nav .login_box_after h3 {font-size: var(--font-size-17); font-weight: 600; color: #008000; margin-bottom: 10px;}
+.side_nav .login_box_after .login_btn, .logout_btn {background: #0a9102; border-radius: 4px; color: #fff; font-size: var(--font-size-15); font-weight: 500; text-align: center; display: block; height: 36px;line-height: 36px; width: 100%;}
+.side_nav .login_box_after p {font-size: var(--font-size-12); font-weight: 400; color: #333; margin-top: 10px;}
 
 .gnb_nav ul li {height: 40px; line-height: 43px;}
 .gnb_nav ul li:nth-child(1) {background:url(../images/ico_home.svg)no-repeat 15px center;}
